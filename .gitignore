@@ -1,0 +1,3 @@
+*.o
+# extracted ml source code should be ignored.
+*.ml
