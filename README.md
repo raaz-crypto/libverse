@@ -2,7 +2,7 @@
 
 LibVerse is a _low level cryptographic library_ built using the [verse
 eDSL][verse]. This is *not* a standalone cryptographic library as it
-exposes only a C-API of the "tight loops" involved in various
+exposes only a C-API for the "tight loops" involved in various
 cryptographic primitives. It is meant to be included in higher level
 libraries which makes use of these tight loops to implement a more
 higher level interface.  In particular, it is hoped that the [`raaz`
@@ -48,13 +48,13 @@ following convention.
    are multiple features that are required, it should be separated by
    `_` (underscores).
 
-2. The above function will reside in the file
-   `libverse-VERSION/p/a/f.ext`, where `ext` is either `c` if it is a
-   portable C code or is 's' if it is in assembly language. The
-   corresponding `Coq` source will be at `p/a/f.v`.
+2. The above function will reside in the file `./p/a/f.ext`, where
+   `ext` is either `c` if it is a portable C code or is 's' if it is
+   in assembly language. The corresponding `Coq` source will be at
+   `src/Verse/CryptoLib/p/a/f.v` in the [verse] repository.
 
 3. The generated source (C or assembly) will be at
-   `libverse-VERSION/p/a/f.ext`
+   `p/a/f.ext`
 
 [raaz]: <https://github.com/raaz-crypto/raaz> "The Raaz cryptographic library"
-[verse]: <https://github.com/raaz-crypto/verse> "The Verse eDSL for cryptographic primitives"
+[verse]: <https://github.com/raaz-crypto/verse-coq> "The Verse eDSL for cryptographic primitives"
