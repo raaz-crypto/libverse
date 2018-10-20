@@ -1,4 +1,5 @@
 #include <stdint.h>
+#include <verse.h>
 void verse_chacha20_c_portable(uint32_t (*blockPtr)[16], uint64_t counter, uint32_t p0[8], uint32_t p1[3], uint32_t p2[1])
 {
     /*    Local variables    */

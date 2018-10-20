@@ -1,4 +1,5 @@
 #include <stdint.h>
+#include <verse.h>
 void verse_sha512_c_portable(uint64_t (*blockPtr)[16], uint64_t counter, uint64_t p0[8])
 {
     /*    Local variables    */

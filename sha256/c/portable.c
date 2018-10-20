@@ -1,4 +1,5 @@
 #include <stdint.h>
+#include <verse.h>
 void verse_sha256_c_portable(uint32_t (*blockPtr)[16], uint64_t counter, uint32_t p0[8])
 {
     /*    Local variables    */
