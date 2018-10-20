@@ -10,7 +10,7 @@ SRC      = ${IMPLS_C} ${IMPLS_S}
 OBJ      = $(addsuffix .o, $(basename ${SRC}))
 
 
-CFLAGS += -include verse.h
+CFLAGS += -I.
 
 ifeq (${OS},Windows_NT)
   GUESS_OS=Windows
