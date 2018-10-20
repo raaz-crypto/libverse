@@ -44,7 +44,6 @@ void verse_sha256_c_portable(uint32_t (*blockPtr)[16], uint64_t counter, uint32_
     /*    Iterating over the blocks    */
     while(counter > 0)
     {
-        
         s0 =  verse_from_be32((*blockPtr)[0]);
         s1 =  verse_from_be32((*blockPtr)[1]);
         s2 =  verse_from_be32((*blockPtr)[2]);
@@ -2301,8 +2300,8 @@ void verse_sha256_c_portable(uint32_t (*blockPtr)[16], uint64_t counter, uint32_
         p0[5] =  rf;
         p0[6] =  rg;
         p0[7] =  rh;
-        ++blockPtr; --counter; /*    move to next block    */
+        ++blockPtr;
+        --counter;
+        /*    move to next block    */
     }
-    
-    
 }
