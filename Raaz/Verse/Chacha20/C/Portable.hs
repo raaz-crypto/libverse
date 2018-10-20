@@ -5,6 +5,8 @@
 #-}
 module Raaz.Verse.Chacha20.C.Portable where
 import Raaz.Core
+import Foreign.Ptr
+import Data.Word
 foreign import ccall unsafe
     verse_chacha20_c_portable :: Ptr (Ptr (Tuple 16 Word32))
                               -> Word64
