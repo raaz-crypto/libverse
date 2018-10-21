@@ -1069,7 +1069,7 @@ void verse_chacha20_c_portable(uint32_t (*blockPtr)[16], uint64_t counter, uint3
         rTmp =  verse_from_le32((*blockPtr)[15]);
         rTmp ^= rx15;
         (*blockPtr)[15] = verse_to_le32( rTmp);
-        rctr += 0x00000001;
+        ++rctr;
         ++blockPtr;
         --counter;
         /*    move to next block    */
