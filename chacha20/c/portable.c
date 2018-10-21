@@ -56,7 +56,7 @@ void verse_chacha20_c_portable(uint32_t (*blockPtr)[16], uint64_t counter, uint3
         rx12 = verse_rotL32(rx12, 8);
         rx8 += rx12;
         rx4 ^= rx8;
-        rx4 = verse_rotL32(rx4, 12);
+        rx4 = verse_rotL32(rx4, 7);
         rx1 += rx5;
         rx13 ^= rx1;
         rx13 = verse_rotL32(rx13, 16);
@@ -68,7 +68,7 @@ void verse_chacha20_c_portable(uint32_t (*blockPtr)[16], uint64_t counter, uint3
         rx13 = verse_rotL32(rx13, 8);
         rx9 += rx13;
         rx5 ^= rx9;
-        rx5 = verse_rotL32(rx5, 12);
+        rx5 = verse_rotL32(rx5, 7);
         rx2 += rx6;
         rx14 ^= rx2;
         rx14 = verse_rotL32(rx14, 16);
@@ -80,7 +80,7 @@ void verse_chacha20_c_portable(uint32_t (*blockPtr)[16], uint64_t counter, uint3
         rx14 = verse_rotL32(rx14, 8);
         rx10 += rx14;
         rx6 ^= rx10;
-        rx6 = verse_rotL32(rx6, 12);
+        rx6 = verse_rotL32(rx6, 7);
         rx3 += rx7;
         rx15 ^= rx3;
         rx15 = verse_rotL32(rx15, 16);
@@ -92,7 +92,7 @@ void verse_chacha20_c_portable(uint32_t (*blockPtr)[16], uint64_t counter, uint3
         rx15 = verse_rotL32(rx15, 8);
         rx11 += rx15;
         rx7 ^= rx11;
-        rx7 = verse_rotL32(rx7, 12);
+        rx7 = verse_rotL32(rx7, 7);
         rx0 += rx5;
         rx15 ^= rx0;
         rx15 = verse_rotL32(rx15, 16);
@@ -104,7 +104,7 @@ void verse_chacha20_c_portable(uint32_t (*blockPtr)[16], uint64_t counter, uint3
         rx15 = verse_rotL32(rx15, 8);
         rx10 += rx15;
         rx5 ^= rx10;
-        rx5 = verse_rotL32(rx5, 12);
+        rx5 = verse_rotL32(rx5, 7);
         rx1 += rx6;
         rx12 ^= rx1;
         rx12 = verse_rotL32(rx12, 16);
@@ -116,7 +116,7 @@ void verse_chacha20_c_portable(uint32_t (*blockPtr)[16], uint64_t counter, uint3
         rx12 = verse_rotL32(rx12, 8);
         rx11 += rx12;
         rx6 ^= rx11;
-        rx6 = verse_rotL32(rx6, 12);
+        rx6 = verse_rotL32(rx6, 7);
         rx2 += rx7;
         rx13 ^= rx2;
         rx13 = verse_rotL32(rx13, 16);
@@ -128,7 +128,7 @@ void verse_chacha20_c_portable(uint32_t (*blockPtr)[16], uint64_t counter, uint3
         rx13 = verse_rotL32(rx13, 8);
         rx8 += rx13;
         rx7 ^= rx8;
-        rx7 = verse_rotL32(rx7, 12);
+        rx7 = verse_rotL32(rx7, 7);
         rx3 += rx4;
         rx14 ^= rx3;
         rx14 = verse_rotL32(rx14, 16);
@@ -140,7 +140,7 @@ void verse_chacha20_c_portable(uint32_t (*blockPtr)[16], uint64_t counter, uint3
         rx14 = verse_rotL32(rx14, 8);
         rx9 += rx14;
         rx4 ^= rx9;
-        rx4 = verse_rotL32(rx4, 12);
+        rx4 = verse_rotL32(rx4, 7);
         rx0 += rx4;
         rx12 ^= rx0;
         rx12 = verse_rotL32(rx12, 16);
@@ -152,7 +152,7 @@ void verse_chacha20_c_portable(uint32_t (*blockPtr)[16], uint64_t counter, uint3
         rx12 = verse_rotL32(rx12, 8);
         rx8 += rx12;
         rx4 ^= rx8;
-        rx4 = verse_rotL32(rx4, 12);
+        rx4 = verse_rotL32(rx4, 7);
         rx1 += rx5;
         rx13 ^= rx1;
         rx13 = verse_rotL32(rx13, 16);
@@ -164,7 +164,7 @@ void verse_chacha20_c_portable(uint32_t (*blockPtr)[16], uint64_t counter, uint3
         rx13 = verse_rotL32(rx13, 8);
         rx9 += rx13;
         rx5 ^= rx9;
-        rx5 = verse_rotL32(rx5, 12);
+        rx5 = verse_rotL32(rx5, 7);
         rx2 += rx6;
         rx14 ^= rx2;
         rx14 = verse_rotL32(rx14, 16);
@@ -176,7 +176,7 @@ void verse_chacha20_c_portable(uint32_t (*blockPtr)[16], uint64_t counter, uint3
         rx14 = verse_rotL32(rx14, 8);
         rx10 += rx14;
         rx6 ^= rx10;
-        rx6 = verse_rotL32(rx6, 12);
+        rx6 = verse_rotL32(rx6, 7);
         rx3 += rx7;
         rx15 ^= rx3;
         rx15 = verse_rotL32(rx15, 16);
@@ -188,7 +188,7 @@ void verse_chacha20_c_portable(uint32_t (*blockPtr)[16], uint64_t counter, uint3
         rx15 = verse_rotL32(rx15, 8);
         rx11 += rx15;
         rx7 ^= rx11;
-        rx7 = verse_rotL32(rx7, 12);
+        rx7 = verse_rotL32(rx7, 7);
         rx0 += rx5;
         rx15 ^= rx0;
         rx15 = verse_rotL32(rx15, 16);
@@ -200,7 +200,7 @@ void verse_chacha20_c_portable(uint32_t (*blockPtr)[16], uint64_t counter, uint3
         rx15 = verse_rotL32(rx15, 8);
         rx10 += rx15;
         rx5 ^= rx10;
-        rx5 = verse_rotL32(rx5, 12);
+        rx5 = verse_rotL32(rx5, 7);
         rx1 += rx6;
         rx12 ^= rx1;
         rx12 = verse_rotL32(rx12, 16);
@@ -212,7 +212,7 @@ void verse_chacha20_c_portable(uint32_t (*blockPtr)[16], uint64_t counter, uint3
         rx12 = verse_rotL32(rx12, 8);
         rx11 += rx12;
         rx6 ^= rx11;
-        rx6 = verse_rotL32(rx6, 12);
+        rx6 = verse_rotL32(rx6, 7);
         rx2 += rx7;
         rx13 ^= rx2;
         rx13 = verse_rotL32(rx13, 16);
@@ -224,7 +224,7 @@ void verse_chacha20_c_portable(uint32_t (*blockPtr)[16], uint64_t counter, uint3
         rx13 = verse_rotL32(rx13, 8);
         rx8 += rx13;
         rx7 ^= rx8;
-        rx7 = verse_rotL32(rx7, 12);
+        rx7 = verse_rotL32(rx7, 7);
         rx3 += rx4;
         rx14 ^= rx3;
         rx14 = verse_rotL32(rx14, 16);
@@ -236,7 +236,7 @@ void verse_chacha20_c_portable(uint32_t (*blockPtr)[16], uint64_t counter, uint3
         rx14 = verse_rotL32(rx14, 8);
         rx9 += rx14;
         rx4 ^= rx9;
-        rx4 = verse_rotL32(rx4, 12);
+        rx4 = verse_rotL32(rx4, 7);
         rx0 += rx4;
         rx12 ^= rx0;
         rx12 = verse_rotL32(rx12, 16);
@@ -248,7 +248,7 @@ void verse_chacha20_c_portable(uint32_t (*blockPtr)[16], uint64_t counter, uint3
         rx12 = verse_rotL32(rx12, 8);
         rx8 += rx12;
         rx4 ^= rx8;
-        rx4 = verse_rotL32(rx4, 12);
+        rx4 = verse_rotL32(rx4, 7);
         rx1 += rx5;
         rx13 ^= rx1;
         rx13 = verse_rotL32(rx13, 16);
@@ -260,7 +260,7 @@ void verse_chacha20_c_portable(uint32_t (*blockPtr)[16], uint64_t counter, uint3
         rx13 = verse_rotL32(rx13, 8);
         rx9 += rx13;
         rx5 ^= rx9;
-        rx5 = verse_rotL32(rx5, 12);
+        rx5 = verse_rotL32(rx5, 7);
         rx2 += rx6;
         rx14 ^= rx2;
         rx14 = verse_rotL32(rx14, 16);
@@ -272,7 +272,7 @@ void verse_chacha20_c_portable(uint32_t (*blockPtr)[16], uint64_t counter, uint3
         rx14 = verse_rotL32(rx14, 8);
         rx10 += rx14;
         rx6 ^= rx10;
-        rx6 = verse_rotL32(rx6, 12);
+        rx6 = verse_rotL32(rx6, 7);
         rx3 += rx7;
         rx15 ^= rx3;
         rx15 = verse_rotL32(rx15, 16);
@@ -284,7 +284,7 @@ void verse_chacha20_c_portable(uint32_t (*blockPtr)[16], uint64_t counter, uint3
         rx15 = verse_rotL32(rx15, 8);
         rx11 += rx15;
         rx7 ^= rx11;
-        rx7 = verse_rotL32(rx7, 12);
+        rx7 = verse_rotL32(rx7, 7);
         rx0 += rx5;
         rx15 ^= rx0;
         rx15 = verse_rotL32(rx15, 16);
@@ -296,7 +296,7 @@ void verse_chacha20_c_portable(uint32_t (*blockPtr)[16], uint64_t counter, uint3
         rx15 = verse_rotL32(rx15, 8);
         rx10 += rx15;
         rx5 ^= rx10;
-        rx5 = verse_rotL32(rx5, 12);
+        rx5 = verse_rotL32(rx5, 7);
         rx1 += rx6;
         rx12 ^= rx1;
         rx12 = verse_rotL32(rx12, 16);
@@ -308,7 +308,7 @@ void verse_chacha20_c_portable(uint32_t (*blockPtr)[16], uint64_t counter, uint3
         rx12 = verse_rotL32(rx12, 8);
         rx11 += rx12;
         rx6 ^= rx11;
-        rx6 = verse_rotL32(rx6, 12);
+        rx6 = verse_rotL32(rx6, 7);
         rx2 += rx7;
         rx13 ^= rx2;
         rx13 = verse_rotL32(rx13, 16);
@@ -320,7 +320,7 @@ void verse_chacha20_c_portable(uint32_t (*blockPtr)[16], uint64_t counter, uint3
         rx13 = verse_rotL32(rx13, 8);
         rx8 += rx13;
         rx7 ^= rx8;
-        rx7 = verse_rotL32(rx7, 12);
+        rx7 = verse_rotL32(rx7, 7);
         rx3 += rx4;
         rx14 ^= rx3;
         rx14 = verse_rotL32(rx14, 16);
@@ -332,7 +332,7 @@ void verse_chacha20_c_portable(uint32_t (*blockPtr)[16], uint64_t counter, uint3
         rx14 = verse_rotL32(rx14, 8);
         rx9 += rx14;
         rx4 ^= rx9;
-        rx4 = verse_rotL32(rx4, 12);
+        rx4 = verse_rotL32(rx4, 7);
         rx0 += rx4;
         rx12 ^= rx0;
         rx12 = verse_rotL32(rx12, 16);
@@ -344,7 +344,7 @@ void verse_chacha20_c_portable(uint32_t (*blockPtr)[16], uint64_t counter, uint3
         rx12 = verse_rotL32(rx12, 8);
         rx8 += rx12;
         rx4 ^= rx8;
-        rx4 = verse_rotL32(rx4, 12);
+        rx4 = verse_rotL32(rx4, 7);
         rx1 += rx5;
         rx13 ^= rx1;
         rx13 = verse_rotL32(rx13, 16);
@@ -356,7 +356,7 @@ void verse_chacha20_c_portable(uint32_t (*blockPtr)[16], uint64_t counter, uint3
         rx13 = verse_rotL32(rx13, 8);
         rx9 += rx13;
         rx5 ^= rx9;
-        rx5 = verse_rotL32(rx5, 12);
+        rx5 = verse_rotL32(rx5, 7);
         rx2 += rx6;
         rx14 ^= rx2;
         rx14 = verse_rotL32(rx14, 16);
@@ -368,7 +368,7 @@ void verse_chacha20_c_portable(uint32_t (*blockPtr)[16], uint64_t counter, uint3
         rx14 = verse_rotL32(rx14, 8);
         rx10 += rx14;
         rx6 ^= rx10;
-        rx6 = verse_rotL32(rx6, 12);
+        rx6 = verse_rotL32(rx6, 7);
         rx3 += rx7;
         rx15 ^= rx3;
         rx15 = verse_rotL32(rx15, 16);
@@ -380,7 +380,7 @@ void verse_chacha20_c_portable(uint32_t (*blockPtr)[16], uint64_t counter, uint3
         rx15 = verse_rotL32(rx15, 8);
         rx11 += rx15;
         rx7 ^= rx11;
-        rx7 = verse_rotL32(rx7, 12);
+        rx7 = verse_rotL32(rx7, 7);
         rx0 += rx5;
         rx15 ^= rx0;
         rx15 = verse_rotL32(rx15, 16);
@@ -392,7 +392,7 @@ void verse_chacha20_c_portable(uint32_t (*blockPtr)[16], uint64_t counter, uint3
         rx15 = verse_rotL32(rx15, 8);
         rx10 += rx15;
         rx5 ^= rx10;
-        rx5 = verse_rotL32(rx5, 12);
+        rx5 = verse_rotL32(rx5, 7);
         rx1 += rx6;
         rx12 ^= rx1;
         rx12 = verse_rotL32(rx12, 16);
@@ -404,7 +404,7 @@ void verse_chacha20_c_portable(uint32_t (*blockPtr)[16], uint64_t counter, uint3
         rx12 = verse_rotL32(rx12, 8);
         rx11 += rx12;
         rx6 ^= rx11;
-        rx6 = verse_rotL32(rx6, 12);
+        rx6 = verse_rotL32(rx6, 7);
         rx2 += rx7;
         rx13 ^= rx2;
         rx13 = verse_rotL32(rx13, 16);
@@ -416,7 +416,7 @@ void verse_chacha20_c_portable(uint32_t (*blockPtr)[16], uint64_t counter, uint3
         rx13 = verse_rotL32(rx13, 8);
         rx8 += rx13;
         rx7 ^= rx8;
-        rx7 = verse_rotL32(rx7, 12);
+        rx7 = verse_rotL32(rx7, 7);
         rx3 += rx4;
         rx14 ^= rx3;
         rx14 = verse_rotL32(rx14, 16);
@@ -428,7 +428,7 @@ void verse_chacha20_c_portable(uint32_t (*blockPtr)[16], uint64_t counter, uint3
         rx14 = verse_rotL32(rx14, 8);
         rx9 += rx14;
         rx4 ^= rx9;
-        rx4 = verse_rotL32(rx4, 12);
+        rx4 = verse_rotL32(rx4, 7);
         rx0 += rx4;
         rx12 ^= rx0;
         rx12 = verse_rotL32(rx12, 16);
@@ -440,7 +440,7 @@ void verse_chacha20_c_portable(uint32_t (*blockPtr)[16], uint64_t counter, uint3
         rx12 = verse_rotL32(rx12, 8);
         rx8 += rx12;
         rx4 ^= rx8;
-        rx4 = verse_rotL32(rx4, 12);
+        rx4 = verse_rotL32(rx4, 7);
         rx1 += rx5;
         rx13 ^= rx1;
         rx13 = verse_rotL32(rx13, 16);
@@ -452,7 +452,7 @@ void verse_chacha20_c_portable(uint32_t (*blockPtr)[16], uint64_t counter, uint3
         rx13 = verse_rotL32(rx13, 8);
         rx9 += rx13;
         rx5 ^= rx9;
-        rx5 = verse_rotL32(rx5, 12);
+        rx5 = verse_rotL32(rx5, 7);
         rx2 += rx6;
         rx14 ^= rx2;
         rx14 = verse_rotL32(rx14, 16);
@@ -464,7 +464,7 @@ void verse_chacha20_c_portable(uint32_t (*blockPtr)[16], uint64_t counter, uint3
         rx14 = verse_rotL32(rx14, 8);
         rx10 += rx14;
         rx6 ^= rx10;
-        rx6 = verse_rotL32(rx6, 12);
+        rx6 = verse_rotL32(rx6, 7);
         rx3 += rx7;
         rx15 ^= rx3;
         rx15 = verse_rotL32(rx15, 16);
@@ -476,7 +476,7 @@ void verse_chacha20_c_portable(uint32_t (*blockPtr)[16], uint64_t counter, uint3
         rx15 = verse_rotL32(rx15, 8);
         rx11 += rx15;
         rx7 ^= rx11;
-        rx7 = verse_rotL32(rx7, 12);
+        rx7 = verse_rotL32(rx7, 7);
         rx0 += rx5;
         rx15 ^= rx0;
         rx15 = verse_rotL32(rx15, 16);
@@ -488,7 +488,7 @@ void verse_chacha20_c_portable(uint32_t (*blockPtr)[16], uint64_t counter, uint3
         rx15 = verse_rotL32(rx15, 8);
         rx10 += rx15;
         rx5 ^= rx10;
-        rx5 = verse_rotL32(rx5, 12);
+        rx5 = verse_rotL32(rx5, 7);
         rx1 += rx6;
         rx12 ^= rx1;
         rx12 = verse_rotL32(rx12, 16);
@@ -500,7 +500,7 @@ void verse_chacha20_c_portable(uint32_t (*blockPtr)[16], uint64_t counter, uint3
         rx12 = verse_rotL32(rx12, 8);
         rx11 += rx12;
         rx6 ^= rx11;
-        rx6 = verse_rotL32(rx6, 12);
+        rx6 = verse_rotL32(rx6, 7);
         rx2 += rx7;
         rx13 ^= rx2;
         rx13 = verse_rotL32(rx13, 16);
@@ -512,7 +512,7 @@ void verse_chacha20_c_portable(uint32_t (*blockPtr)[16], uint64_t counter, uint3
         rx13 = verse_rotL32(rx13, 8);
         rx8 += rx13;
         rx7 ^= rx8;
-        rx7 = verse_rotL32(rx7, 12);
+        rx7 = verse_rotL32(rx7, 7);
         rx3 += rx4;
         rx14 ^= rx3;
         rx14 = verse_rotL32(rx14, 16);
@@ -524,7 +524,7 @@ void verse_chacha20_c_portable(uint32_t (*blockPtr)[16], uint64_t counter, uint3
         rx14 = verse_rotL32(rx14, 8);
         rx9 += rx14;
         rx4 ^= rx9;
-        rx4 = verse_rotL32(rx4, 12);
+        rx4 = verse_rotL32(rx4, 7);
         rx0 += rx4;
         rx12 ^= rx0;
         rx12 = verse_rotL32(rx12, 16);
@@ -536,7 +536,7 @@ void verse_chacha20_c_portable(uint32_t (*blockPtr)[16], uint64_t counter, uint3
         rx12 = verse_rotL32(rx12, 8);
         rx8 += rx12;
         rx4 ^= rx8;
-        rx4 = verse_rotL32(rx4, 12);
+        rx4 = verse_rotL32(rx4, 7);
         rx1 += rx5;
         rx13 ^= rx1;
         rx13 = verse_rotL32(rx13, 16);
@@ -548,7 +548,7 @@ void verse_chacha20_c_portable(uint32_t (*blockPtr)[16], uint64_t counter, uint3
         rx13 = verse_rotL32(rx13, 8);
         rx9 += rx13;
         rx5 ^= rx9;
-        rx5 = verse_rotL32(rx5, 12);
+        rx5 = verse_rotL32(rx5, 7);
         rx2 += rx6;
         rx14 ^= rx2;
         rx14 = verse_rotL32(rx14, 16);
@@ -560,7 +560,7 @@ void verse_chacha20_c_portable(uint32_t (*blockPtr)[16], uint64_t counter, uint3
         rx14 = verse_rotL32(rx14, 8);
         rx10 += rx14;
         rx6 ^= rx10;
-        rx6 = verse_rotL32(rx6, 12);
+        rx6 = verse_rotL32(rx6, 7);
         rx3 += rx7;
         rx15 ^= rx3;
         rx15 = verse_rotL32(rx15, 16);
@@ -572,7 +572,7 @@ void verse_chacha20_c_portable(uint32_t (*blockPtr)[16], uint64_t counter, uint3
         rx15 = verse_rotL32(rx15, 8);
         rx11 += rx15;
         rx7 ^= rx11;
-        rx7 = verse_rotL32(rx7, 12);
+        rx7 = verse_rotL32(rx7, 7);
         rx0 += rx5;
         rx15 ^= rx0;
         rx15 = verse_rotL32(rx15, 16);
@@ -584,7 +584,7 @@ void verse_chacha20_c_portable(uint32_t (*blockPtr)[16], uint64_t counter, uint3
         rx15 = verse_rotL32(rx15, 8);
         rx10 += rx15;
         rx5 ^= rx10;
-        rx5 = verse_rotL32(rx5, 12);
+        rx5 = verse_rotL32(rx5, 7);
         rx1 += rx6;
         rx12 ^= rx1;
         rx12 = verse_rotL32(rx12, 16);
@@ -596,7 +596,7 @@ void verse_chacha20_c_portable(uint32_t (*blockPtr)[16], uint64_t counter, uint3
         rx12 = verse_rotL32(rx12, 8);
         rx11 += rx12;
         rx6 ^= rx11;
-        rx6 = verse_rotL32(rx6, 12);
+        rx6 = verse_rotL32(rx6, 7);
         rx2 += rx7;
         rx13 ^= rx2;
         rx13 = verse_rotL32(rx13, 16);
@@ -608,7 +608,7 @@ void verse_chacha20_c_portable(uint32_t (*blockPtr)[16], uint64_t counter, uint3
         rx13 = verse_rotL32(rx13, 8);
         rx8 += rx13;
         rx7 ^= rx8;
-        rx7 = verse_rotL32(rx7, 12);
+        rx7 = verse_rotL32(rx7, 7);
         rx3 += rx4;
         rx14 ^= rx3;
         rx14 = verse_rotL32(rx14, 16);
@@ -620,7 +620,7 @@ void verse_chacha20_c_portable(uint32_t (*blockPtr)[16], uint64_t counter, uint3
         rx14 = verse_rotL32(rx14, 8);
         rx9 += rx14;
         rx4 ^= rx9;
-        rx4 = verse_rotL32(rx4, 12);
+        rx4 = verse_rotL32(rx4, 7);
         rx0 += rx4;
         rx12 ^= rx0;
         rx12 = verse_rotL32(rx12, 16);
@@ -632,7 +632,7 @@ void verse_chacha20_c_portable(uint32_t (*blockPtr)[16], uint64_t counter, uint3
         rx12 = verse_rotL32(rx12, 8);
         rx8 += rx12;
         rx4 ^= rx8;
-        rx4 = verse_rotL32(rx4, 12);
+        rx4 = verse_rotL32(rx4, 7);
         rx1 += rx5;
         rx13 ^= rx1;
         rx13 = verse_rotL32(rx13, 16);
@@ -644,7 +644,7 @@ void verse_chacha20_c_portable(uint32_t (*blockPtr)[16], uint64_t counter, uint3
         rx13 = verse_rotL32(rx13, 8);
         rx9 += rx13;
         rx5 ^= rx9;
-        rx5 = verse_rotL32(rx5, 12);
+        rx5 = verse_rotL32(rx5, 7);
         rx2 += rx6;
         rx14 ^= rx2;
         rx14 = verse_rotL32(rx14, 16);
@@ -656,7 +656,7 @@ void verse_chacha20_c_portable(uint32_t (*blockPtr)[16], uint64_t counter, uint3
         rx14 = verse_rotL32(rx14, 8);
         rx10 += rx14;
         rx6 ^= rx10;
-        rx6 = verse_rotL32(rx6, 12);
+        rx6 = verse_rotL32(rx6, 7);
         rx3 += rx7;
         rx15 ^= rx3;
         rx15 = verse_rotL32(rx15, 16);
@@ -668,7 +668,7 @@ void verse_chacha20_c_portable(uint32_t (*blockPtr)[16], uint64_t counter, uint3
         rx15 = verse_rotL32(rx15, 8);
         rx11 += rx15;
         rx7 ^= rx11;
-        rx7 = verse_rotL32(rx7, 12);
+        rx7 = verse_rotL32(rx7, 7);
         rx0 += rx5;
         rx15 ^= rx0;
         rx15 = verse_rotL32(rx15, 16);
@@ -680,7 +680,7 @@ void verse_chacha20_c_portable(uint32_t (*blockPtr)[16], uint64_t counter, uint3
         rx15 = verse_rotL32(rx15, 8);
         rx10 += rx15;
         rx5 ^= rx10;
-        rx5 = verse_rotL32(rx5, 12);
+        rx5 = verse_rotL32(rx5, 7);
         rx1 += rx6;
         rx12 ^= rx1;
         rx12 = verse_rotL32(rx12, 16);
@@ -692,7 +692,7 @@ void verse_chacha20_c_portable(uint32_t (*blockPtr)[16], uint64_t counter, uint3
         rx12 = verse_rotL32(rx12, 8);
         rx11 += rx12;
         rx6 ^= rx11;
-        rx6 = verse_rotL32(rx6, 12);
+        rx6 = verse_rotL32(rx6, 7);
         rx2 += rx7;
         rx13 ^= rx2;
         rx13 = verse_rotL32(rx13, 16);
@@ -704,7 +704,7 @@ void verse_chacha20_c_portable(uint32_t (*blockPtr)[16], uint64_t counter, uint3
         rx13 = verse_rotL32(rx13, 8);
         rx8 += rx13;
         rx7 ^= rx8;
-        rx7 = verse_rotL32(rx7, 12);
+        rx7 = verse_rotL32(rx7, 7);
         rx3 += rx4;
         rx14 ^= rx3;
         rx14 = verse_rotL32(rx14, 16);
@@ -716,7 +716,7 @@ void verse_chacha20_c_portable(uint32_t (*blockPtr)[16], uint64_t counter, uint3
         rx14 = verse_rotL32(rx14, 8);
         rx9 += rx14;
         rx4 ^= rx9;
-        rx4 = verse_rotL32(rx4, 12);
+        rx4 = verse_rotL32(rx4, 7);
         rx0 += rx4;
         rx12 ^= rx0;
         rx12 = verse_rotL32(rx12, 16);
@@ -728,7 +728,7 @@ void verse_chacha20_c_portable(uint32_t (*blockPtr)[16], uint64_t counter, uint3
         rx12 = verse_rotL32(rx12, 8);
         rx8 += rx12;
         rx4 ^= rx8;
-        rx4 = verse_rotL32(rx4, 12);
+        rx4 = verse_rotL32(rx4, 7);
         rx1 += rx5;
         rx13 ^= rx1;
         rx13 = verse_rotL32(rx13, 16);
@@ -740,7 +740,7 @@ void verse_chacha20_c_portable(uint32_t (*blockPtr)[16], uint64_t counter, uint3
         rx13 = verse_rotL32(rx13, 8);
         rx9 += rx13;
         rx5 ^= rx9;
-        rx5 = verse_rotL32(rx5, 12);
+        rx5 = verse_rotL32(rx5, 7);
         rx2 += rx6;
         rx14 ^= rx2;
         rx14 = verse_rotL32(rx14, 16);
@@ -752,7 +752,7 @@ void verse_chacha20_c_portable(uint32_t (*blockPtr)[16], uint64_t counter, uint3
         rx14 = verse_rotL32(rx14, 8);
         rx10 += rx14;
         rx6 ^= rx10;
-        rx6 = verse_rotL32(rx6, 12);
+        rx6 = verse_rotL32(rx6, 7);
         rx3 += rx7;
         rx15 ^= rx3;
         rx15 = verse_rotL32(rx15, 16);
@@ -764,7 +764,7 @@ void verse_chacha20_c_portable(uint32_t (*blockPtr)[16], uint64_t counter, uint3
         rx15 = verse_rotL32(rx15, 8);
         rx11 += rx15;
         rx7 ^= rx11;
-        rx7 = verse_rotL32(rx7, 12);
+        rx7 = verse_rotL32(rx7, 7);
         rx0 += rx5;
         rx15 ^= rx0;
         rx15 = verse_rotL32(rx15, 16);
@@ -776,7 +776,7 @@ void verse_chacha20_c_portable(uint32_t (*blockPtr)[16], uint64_t counter, uint3
         rx15 = verse_rotL32(rx15, 8);
         rx10 += rx15;
         rx5 ^= rx10;
-        rx5 = verse_rotL32(rx5, 12);
+        rx5 = verse_rotL32(rx5, 7);
         rx1 += rx6;
         rx12 ^= rx1;
         rx12 = verse_rotL32(rx12, 16);
@@ -788,7 +788,7 @@ void verse_chacha20_c_portable(uint32_t (*blockPtr)[16], uint64_t counter, uint3
         rx12 = verse_rotL32(rx12, 8);
         rx11 += rx12;
         rx6 ^= rx11;
-        rx6 = verse_rotL32(rx6, 12);
+        rx6 = verse_rotL32(rx6, 7);
         rx2 += rx7;
         rx13 ^= rx2;
         rx13 = verse_rotL32(rx13, 16);
@@ -800,7 +800,7 @@ void verse_chacha20_c_portable(uint32_t (*blockPtr)[16], uint64_t counter, uint3
         rx13 = verse_rotL32(rx13, 8);
         rx8 += rx13;
         rx7 ^= rx8;
-        rx7 = verse_rotL32(rx7, 12);
+        rx7 = verse_rotL32(rx7, 7);
         rx3 += rx4;
         rx14 ^= rx3;
         rx14 = verse_rotL32(rx14, 16);
@@ -812,7 +812,7 @@ void verse_chacha20_c_portable(uint32_t (*blockPtr)[16], uint64_t counter, uint3
         rx14 = verse_rotL32(rx14, 8);
         rx9 += rx14;
         rx4 ^= rx9;
-        rx4 = verse_rotL32(rx4, 12);
+        rx4 = verse_rotL32(rx4, 7);
         rx0 += rx4;
         rx12 ^= rx0;
         rx12 = verse_rotL32(rx12, 16);
@@ -824,7 +824,7 @@ void verse_chacha20_c_portable(uint32_t (*blockPtr)[16], uint64_t counter, uint3
         rx12 = verse_rotL32(rx12, 8);
         rx8 += rx12;
         rx4 ^= rx8;
-        rx4 = verse_rotL32(rx4, 12);
+        rx4 = verse_rotL32(rx4, 7);
         rx1 += rx5;
         rx13 ^= rx1;
         rx13 = verse_rotL32(rx13, 16);
@@ -836,7 +836,7 @@ void verse_chacha20_c_portable(uint32_t (*blockPtr)[16], uint64_t counter, uint3
         rx13 = verse_rotL32(rx13, 8);
         rx9 += rx13;
         rx5 ^= rx9;
-        rx5 = verse_rotL32(rx5, 12);
+        rx5 = verse_rotL32(rx5, 7);
         rx2 += rx6;
         rx14 ^= rx2;
         rx14 = verse_rotL32(rx14, 16);
@@ -848,7 +848,7 @@ void verse_chacha20_c_portable(uint32_t (*blockPtr)[16], uint64_t counter, uint3
         rx14 = verse_rotL32(rx14, 8);
         rx10 += rx14;
         rx6 ^= rx10;
-        rx6 = verse_rotL32(rx6, 12);
+        rx6 = verse_rotL32(rx6, 7);
         rx3 += rx7;
         rx15 ^= rx3;
         rx15 = verse_rotL32(rx15, 16);
@@ -860,7 +860,7 @@ void verse_chacha20_c_portable(uint32_t (*blockPtr)[16], uint64_t counter, uint3
         rx15 = verse_rotL32(rx15, 8);
         rx11 += rx15;
         rx7 ^= rx11;
-        rx7 = verse_rotL32(rx7, 12);
+        rx7 = verse_rotL32(rx7, 7);
         rx0 += rx5;
         rx15 ^= rx0;
         rx15 = verse_rotL32(rx15, 16);
@@ -872,7 +872,7 @@ void verse_chacha20_c_portable(uint32_t (*blockPtr)[16], uint64_t counter, uint3
         rx15 = verse_rotL32(rx15, 8);
         rx10 += rx15;
         rx5 ^= rx10;
-        rx5 = verse_rotL32(rx5, 12);
+        rx5 = verse_rotL32(rx5, 7);
         rx1 += rx6;
         rx12 ^= rx1;
         rx12 = verse_rotL32(rx12, 16);
@@ -884,7 +884,7 @@ void verse_chacha20_c_portable(uint32_t (*blockPtr)[16], uint64_t counter, uint3
         rx12 = verse_rotL32(rx12, 8);
         rx11 += rx12;
         rx6 ^= rx11;
-        rx6 = verse_rotL32(rx6, 12);
+        rx6 = verse_rotL32(rx6, 7);
         rx2 += rx7;
         rx13 ^= rx2;
         rx13 = verse_rotL32(rx13, 16);
@@ -896,7 +896,7 @@ void verse_chacha20_c_portable(uint32_t (*blockPtr)[16], uint64_t counter, uint3
         rx13 = verse_rotL32(rx13, 8);
         rx8 += rx13;
         rx7 ^= rx8;
-        rx7 = verse_rotL32(rx7, 12);
+        rx7 = verse_rotL32(rx7, 7);
         rx3 += rx4;
         rx14 ^= rx3;
         rx14 = verse_rotL32(rx14, 16);
@@ -908,7 +908,7 @@ void verse_chacha20_c_portable(uint32_t (*blockPtr)[16], uint64_t counter, uint3
         rx14 = verse_rotL32(rx14, 8);
         rx9 += rx14;
         rx4 ^= rx9;
-        rx4 = verse_rotL32(rx4, 12);
+        rx4 = verse_rotL32(rx4, 7);
         rx0 += rx4;
         rx12 ^= rx0;
         rx12 = verse_rotL32(rx12, 16);
@@ -920,7 +920,7 @@ void verse_chacha20_c_portable(uint32_t (*blockPtr)[16], uint64_t counter, uint3
         rx12 = verse_rotL32(rx12, 8);
         rx8 += rx12;
         rx4 ^= rx8;
-        rx4 = verse_rotL32(rx4, 12);
+        rx4 = verse_rotL32(rx4, 7);
         rx1 += rx5;
         rx13 ^= rx1;
         rx13 = verse_rotL32(rx13, 16);
@@ -932,7 +932,7 @@ void verse_chacha20_c_portable(uint32_t (*blockPtr)[16], uint64_t counter, uint3
         rx13 = verse_rotL32(rx13, 8);
         rx9 += rx13;
         rx5 ^= rx9;
-        rx5 = verse_rotL32(rx5, 12);
+        rx5 = verse_rotL32(rx5, 7);
         rx2 += rx6;
         rx14 ^= rx2;
         rx14 = verse_rotL32(rx14, 16);
@@ -944,7 +944,7 @@ void verse_chacha20_c_portable(uint32_t (*blockPtr)[16], uint64_t counter, uint3
         rx14 = verse_rotL32(rx14, 8);
         rx10 += rx14;
         rx6 ^= rx10;
-        rx6 = verse_rotL32(rx6, 12);
+        rx6 = verse_rotL32(rx6, 7);
         rx3 += rx7;
         rx15 ^= rx3;
         rx15 = verse_rotL32(rx15, 16);
@@ -956,7 +956,7 @@ void verse_chacha20_c_portable(uint32_t (*blockPtr)[16], uint64_t counter, uint3
         rx15 = verse_rotL32(rx15, 8);
         rx11 += rx15;
         rx7 ^= rx11;
-        rx7 = verse_rotL32(rx7, 12);
+        rx7 = verse_rotL32(rx7, 7);
         rx0 += rx5;
         rx15 ^= rx0;
         rx15 = verse_rotL32(rx15, 16);
@@ -968,7 +968,7 @@ void verse_chacha20_c_portable(uint32_t (*blockPtr)[16], uint64_t counter, uint3
         rx15 = verse_rotL32(rx15, 8);
         rx10 += rx15;
         rx5 ^= rx10;
-        rx5 = verse_rotL32(rx5, 12);
+        rx5 = verse_rotL32(rx5, 7);
         rx1 += rx6;
         rx12 ^= rx1;
         rx12 = verse_rotL32(rx12, 16);
@@ -980,7 +980,7 @@ void verse_chacha20_c_portable(uint32_t (*blockPtr)[16], uint64_t counter, uint3
         rx12 = verse_rotL32(rx12, 8);
         rx11 += rx12;
         rx6 ^= rx11;
-        rx6 = verse_rotL32(rx6, 12);
+        rx6 = verse_rotL32(rx6, 7);
         rx2 += rx7;
         rx13 ^= rx2;
         rx13 = verse_rotL32(rx13, 16);
@@ -992,7 +992,7 @@ void verse_chacha20_c_portable(uint32_t (*blockPtr)[16], uint64_t counter, uint3
         rx13 = verse_rotL32(rx13, 8);
         rx8 += rx13;
         rx7 ^= rx8;
-        rx7 = verse_rotL32(rx7, 12);
+        rx7 = verse_rotL32(rx7, 7);
         rx3 += rx4;
         rx14 ^= rx3;
         rx14 = verse_rotL32(rx14, 16);
@@ -1004,7 +1004,7 @@ void verse_chacha20_c_portable(uint32_t (*blockPtr)[16], uint64_t counter, uint3
         rx14 = verse_rotL32(rx14, 8);
         rx9 += rx14;
         rx4 ^= rx9;
-        rx4 = verse_rotL32(rx4, 12);
+        rx4 = verse_rotL32(rx4, 7);
         rx0 += 0x61707865;
         rx1 += 0x3320646e;
         rx2 += 0x79622d32;
