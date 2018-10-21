@@ -102,26 +102,26 @@ extern uint64_t verse_from_le64(uint64_t x);
  *         Rotation functions.
  */
 
-static inline uint16_t verse_rotL16(uint16_t w, uint16_t c) {
+static inline uint16_t verse_rotL16(uint16_t w, int c) {
 	return (w << c) | (w >> (16 - c));
 }
 
-static inline uint32_t verse_rotL32(uint32_t w, uint32_t c) {
+static inline uint32_t verse_rotL32(uint32_t w, int c) {
 	return (w << c) | (w >> (32 - c));
 }
 
-static inline uint64_t verse_rotL64(uint64_t w, uint64_t c) {
+static inline uint64_t verse_rotL64(uint64_t w, int c) {
 	return (w << c) | (w >> (64 - c));
 }
 
-static inline uint16_t verse_rotR16(uint16_t w, uint16_t c) {
+static inline uint16_t verse_rotR16(uint16_t w, int c) {
 	return (w >> c) | (w << (16 - c));
 }
 
-static inline uint32_t verse_rotR32(uint32_t w, uint32_t c) {
+static inline uint32_t verse_rotR32(uint32_t w, int c) {
 	return (w >> c) | (w << (32 - c));
 }
 
-static inline uint64_t verse_rotR64(uint64_t w, uint64_t c) {
+static inline uint64_t verse_rotR64(uint64_t w, int c) {
 	return (w >> c) | (w << (64 - c));
 }
