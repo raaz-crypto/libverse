@@ -8,7 +8,7 @@ import Raaz.Core
 import Foreign.Ptr
 import Data.Word
 foreign import ccall unsafe
-    verse_sha512_c_portable :: Ptr (Ptr (Tuple 16 Word64))
+    verse_sha512_c_portable :: Ptr (Tuple 16 Word64)
                             -> Word64
                             -> Ptr (Tuple 8 Word64)
                             -> IO ()
