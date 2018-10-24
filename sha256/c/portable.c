@@ -61,7 +61,7 @@ void verse_sha256_c_portable(uint32_t (*blockPtr)[16], uint64_t counter, uint32_
         s13 =  verse_from_be32((*blockPtr)[13]);
         s14 =  verse_from_be32((*blockPtr)[14]);
         s15 =  verse_from_be32((*blockPtr)[15]);
-        rtemp = rh + 0x428a2f98;
+        rtemp = rh + 0x428a2f98UL;
         rtemp += s0;
         rtp = ~ re;
         rtp &= rg;
@@ -99,7 +99,7 @@ void verse_sha256_c_portable(uint32_t (*blockPtr)[16], uint64_t counter, uint32_
         rtp = s14 >> 10;
         rt ^= rtp;
         s0 += rt;
-        rtemp = rg + 0x71374491;
+        rtemp = rg + 0x71374491UL;
         rtemp += s1;
         rtp = ~ rd;
         rtp &= rf;
@@ -137,7 +137,7 @@ void verse_sha256_c_portable(uint32_t (*blockPtr)[16], uint64_t counter, uint32_
         rtp = s15 >> 10;
         rt ^= rtp;
         s1 += rt;
-        rtemp = rf + 0xb5c0fbcf;
+        rtemp = rf + 0xb5c0fbcfUL;
         rtemp += s2;
         rtp = ~ rc;
         rtp &= re;
@@ -175,7 +175,7 @@ void verse_sha256_c_portable(uint32_t (*blockPtr)[16], uint64_t counter, uint32_
         rtp = s0 >> 10;
         rt ^= rtp;
         s2 += rt;
-        rtemp = re + 0xe9b5dba5;
+        rtemp = re + 0xe9b5dba5UL;
         rtemp += s3;
         rtp = ~ rb;
         rtp &= rd;
@@ -213,7 +213,7 @@ void verse_sha256_c_portable(uint32_t (*blockPtr)[16], uint64_t counter, uint32_
         rtp = s1 >> 10;
         rt ^= rtp;
         s3 += rt;
-        rtemp = rd + 0x3956c25b;
+        rtemp = rd + 0x3956c25bUL;
         rtemp += s4;
         rtp = ~ ra;
         rtp &= rc;
@@ -251,7 +251,7 @@ void verse_sha256_c_portable(uint32_t (*blockPtr)[16], uint64_t counter, uint32_
         rtp = s2 >> 10;
         rt ^= rtp;
         s4 += rt;
-        rtemp = rc + 0x59f111f1;
+        rtemp = rc + 0x59f111f1UL;
         rtemp += s5;
         rtp = ~ rh;
         rtp &= rb;
@@ -289,7 +289,7 @@ void verse_sha256_c_portable(uint32_t (*blockPtr)[16], uint64_t counter, uint32_
         rtp = s3 >> 10;
         rt ^= rtp;
         s5 += rt;
-        rtemp = rb + 0x923f82a4;
+        rtemp = rb + 0x923f82a4UL;
         rtemp += s6;
         rtp = ~ rg;
         rtp &= ra;
@@ -327,7 +327,7 @@ void verse_sha256_c_portable(uint32_t (*blockPtr)[16], uint64_t counter, uint32_
         rtp = s4 >> 10;
         rt ^= rtp;
         s6 += rt;
-        rtemp = ra + 0xab1c5ed5;
+        rtemp = ra + 0xab1c5ed5UL;
         rtemp += s7;
         rtp = ~ rf;
         rtp &= rh;
@@ -365,7 +365,7 @@ void verse_sha256_c_portable(uint32_t (*blockPtr)[16], uint64_t counter, uint32_
         rtp = s5 >> 10;
         rt ^= rtp;
         s7 += rt;
-        rtemp = rh + 0xd807aa98;
+        rtemp = rh + 0xd807aa98UL;
         rtemp += s8;
         rtp = ~ re;
         rtp &= rg;
@@ -403,7 +403,7 @@ void verse_sha256_c_portable(uint32_t (*blockPtr)[16], uint64_t counter, uint32_
         rtp = s6 >> 10;
         rt ^= rtp;
         s8 += rt;
-        rtemp = rg + 0x12835b01;
+        rtemp = rg + 0x12835b01UL;
         rtemp += s9;
         rtp = ~ rd;
         rtp &= rf;
@@ -441,7 +441,7 @@ void verse_sha256_c_portable(uint32_t (*blockPtr)[16], uint64_t counter, uint32_
         rtp = s7 >> 10;
         rt ^= rtp;
         s9 += rt;
-        rtemp = rf + 0x243185be;
+        rtemp = rf + 0x243185beUL;
         rtemp += s10;
         rtp = ~ rc;
         rtp &= re;
@@ -479,7 +479,7 @@ void verse_sha256_c_portable(uint32_t (*blockPtr)[16], uint64_t counter, uint32_
         rtp = s8 >> 10;
         rt ^= rtp;
         s10 += rt;
-        rtemp = re + 0x550c7dc3;
+        rtemp = re + 0x550c7dc3UL;
         rtemp += s11;
         rtp = ~ rb;
         rtp &= rd;
@@ -517,7 +517,7 @@ void verse_sha256_c_portable(uint32_t (*blockPtr)[16], uint64_t counter, uint32_
         rtp = s9 >> 10;
         rt ^= rtp;
         s11 += rt;
-        rtemp = rd + 0x72be5d74;
+        rtemp = rd + 0x72be5d74UL;
         rtemp += s12;
         rtp = ~ ra;
         rtp &= rc;
@@ -555,7 +555,7 @@ void verse_sha256_c_portable(uint32_t (*blockPtr)[16], uint64_t counter, uint32_
         rtp = s10 >> 10;
         rt ^= rtp;
         s12 += rt;
-        rtemp = rc + 0x80deb1fe;
+        rtemp = rc + 0x80deb1feUL;
         rtemp += s13;
         rtp = ~ rh;
         rtp &= rb;
@@ -593,7 +593,7 @@ void verse_sha256_c_portable(uint32_t (*blockPtr)[16], uint64_t counter, uint32_
         rtp = s11 >> 10;
         rt ^= rtp;
         s13 += rt;
-        rtemp = rb + 0x9bdc06a7;
+        rtemp = rb + 0x9bdc06a7UL;
         rtemp += s14;
         rtp = ~ rg;
         rtp &= ra;
@@ -631,7 +631,7 @@ void verse_sha256_c_portable(uint32_t (*blockPtr)[16], uint64_t counter, uint32_
         rtp = s12 >> 10;
         rt ^= rtp;
         s14 += rt;
-        rtemp = ra + 0xc19bf174;
+        rtemp = ra + 0xc19bf174UL;
         rtemp += s15;
         rtp = ~ rf;
         rtp &= rh;
@@ -669,7 +669,7 @@ void verse_sha256_c_portable(uint32_t (*blockPtr)[16], uint64_t counter, uint32_
         rtp = s13 >> 10;
         rt ^= rtp;
         s15 += rt;
-        rtemp = rh + 0xe49b69c1;
+        rtemp = rh + 0xe49b69c1UL;
         rtemp += s0;
         rtp = ~ re;
         rtp &= rg;
@@ -707,7 +707,7 @@ void verse_sha256_c_portable(uint32_t (*blockPtr)[16], uint64_t counter, uint32_
         rtp = s14 >> 10;
         rt ^= rtp;
         s0 += rt;
-        rtemp = rg + 0xefbe4786;
+        rtemp = rg + 0xefbe4786UL;
         rtemp += s1;
         rtp = ~ rd;
         rtp &= rf;
@@ -745,7 +745,7 @@ void verse_sha256_c_portable(uint32_t (*blockPtr)[16], uint64_t counter, uint32_
         rtp = s15 >> 10;
         rt ^= rtp;
         s1 += rt;
-        rtemp = rf + 0x0fc19dc6;
+        rtemp = rf + 0x0fc19dc6UL;
         rtemp += s2;
         rtp = ~ rc;
         rtp &= re;
@@ -783,7 +783,7 @@ void verse_sha256_c_portable(uint32_t (*blockPtr)[16], uint64_t counter, uint32_
         rtp = s0 >> 10;
         rt ^= rtp;
         s2 += rt;
-        rtemp = re + 0x240ca1cc;
+        rtemp = re + 0x240ca1ccUL;
         rtemp += s3;
         rtp = ~ rb;
         rtp &= rd;
@@ -821,7 +821,7 @@ void verse_sha256_c_portable(uint32_t (*blockPtr)[16], uint64_t counter, uint32_
         rtp = s1 >> 10;
         rt ^= rtp;
         s3 += rt;
-        rtemp = rd + 0x2de92c6f;
+        rtemp = rd + 0x2de92c6fUL;
         rtemp += s4;
         rtp = ~ ra;
         rtp &= rc;
@@ -859,7 +859,7 @@ void verse_sha256_c_portable(uint32_t (*blockPtr)[16], uint64_t counter, uint32_
         rtp = s2 >> 10;
         rt ^= rtp;
         s4 += rt;
-        rtemp = rc + 0x4a7484aa;
+        rtemp = rc + 0x4a7484aaUL;
         rtemp += s5;
         rtp = ~ rh;
         rtp &= rb;
@@ -897,7 +897,7 @@ void verse_sha256_c_portable(uint32_t (*blockPtr)[16], uint64_t counter, uint32_
         rtp = s3 >> 10;
         rt ^= rtp;
         s5 += rt;
-        rtemp = rb + 0x5cb0a9dc;
+        rtemp = rb + 0x5cb0a9dcUL;
         rtemp += s6;
         rtp = ~ rg;
         rtp &= ra;
@@ -935,7 +935,7 @@ void verse_sha256_c_portable(uint32_t (*blockPtr)[16], uint64_t counter, uint32_
         rtp = s4 >> 10;
         rt ^= rtp;
         s6 += rt;
-        rtemp = ra + 0x76f988da;
+        rtemp = ra + 0x76f988daUL;
         rtemp += s7;
         rtp = ~ rf;
         rtp &= rh;
@@ -973,7 +973,7 @@ void verse_sha256_c_portable(uint32_t (*blockPtr)[16], uint64_t counter, uint32_
         rtp = s5 >> 10;
         rt ^= rtp;
         s7 += rt;
-        rtemp = rh + 0x983e5152;
+        rtemp = rh + 0x983e5152UL;
         rtemp += s8;
         rtp = ~ re;
         rtp &= rg;
@@ -1011,7 +1011,7 @@ void verse_sha256_c_portable(uint32_t (*blockPtr)[16], uint64_t counter, uint32_
         rtp = s6 >> 10;
         rt ^= rtp;
         s8 += rt;
-        rtemp = rg + 0xa831c66d;
+        rtemp = rg + 0xa831c66dUL;
         rtemp += s9;
         rtp = ~ rd;
         rtp &= rf;
@@ -1049,7 +1049,7 @@ void verse_sha256_c_portable(uint32_t (*blockPtr)[16], uint64_t counter, uint32_
         rtp = s7 >> 10;
         rt ^= rtp;
         s9 += rt;
-        rtemp = rf + 0xb00327c8;
+        rtemp = rf + 0xb00327c8UL;
         rtemp += s10;
         rtp = ~ rc;
         rtp &= re;
@@ -1087,7 +1087,7 @@ void verse_sha256_c_portable(uint32_t (*blockPtr)[16], uint64_t counter, uint32_
         rtp = s8 >> 10;
         rt ^= rtp;
         s10 += rt;
-        rtemp = re + 0xbf597fc7;
+        rtemp = re + 0xbf597fc7UL;
         rtemp += s11;
         rtp = ~ rb;
         rtp &= rd;
@@ -1125,7 +1125,7 @@ void verse_sha256_c_portable(uint32_t (*blockPtr)[16], uint64_t counter, uint32_
         rtp = s9 >> 10;
         rt ^= rtp;
         s11 += rt;
-        rtemp = rd + 0xc6e00bf3;
+        rtemp = rd + 0xc6e00bf3UL;
         rtemp += s12;
         rtp = ~ ra;
         rtp &= rc;
@@ -1163,7 +1163,7 @@ void verse_sha256_c_portable(uint32_t (*blockPtr)[16], uint64_t counter, uint32_
         rtp = s10 >> 10;
         rt ^= rtp;
         s12 += rt;
-        rtemp = rc + 0xd5a79147;
+        rtemp = rc + 0xd5a79147UL;
         rtemp += s13;
         rtp = ~ rh;
         rtp &= rb;
@@ -1201,7 +1201,7 @@ void verse_sha256_c_portable(uint32_t (*blockPtr)[16], uint64_t counter, uint32_
         rtp = s11 >> 10;
         rt ^= rtp;
         s13 += rt;
-        rtemp = rb + 0x06ca6351;
+        rtemp = rb + 0x06ca6351UL;
         rtemp += s14;
         rtp = ~ rg;
         rtp &= ra;
@@ -1239,7 +1239,7 @@ void verse_sha256_c_portable(uint32_t (*blockPtr)[16], uint64_t counter, uint32_
         rtp = s12 >> 10;
         rt ^= rtp;
         s14 += rt;
-        rtemp = ra + 0x14292967;
+        rtemp = ra + 0x14292967UL;
         rtemp += s15;
         rtp = ~ rf;
         rtp &= rh;
@@ -1277,7 +1277,7 @@ void verse_sha256_c_portable(uint32_t (*blockPtr)[16], uint64_t counter, uint32_
         rtp = s13 >> 10;
         rt ^= rtp;
         s15 += rt;
-        rtemp = rh + 0x27b70a85;
+        rtemp = rh + 0x27b70a85UL;
         rtemp += s0;
         rtp = ~ re;
         rtp &= rg;
@@ -1315,7 +1315,7 @@ void verse_sha256_c_portable(uint32_t (*blockPtr)[16], uint64_t counter, uint32_
         rtp = s14 >> 10;
         rt ^= rtp;
         s0 += rt;
-        rtemp = rg + 0x2e1b2138;
+        rtemp = rg + 0x2e1b2138UL;
         rtemp += s1;
         rtp = ~ rd;
         rtp &= rf;
@@ -1353,7 +1353,7 @@ void verse_sha256_c_portable(uint32_t (*blockPtr)[16], uint64_t counter, uint32_
         rtp = s15 >> 10;
         rt ^= rtp;
         s1 += rt;
-        rtemp = rf + 0x4d2c6dfc;
+        rtemp = rf + 0x4d2c6dfcUL;
         rtemp += s2;
         rtp = ~ rc;
         rtp &= re;
@@ -1391,7 +1391,7 @@ void verse_sha256_c_portable(uint32_t (*blockPtr)[16], uint64_t counter, uint32_
         rtp = s0 >> 10;
         rt ^= rtp;
         s2 += rt;
-        rtemp = re + 0x53380d13;
+        rtemp = re + 0x53380d13UL;
         rtemp += s3;
         rtp = ~ rb;
         rtp &= rd;
@@ -1429,7 +1429,7 @@ void verse_sha256_c_portable(uint32_t (*blockPtr)[16], uint64_t counter, uint32_
         rtp = s1 >> 10;
         rt ^= rtp;
         s3 += rt;
-        rtemp = rd + 0x650a7354;
+        rtemp = rd + 0x650a7354UL;
         rtemp += s4;
         rtp = ~ ra;
         rtp &= rc;
@@ -1467,7 +1467,7 @@ void verse_sha256_c_portable(uint32_t (*blockPtr)[16], uint64_t counter, uint32_
         rtp = s2 >> 10;
         rt ^= rtp;
         s4 += rt;
-        rtemp = rc + 0x766a0abb;
+        rtemp = rc + 0x766a0abbUL;
         rtemp += s5;
         rtp = ~ rh;
         rtp &= rb;
@@ -1505,7 +1505,7 @@ void verse_sha256_c_portable(uint32_t (*blockPtr)[16], uint64_t counter, uint32_
         rtp = s3 >> 10;
         rt ^= rtp;
         s5 += rt;
-        rtemp = rb + 0x81c2c92e;
+        rtemp = rb + 0x81c2c92eUL;
         rtemp += s6;
         rtp = ~ rg;
         rtp &= ra;
@@ -1543,7 +1543,7 @@ void verse_sha256_c_portable(uint32_t (*blockPtr)[16], uint64_t counter, uint32_
         rtp = s4 >> 10;
         rt ^= rtp;
         s6 += rt;
-        rtemp = ra + 0x92722c85;
+        rtemp = ra + 0x92722c85UL;
         rtemp += s7;
         rtp = ~ rf;
         rtp &= rh;
@@ -1581,7 +1581,7 @@ void verse_sha256_c_portable(uint32_t (*blockPtr)[16], uint64_t counter, uint32_
         rtp = s5 >> 10;
         rt ^= rtp;
         s7 += rt;
-        rtemp = rh + 0xa2bfe8a1;
+        rtemp = rh + 0xa2bfe8a1UL;
         rtemp += s8;
         rtp = ~ re;
         rtp &= rg;
@@ -1619,7 +1619,7 @@ void verse_sha256_c_portable(uint32_t (*blockPtr)[16], uint64_t counter, uint32_
         rtp = s6 >> 10;
         rt ^= rtp;
         s8 += rt;
-        rtemp = rg + 0xa81a664b;
+        rtemp = rg + 0xa81a664bUL;
         rtemp += s9;
         rtp = ~ rd;
         rtp &= rf;
@@ -1657,7 +1657,7 @@ void verse_sha256_c_portable(uint32_t (*blockPtr)[16], uint64_t counter, uint32_
         rtp = s7 >> 10;
         rt ^= rtp;
         s9 += rt;
-        rtemp = rf + 0xc24b8b70;
+        rtemp = rf + 0xc24b8b70UL;
         rtemp += s10;
         rtp = ~ rc;
         rtp &= re;
@@ -1695,7 +1695,7 @@ void verse_sha256_c_portable(uint32_t (*blockPtr)[16], uint64_t counter, uint32_
         rtp = s8 >> 10;
         rt ^= rtp;
         s10 += rt;
-        rtemp = re + 0xc76c51a3;
+        rtemp = re + 0xc76c51a3UL;
         rtemp += s11;
         rtp = ~ rb;
         rtp &= rd;
@@ -1733,7 +1733,7 @@ void verse_sha256_c_portable(uint32_t (*blockPtr)[16], uint64_t counter, uint32_
         rtp = s9 >> 10;
         rt ^= rtp;
         s11 += rt;
-        rtemp = rd + 0xd192e819;
+        rtemp = rd + 0xd192e819UL;
         rtemp += s12;
         rtp = ~ ra;
         rtp &= rc;
@@ -1771,7 +1771,7 @@ void verse_sha256_c_portable(uint32_t (*blockPtr)[16], uint64_t counter, uint32_
         rtp = s10 >> 10;
         rt ^= rtp;
         s12 += rt;
-        rtemp = rc + 0xd6990624;
+        rtemp = rc + 0xd6990624UL;
         rtemp += s13;
         rtp = ~ rh;
         rtp &= rb;
@@ -1809,7 +1809,7 @@ void verse_sha256_c_portable(uint32_t (*blockPtr)[16], uint64_t counter, uint32_
         rtp = s11 >> 10;
         rt ^= rtp;
         s13 += rt;
-        rtemp = rb + 0xf40e3585;
+        rtemp = rb + 0xf40e3585UL;
         rtemp += s14;
         rtp = ~ rg;
         rtp &= ra;
@@ -1847,7 +1847,7 @@ void verse_sha256_c_portable(uint32_t (*blockPtr)[16], uint64_t counter, uint32_
         rtp = s12 >> 10;
         rt ^= rtp;
         s14 += rt;
-        rtemp = ra + 0x106aa070;
+        rtemp = ra + 0x106aa070UL;
         rtemp += s15;
         rtp = ~ rf;
         rtp &= rh;
@@ -1885,7 +1885,7 @@ void verse_sha256_c_portable(uint32_t (*blockPtr)[16], uint64_t counter, uint32_
         rtp = s13 >> 10;
         rt ^= rtp;
         s15 += rt;
-        rtemp = rh + 0x19a4c116;
+        rtemp = rh + 0x19a4c116UL;
         rtemp += s0;
         rtp = ~ re;
         rtp &= rg;
@@ -1910,7 +1910,7 @@ void verse_sha256_c_portable(uint32_t (*blockPtr)[16], uint64_t counter, uint32_
         rtp = rb & rc;
         rt |= rtp;
         rh = rtemp + rt;
-        rtemp = rg + 0x1e376c08;
+        rtemp = rg + 0x1e376c08UL;
         rtemp += s1;
         rtp = ~ rd;
         rtp &= rf;
@@ -1935,7 +1935,7 @@ void verse_sha256_c_portable(uint32_t (*blockPtr)[16], uint64_t counter, uint32_
         rtp = ra & rb;
         rt |= rtp;
         rg = rtemp + rt;
-        rtemp = rf + 0x2748774c;
+        rtemp = rf + 0x2748774cUL;
         rtemp += s2;
         rtp = ~ rc;
         rtp &= re;
@@ -1960,7 +1960,7 @@ void verse_sha256_c_portable(uint32_t (*blockPtr)[16], uint64_t counter, uint32_
         rtp = rh & ra;
         rt |= rtp;
         rf = rtemp + rt;
-        rtemp = re + 0x34b0bcb5;
+        rtemp = re + 0x34b0bcb5UL;
         rtemp += s3;
         rtp = ~ rb;
         rtp &= rd;
@@ -1985,7 +1985,7 @@ void verse_sha256_c_portable(uint32_t (*blockPtr)[16], uint64_t counter, uint32_
         rtp = rg & rh;
         rt |= rtp;
         re = rtemp + rt;
-        rtemp = rd + 0x391c0cb3;
+        rtemp = rd + 0x391c0cb3UL;
         rtemp += s4;
         rtp = ~ ra;
         rtp &= rc;
@@ -2010,7 +2010,7 @@ void verse_sha256_c_portable(uint32_t (*blockPtr)[16], uint64_t counter, uint32_
         rtp = rf & rg;
         rt |= rtp;
         rd = rtemp + rt;
-        rtemp = rc + 0x4ed8aa4a;
+        rtemp = rc + 0x4ed8aa4aUL;
         rtemp += s5;
         rtp = ~ rh;
         rtp &= rb;
@@ -2035,7 +2035,7 @@ void verse_sha256_c_portable(uint32_t (*blockPtr)[16], uint64_t counter, uint32_
         rtp = re & rf;
         rt |= rtp;
         rc = rtemp + rt;
-        rtemp = rb + 0x5b9cca4f;
+        rtemp = rb + 0x5b9cca4fUL;
         rtemp += s6;
         rtp = ~ rg;
         rtp &= ra;
@@ -2060,7 +2060,7 @@ void verse_sha256_c_portable(uint32_t (*blockPtr)[16], uint64_t counter, uint32_
         rtp = rd & re;
         rt |= rtp;
         rb = rtemp + rt;
-        rtemp = ra + 0x682e6ff3;
+        rtemp = ra + 0x682e6ff3UL;
         rtemp += s7;
         rtp = ~ rf;
         rtp &= rh;
@@ -2085,7 +2085,7 @@ void verse_sha256_c_portable(uint32_t (*blockPtr)[16], uint64_t counter, uint32_
         rtp = rc & rd;
         rt |= rtp;
         ra = rtemp + rt;
-        rtemp = rh + 0x748f82ee;
+        rtemp = rh + 0x748f82eeUL;
         rtemp += s8;
         rtp = ~ re;
         rtp &= rg;
@@ -2110,7 +2110,7 @@ void verse_sha256_c_portable(uint32_t (*blockPtr)[16], uint64_t counter, uint32_
         rtp = rb & rc;
         rt |= rtp;
         rh = rtemp + rt;
-        rtemp = rg + 0x78a5636f;
+        rtemp = rg + 0x78a5636fUL;
         rtemp += s9;
         rtp = ~ rd;
         rtp &= rf;
@@ -2135,7 +2135,7 @@ void verse_sha256_c_portable(uint32_t (*blockPtr)[16], uint64_t counter, uint32_
         rtp = ra & rb;
         rt |= rtp;
         rg = rtemp + rt;
-        rtemp = rf + 0x84c87814;
+        rtemp = rf + 0x84c87814UL;
         rtemp += s10;
         rtp = ~ rc;
         rtp &= re;
@@ -2160,7 +2160,7 @@ void verse_sha256_c_portable(uint32_t (*blockPtr)[16], uint64_t counter, uint32_
         rtp = rh & ra;
         rt |= rtp;
         rf = rtemp + rt;
-        rtemp = re + 0x8cc70208;
+        rtemp = re + 0x8cc70208UL;
         rtemp += s11;
         rtp = ~ rb;
         rtp &= rd;
@@ -2185,7 +2185,7 @@ void verse_sha256_c_portable(uint32_t (*blockPtr)[16], uint64_t counter, uint32_
         rtp = rg & rh;
         rt |= rtp;
         re = rtemp + rt;
-        rtemp = rd + 0x90befffa;
+        rtemp = rd + 0x90befffaUL;
         rtemp += s12;
         rtp = ~ ra;
         rtp &= rc;
@@ -2210,7 +2210,7 @@ void verse_sha256_c_portable(uint32_t (*blockPtr)[16], uint64_t counter, uint32_
         rtp = rf & rg;
         rt |= rtp;
         rd = rtemp + rt;
-        rtemp = rc + 0xa4506ceb;
+        rtemp = rc + 0xa4506cebUL;
         rtemp += s13;
         rtp = ~ rh;
         rtp &= rb;
@@ -2235,7 +2235,7 @@ void verse_sha256_c_portable(uint32_t (*blockPtr)[16], uint64_t counter, uint32_
         rtp = re & rf;
         rt |= rtp;
         rc = rtemp + rt;
-        rtemp = rb + 0xbef9a3f7;
+        rtemp = rb + 0xbef9a3f7UL;
         rtemp += s14;
         rtp = ~ rg;
         rtp &= ra;
@@ -2260,7 +2260,7 @@ void verse_sha256_c_portable(uint32_t (*blockPtr)[16], uint64_t counter, uint32_
         rtp = rd & re;
         rt |= rtp;
         rb = rtemp + rt;
-        rtemp = ra + 0xc67178f2;
+        rtemp = ra + 0xc67178f2UL;
         rtemp += s15;
         rtp = ~ rf;
         rtp &= rh;

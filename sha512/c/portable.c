@@ -61,7 +61,7 @@ void verse_sha512_c_portable(uint64_t (*blockPtr)[16], uint64_t counter, uint64_
         s13 =  verse_from_be64((*blockPtr)[13]);
         s14 =  verse_from_be64((*blockPtr)[14]);
         s15 =  verse_from_be64((*blockPtr)[15]);
-        rtemp = rh + 0x428a2f98d728ae22;
+        rtemp = rh + 0x428a2f98d728ae22ULL;
         rtemp += s0;
         rtp = ~ re;
         rtp &= rg;
@@ -99,7 +99,7 @@ void verse_sha512_c_portable(uint64_t (*blockPtr)[16], uint64_t counter, uint64_
         rtp = s14 >> 6;
         rt ^= rtp;
         s0 += rt;
-        rtemp = rg + 0x7137449123ef65cd;
+        rtemp = rg + 0x7137449123ef65cdULL;
         rtemp += s1;
         rtp = ~ rd;
         rtp &= rf;
@@ -137,7 +137,7 @@ void verse_sha512_c_portable(uint64_t (*blockPtr)[16], uint64_t counter, uint64_
         rtp = s15 >> 6;
         rt ^= rtp;
         s1 += rt;
-        rtemp = rf + 0xb5c0fbcfec4d3b2f;
+        rtemp = rf + 0xb5c0fbcfec4d3b2fULL;
         rtemp += s2;
         rtp = ~ rc;
         rtp &= re;
@@ -175,7 +175,7 @@ void verse_sha512_c_portable(uint64_t (*blockPtr)[16], uint64_t counter, uint64_
         rtp = s0 >> 6;
         rt ^= rtp;
         s2 += rt;
-        rtemp = re + 0xe9b5dba58189dbbc;
+        rtemp = re + 0xe9b5dba58189dbbcULL;
         rtemp += s3;
         rtp = ~ rb;
         rtp &= rd;
@@ -213,7 +213,7 @@ void verse_sha512_c_portable(uint64_t (*blockPtr)[16], uint64_t counter, uint64_
         rtp = s1 >> 6;
         rt ^= rtp;
         s3 += rt;
-        rtemp = rd + 0x3956c25bf348b538;
+        rtemp = rd + 0x3956c25bf348b538ULL;
         rtemp += s4;
         rtp = ~ ra;
         rtp &= rc;
@@ -251,7 +251,7 @@ void verse_sha512_c_portable(uint64_t (*blockPtr)[16], uint64_t counter, uint64_
         rtp = s2 >> 6;
         rt ^= rtp;
         s4 += rt;
-        rtemp = rc + 0x59f111f1b605d019;
+        rtemp = rc + 0x59f111f1b605d019ULL;
         rtemp += s5;
         rtp = ~ rh;
         rtp &= rb;
@@ -289,7 +289,7 @@ void verse_sha512_c_portable(uint64_t (*blockPtr)[16], uint64_t counter, uint64_
         rtp = s3 >> 6;
         rt ^= rtp;
         s5 += rt;
-        rtemp = rb + 0x923f82a4af194f9b;
+        rtemp = rb + 0x923f82a4af194f9bULL;
         rtemp += s6;
         rtp = ~ rg;
         rtp &= ra;
@@ -327,7 +327,7 @@ void verse_sha512_c_portable(uint64_t (*blockPtr)[16], uint64_t counter, uint64_
         rtp = s4 >> 6;
         rt ^= rtp;
         s6 += rt;
-        rtemp = ra + 0xab1c5ed5da6d8118;
+        rtemp = ra + 0xab1c5ed5da6d8118ULL;
         rtemp += s7;
         rtp = ~ rf;
         rtp &= rh;
@@ -365,7 +365,7 @@ void verse_sha512_c_portable(uint64_t (*blockPtr)[16], uint64_t counter, uint64_
         rtp = s5 >> 6;
         rt ^= rtp;
         s7 += rt;
-        rtemp = rh + 0xd807aa98a3030242;
+        rtemp = rh + 0xd807aa98a3030242ULL;
         rtemp += s8;
         rtp = ~ re;
         rtp &= rg;
@@ -403,7 +403,7 @@ void verse_sha512_c_portable(uint64_t (*blockPtr)[16], uint64_t counter, uint64_
         rtp = s6 >> 6;
         rt ^= rtp;
         s8 += rt;
-        rtemp = rg + 0x12835b0145706fbe;
+        rtemp = rg + 0x12835b0145706fbeULL;
         rtemp += s9;
         rtp = ~ rd;
         rtp &= rf;
@@ -441,7 +441,7 @@ void verse_sha512_c_portable(uint64_t (*blockPtr)[16], uint64_t counter, uint64_
         rtp = s7 >> 6;
         rt ^= rtp;
         s9 += rt;
-        rtemp = rf + 0x243185be4ee4b28c;
+        rtemp = rf + 0x243185be4ee4b28cULL;
         rtemp += s10;
         rtp = ~ rc;
         rtp &= re;
@@ -479,7 +479,7 @@ void verse_sha512_c_portable(uint64_t (*blockPtr)[16], uint64_t counter, uint64_
         rtp = s8 >> 6;
         rt ^= rtp;
         s10 += rt;
-        rtemp = re + 0x550c7dc3d5ffb4e2;
+        rtemp = re + 0x550c7dc3d5ffb4e2ULL;
         rtemp += s11;
         rtp = ~ rb;
         rtp &= rd;
@@ -517,7 +517,7 @@ void verse_sha512_c_portable(uint64_t (*blockPtr)[16], uint64_t counter, uint64_
         rtp = s9 >> 6;
         rt ^= rtp;
         s11 += rt;
-        rtemp = rd + 0x72be5d74f27b896f;
+        rtemp = rd + 0x72be5d74f27b896fULL;
         rtemp += s12;
         rtp = ~ ra;
         rtp &= rc;
@@ -555,7 +555,7 @@ void verse_sha512_c_portable(uint64_t (*blockPtr)[16], uint64_t counter, uint64_
         rtp = s10 >> 6;
         rt ^= rtp;
         s12 += rt;
-        rtemp = rc + 0x80deb1fe3b1696b1;
+        rtemp = rc + 0x80deb1fe3b1696b1ULL;
         rtemp += s13;
         rtp = ~ rh;
         rtp &= rb;
@@ -593,7 +593,7 @@ void verse_sha512_c_portable(uint64_t (*blockPtr)[16], uint64_t counter, uint64_
         rtp = s11 >> 6;
         rt ^= rtp;
         s13 += rt;
-        rtemp = rb + 0x9bdc06a725c71235;
+        rtemp = rb + 0x9bdc06a725c71235ULL;
         rtemp += s14;
         rtp = ~ rg;
         rtp &= ra;
@@ -631,7 +631,7 @@ void verse_sha512_c_portable(uint64_t (*blockPtr)[16], uint64_t counter, uint64_
         rtp = s12 >> 6;
         rt ^= rtp;
         s14 += rt;
-        rtemp = ra + 0xc19bf174cf692694;
+        rtemp = ra + 0xc19bf174cf692694ULL;
         rtemp += s15;
         rtp = ~ rf;
         rtp &= rh;
@@ -669,7 +669,7 @@ void verse_sha512_c_portable(uint64_t (*blockPtr)[16], uint64_t counter, uint64_
         rtp = s13 >> 6;
         rt ^= rtp;
         s15 += rt;
-        rtemp = rh + 0xe49b69c19ef14ad2;
+        rtemp = rh + 0xe49b69c19ef14ad2ULL;
         rtemp += s0;
         rtp = ~ re;
         rtp &= rg;
@@ -707,7 +707,7 @@ void verse_sha512_c_portable(uint64_t (*blockPtr)[16], uint64_t counter, uint64_
         rtp = s14 >> 6;
         rt ^= rtp;
         s0 += rt;
-        rtemp = rg + 0xefbe4786384f25e3;
+        rtemp = rg + 0xefbe4786384f25e3ULL;
         rtemp += s1;
         rtp = ~ rd;
         rtp &= rf;
@@ -745,7 +745,7 @@ void verse_sha512_c_portable(uint64_t (*blockPtr)[16], uint64_t counter, uint64_
         rtp = s15 >> 6;
         rt ^= rtp;
         s1 += rt;
-        rtemp = rf + 0x0fc19dc68b8cd5b5;
+        rtemp = rf + 0x0fc19dc68b8cd5b5ULL;
         rtemp += s2;
         rtp = ~ rc;
         rtp &= re;
@@ -783,7 +783,7 @@ void verse_sha512_c_portable(uint64_t (*blockPtr)[16], uint64_t counter, uint64_
         rtp = s0 >> 6;
         rt ^= rtp;
         s2 += rt;
-        rtemp = re + 0x240ca1cc77ac9c65;
+        rtemp = re + 0x240ca1cc77ac9c65ULL;
         rtemp += s3;
         rtp = ~ rb;
         rtp &= rd;
@@ -821,7 +821,7 @@ void verse_sha512_c_portable(uint64_t (*blockPtr)[16], uint64_t counter, uint64_
         rtp = s1 >> 6;
         rt ^= rtp;
         s3 += rt;
-        rtemp = rd + 0x2de92c6f592b0275;
+        rtemp = rd + 0x2de92c6f592b0275ULL;
         rtemp += s4;
         rtp = ~ ra;
         rtp &= rc;
@@ -859,7 +859,7 @@ void verse_sha512_c_portable(uint64_t (*blockPtr)[16], uint64_t counter, uint64_
         rtp = s2 >> 6;
         rt ^= rtp;
         s4 += rt;
-        rtemp = rc + 0x4a7484aa6ea6e483;
+        rtemp = rc + 0x4a7484aa6ea6e483ULL;
         rtemp += s5;
         rtp = ~ rh;
         rtp &= rb;
@@ -897,7 +897,7 @@ void verse_sha512_c_portable(uint64_t (*blockPtr)[16], uint64_t counter, uint64_
         rtp = s3 >> 6;
         rt ^= rtp;
         s5 += rt;
-        rtemp = rb + 0x5cb0a9dcbd41fbd4;
+        rtemp = rb + 0x5cb0a9dcbd41fbd4ULL;
         rtemp += s6;
         rtp = ~ rg;
         rtp &= ra;
@@ -935,7 +935,7 @@ void verse_sha512_c_portable(uint64_t (*blockPtr)[16], uint64_t counter, uint64_
         rtp = s4 >> 6;
         rt ^= rtp;
         s6 += rt;
-        rtemp = ra + 0x76f988da831153b5;
+        rtemp = ra + 0x76f988da831153b5ULL;
         rtemp += s7;
         rtp = ~ rf;
         rtp &= rh;
@@ -973,7 +973,7 @@ void verse_sha512_c_portable(uint64_t (*blockPtr)[16], uint64_t counter, uint64_
         rtp = s5 >> 6;
         rt ^= rtp;
         s7 += rt;
-        rtemp = rh + 0x983e5152ee66dfab;
+        rtemp = rh + 0x983e5152ee66dfabULL;
         rtemp += s8;
         rtp = ~ re;
         rtp &= rg;
@@ -1011,7 +1011,7 @@ void verse_sha512_c_portable(uint64_t (*blockPtr)[16], uint64_t counter, uint64_
         rtp = s6 >> 6;
         rt ^= rtp;
         s8 += rt;
-        rtemp = rg + 0xa831c66d2db43210;
+        rtemp = rg + 0xa831c66d2db43210ULL;
         rtemp += s9;
         rtp = ~ rd;
         rtp &= rf;
@@ -1049,7 +1049,7 @@ void verse_sha512_c_portable(uint64_t (*blockPtr)[16], uint64_t counter, uint64_
         rtp = s7 >> 6;
         rt ^= rtp;
         s9 += rt;
-        rtemp = rf + 0xb00327c898fb213f;
+        rtemp = rf + 0xb00327c898fb213fULL;
         rtemp += s10;
         rtp = ~ rc;
         rtp &= re;
@@ -1087,7 +1087,7 @@ void verse_sha512_c_portable(uint64_t (*blockPtr)[16], uint64_t counter, uint64_
         rtp = s8 >> 6;
         rt ^= rtp;
         s10 += rt;
-        rtemp = re + 0xbf597fc7beef0ee4;
+        rtemp = re + 0xbf597fc7beef0ee4ULL;
         rtemp += s11;
         rtp = ~ rb;
         rtp &= rd;
@@ -1125,7 +1125,7 @@ void verse_sha512_c_portable(uint64_t (*blockPtr)[16], uint64_t counter, uint64_
         rtp = s9 >> 6;
         rt ^= rtp;
         s11 += rt;
-        rtemp = rd + 0xc6e00bf33da88fc2;
+        rtemp = rd + 0xc6e00bf33da88fc2ULL;
         rtemp += s12;
         rtp = ~ ra;
         rtp &= rc;
@@ -1163,7 +1163,7 @@ void verse_sha512_c_portable(uint64_t (*blockPtr)[16], uint64_t counter, uint64_
         rtp = s10 >> 6;
         rt ^= rtp;
         s12 += rt;
-        rtemp = rc + 0xd5a79147930aa725;
+        rtemp = rc + 0xd5a79147930aa725ULL;
         rtemp += s13;
         rtp = ~ rh;
         rtp &= rb;
@@ -1201,7 +1201,7 @@ void verse_sha512_c_portable(uint64_t (*blockPtr)[16], uint64_t counter, uint64_
         rtp = s11 >> 6;
         rt ^= rtp;
         s13 += rt;
-        rtemp = rb + 0x06ca6351e003826f;
+        rtemp = rb + 0x06ca6351e003826fULL;
         rtemp += s14;
         rtp = ~ rg;
         rtp &= ra;
@@ -1239,7 +1239,7 @@ void verse_sha512_c_portable(uint64_t (*blockPtr)[16], uint64_t counter, uint64_
         rtp = s12 >> 6;
         rt ^= rtp;
         s14 += rt;
-        rtemp = ra + 0x142929670a0e6e70;
+        rtemp = ra + 0x142929670a0e6e70ULL;
         rtemp += s15;
         rtp = ~ rf;
         rtp &= rh;
@@ -1277,7 +1277,7 @@ void verse_sha512_c_portable(uint64_t (*blockPtr)[16], uint64_t counter, uint64_
         rtp = s13 >> 6;
         rt ^= rtp;
         s15 += rt;
-        rtemp = rh + 0x27b70a8546d22ffc;
+        rtemp = rh + 0x27b70a8546d22ffcULL;
         rtemp += s0;
         rtp = ~ re;
         rtp &= rg;
@@ -1315,7 +1315,7 @@ void verse_sha512_c_portable(uint64_t (*blockPtr)[16], uint64_t counter, uint64_
         rtp = s14 >> 6;
         rt ^= rtp;
         s0 += rt;
-        rtemp = rg + 0x2e1b21385c26c926;
+        rtemp = rg + 0x2e1b21385c26c926ULL;
         rtemp += s1;
         rtp = ~ rd;
         rtp &= rf;
@@ -1353,7 +1353,7 @@ void verse_sha512_c_portable(uint64_t (*blockPtr)[16], uint64_t counter, uint64_
         rtp = s15 >> 6;
         rt ^= rtp;
         s1 += rt;
-        rtemp = rf + 0x4d2c6dfc5ac42aed;
+        rtemp = rf + 0x4d2c6dfc5ac42aedULL;
         rtemp += s2;
         rtp = ~ rc;
         rtp &= re;
@@ -1391,7 +1391,7 @@ void verse_sha512_c_portable(uint64_t (*blockPtr)[16], uint64_t counter, uint64_
         rtp = s0 >> 6;
         rt ^= rtp;
         s2 += rt;
-        rtemp = re + 0x53380d139d95b3df;
+        rtemp = re + 0x53380d139d95b3dfULL;
         rtemp += s3;
         rtp = ~ rb;
         rtp &= rd;
@@ -1429,7 +1429,7 @@ void verse_sha512_c_portable(uint64_t (*blockPtr)[16], uint64_t counter, uint64_
         rtp = s1 >> 6;
         rt ^= rtp;
         s3 += rt;
-        rtemp = rd + 0x650a73548baf63de;
+        rtemp = rd + 0x650a73548baf63deULL;
         rtemp += s4;
         rtp = ~ ra;
         rtp &= rc;
@@ -1467,7 +1467,7 @@ void verse_sha512_c_portable(uint64_t (*blockPtr)[16], uint64_t counter, uint64_
         rtp = s2 >> 6;
         rt ^= rtp;
         s4 += rt;
-        rtemp = rc + 0x766a0abb3c77b2a8;
+        rtemp = rc + 0x766a0abb3c77b2a8ULL;
         rtemp += s5;
         rtp = ~ rh;
         rtp &= rb;
@@ -1505,7 +1505,7 @@ void verse_sha512_c_portable(uint64_t (*blockPtr)[16], uint64_t counter, uint64_
         rtp = s3 >> 6;
         rt ^= rtp;
         s5 += rt;
-        rtemp = rb + 0x81c2c92e47edaee6;
+        rtemp = rb + 0x81c2c92e47edaee6ULL;
         rtemp += s6;
         rtp = ~ rg;
         rtp &= ra;
@@ -1543,7 +1543,7 @@ void verse_sha512_c_portable(uint64_t (*blockPtr)[16], uint64_t counter, uint64_
         rtp = s4 >> 6;
         rt ^= rtp;
         s6 += rt;
-        rtemp = ra + 0x92722c851482353b;
+        rtemp = ra + 0x92722c851482353bULL;
         rtemp += s7;
         rtp = ~ rf;
         rtp &= rh;
@@ -1581,7 +1581,7 @@ void verse_sha512_c_portable(uint64_t (*blockPtr)[16], uint64_t counter, uint64_
         rtp = s5 >> 6;
         rt ^= rtp;
         s7 += rt;
-        rtemp = rh + 0xa2bfe8a14cf10364;
+        rtemp = rh + 0xa2bfe8a14cf10364ULL;
         rtemp += s8;
         rtp = ~ re;
         rtp &= rg;
@@ -1619,7 +1619,7 @@ void verse_sha512_c_portable(uint64_t (*blockPtr)[16], uint64_t counter, uint64_
         rtp = s6 >> 6;
         rt ^= rtp;
         s8 += rt;
-        rtemp = rg + 0xa81a664bbc423001;
+        rtemp = rg + 0xa81a664bbc423001ULL;
         rtemp += s9;
         rtp = ~ rd;
         rtp &= rf;
@@ -1657,7 +1657,7 @@ void verse_sha512_c_portable(uint64_t (*blockPtr)[16], uint64_t counter, uint64_
         rtp = s7 >> 6;
         rt ^= rtp;
         s9 += rt;
-        rtemp = rf + 0xc24b8b70d0f89791;
+        rtemp = rf + 0xc24b8b70d0f89791ULL;
         rtemp += s10;
         rtp = ~ rc;
         rtp &= re;
@@ -1695,7 +1695,7 @@ void verse_sha512_c_portable(uint64_t (*blockPtr)[16], uint64_t counter, uint64_
         rtp = s8 >> 6;
         rt ^= rtp;
         s10 += rt;
-        rtemp = re + 0xc76c51a30654be30;
+        rtemp = re + 0xc76c51a30654be30ULL;
         rtemp += s11;
         rtp = ~ rb;
         rtp &= rd;
@@ -1733,7 +1733,7 @@ void verse_sha512_c_portable(uint64_t (*blockPtr)[16], uint64_t counter, uint64_
         rtp = s9 >> 6;
         rt ^= rtp;
         s11 += rt;
-        rtemp = rd + 0xd192e819d6ef5218;
+        rtemp = rd + 0xd192e819d6ef5218ULL;
         rtemp += s12;
         rtp = ~ ra;
         rtp &= rc;
@@ -1771,7 +1771,7 @@ void verse_sha512_c_portable(uint64_t (*blockPtr)[16], uint64_t counter, uint64_
         rtp = s10 >> 6;
         rt ^= rtp;
         s12 += rt;
-        rtemp = rc + 0xd69906245565a910;
+        rtemp = rc + 0xd69906245565a910ULL;
         rtemp += s13;
         rtp = ~ rh;
         rtp &= rb;
@@ -1809,7 +1809,7 @@ void verse_sha512_c_portable(uint64_t (*blockPtr)[16], uint64_t counter, uint64_
         rtp = s11 >> 6;
         rt ^= rtp;
         s13 += rt;
-        rtemp = rb + 0xf40e35855771202a;
+        rtemp = rb + 0xf40e35855771202aULL;
         rtemp += s14;
         rtp = ~ rg;
         rtp &= ra;
@@ -1847,7 +1847,7 @@ void verse_sha512_c_portable(uint64_t (*blockPtr)[16], uint64_t counter, uint64_
         rtp = s12 >> 6;
         rt ^= rtp;
         s14 += rt;
-        rtemp = ra + 0x106aa07032bbd1b8;
+        rtemp = ra + 0x106aa07032bbd1b8ULL;
         rtemp += s15;
         rtp = ~ rf;
         rtp &= rh;
@@ -1885,7 +1885,7 @@ void verse_sha512_c_portable(uint64_t (*blockPtr)[16], uint64_t counter, uint64_
         rtp = s13 >> 6;
         rt ^= rtp;
         s15 += rt;
-        rtemp = rh + 0x19a4c116b8d2d0c8;
+        rtemp = rh + 0x19a4c116b8d2d0c8ULL;
         rtemp += s0;
         rtp = ~ re;
         rtp &= rg;
@@ -1923,7 +1923,7 @@ void verse_sha512_c_portable(uint64_t (*blockPtr)[16], uint64_t counter, uint64_
         rtp = s14 >> 6;
         rt ^= rtp;
         s0 += rt;
-        rtemp = rg + 0x1e376c085141ab53;
+        rtemp = rg + 0x1e376c085141ab53ULL;
         rtemp += s1;
         rtp = ~ rd;
         rtp &= rf;
@@ -1961,7 +1961,7 @@ void verse_sha512_c_portable(uint64_t (*blockPtr)[16], uint64_t counter, uint64_
         rtp = s15 >> 6;
         rt ^= rtp;
         s1 += rt;
-        rtemp = rf + 0x2748774cdf8eeb99;
+        rtemp = rf + 0x2748774cdf8eeb99ULL;
         rtemp += s2;
         rtp = ~ rc;
         rtp &= re;
@@ -1999,7 +1999,7 @@ void verse_sha512_c_portable(uint64_t (*blockPtr)[16], uint64_t counter, uint64_
         rtp = s0 >> 6;
         rt ^= rtp;
         s2 += rt;
-        rtemp = re + 0x34b0bcb5e19b48a8;
+        rtemp = re + 0x34b0bcb5e19b48a8ULL;
         rtemp += s3;
         rtp = ~ rb;
         rtp &= rd;
@@ -2037,7 +2037,7 @@ void verse_sha512_c_portable(uint64_t (*blockPtr)[16], uint64_t counter, uint64_
         rtp = s1 >> 6;
         rt ^= rtp;
         s3 += rt;
-        rtemp = rd + 0x391c0cb3c5c95a63;
+        rtemp = rd + 0x391c0cb3c5c95a63ULL;
         rtemp += s4;
         rtp = ~ ra;
         rtp &= rc;
@@ -2075,7 +2075,7 @@ void verse_sha512_c_portable(uint64_t (*blockPtr)[16], uint64_t counter, uint64_
         rtp = s2 >> 6;
         rt ^= rtp;
         s4 += rt;
-        rtemp = rc + 0x4ed8aa4ae3418acb;
+        rtemp = rc + 0x4ed8aa4ae3418acbULL;
         rtemp += s5;
         rtp = ~ rh;
         rtp &= rb;
@@ -2113,7 +2113,7 @@ void verse_sha512_c_portable(uint64_t (*blockPtr)[16], uint64_t counter, uint64_
         rtp = s3 >> 6;
         rt ^= rtp;
         s5 += rt;
-        rtemp = rb + 0x5b9cca4f7763e373;
+        rtemp = rb + 0x5b9cca4f7763e373ULL;
         rtemp += s6;
         rtp = ~ rg;
         rtp &= ra;
@@ -2151,7 +2151,7 @@ void verse_sha512_c_portable(uint64_t (*blockPtr)[16], uint64_t counter, uint64_
         rtp = s4 >> 6;
         rt ^= rtp;
         s6 += rt;
-        rtemp = ra + 0x682e6ff3d6b2b8a3;
+        rtemp = ra + 0x682e6ff3d6b2b8a3ULL;
         rtemp += s7;
         rtp = ~ rf;
         rtp &= rh;
@@ -2189,7 +2189,7 @@ void verse_sha512_c_portable(uint64_t (*blockPtr)[16], uint64_t counter, uint64_
         rtp = s5 >> 6;
         rt ^= rtp;
         s7 += rt;
-        rtemp = rh + 0x748f82ee5defb2fc;
+        rtemp = rh + 0x748f82ee5defb2fcULL;
         rtemp += s8;
         rtp = ~ re;
         rtp &= rg;
@@ -2227,7 +2227,7 @@ void verse_sha512_c_portable(uint64_t (*blockPtr)[16], uint64_t counter, uint64_
         rtp = s6 >> 6;
         rt ^= rtp;
         s8 += rt;
-        rtemp = rg + 0x78a5636f43172f60;
+        rtemp = rg + 0x78a5636f43172f60ULL;
         rtemp += s9;
         rtp = ~ rd;
         rtp &= rf;
@@ -2265,7 +2265,7 @@ void verse_sha512_c_portable(uint64_t (*blockPtr)[16], uint64_t counter, uint64_
         rtp = s7 >> 6;
         rt ^= rtp;
         s9 += rt;
-        rtemp = rf + 0x84c87814a1f0ab72;
+        rtemp = rf + 0x84c87814a1f0ab72ULL;
         rtemp += s10;
         rtp = ~ rc;
         rtp &= re;
@@ -2303,7 +2303,7 @@ void verse_sha512_c_portable(uint64_t (*blockPtr)[16], uint64_t counter, uint64_
         rtp = s8 >> 6;
         rt ^= rtp;
         s10 += rt;
-        rtemp = re + 0x8cc702081a6439ec;
+        rtemp = re + 0x8cc702081a6439ecULL;
         rtemp += s11;
         rtp = ~ rb;
         rtp &= rd;
@@ -2341,7 +2341,7 @@ void verse_sha512_c_portable(uint64_t (*blockPtr)[16], uint64_t counter, uint64_
         rtp = s9 >> 6;
         rt ^= rtp;
         s11 += rt;
-        rtemp = rd + 0x90befffa23631e28;
+        rtemp = rd + 0x90befffa23631e28ULL;
         rtemp += s12;
         rtp = ~ ra;
         rtp &= rc;
@@ -2379,7 +2379,7 @@ void verse_sha512_c_portable(uint64_t (*blockPtr)[16], uint64_t counter, uint64_
         rtp = s10 >> 6;
         rt ^= rtp;
         s12 += rt;
-        rtemp = rc + 0xa4506cebde82bde9;
+        rtemp = rc + 0xa4506cebde82bde9ULL;
         rtemp += s13;
         rtp = ~ rh;
         rtp &= rb;
@@ -2417,7 +2417,7 @@ void verse_sha512_c_portable(uint64_t (*blockPtr)[16], uint64_t counter, uint64_
         rtp = s11 >> 6;
         rt ^= rtp;
         s13 += rt;
-        rtemp = rb + 0xbef9a3f7b2c67915;
+        rtemp = rb + 0xbef9a3f7b2c67915ULL;
         rtemp += s14;
         rtp = ~ rg;
         rtp &= ra;
@@ -2455,7 +2455,7 @@ void verse_sha512_c_portable(uint64_t (*blockPtr)[16], uint64_t counter, uint64_
         rtp = s12 >> 6;
         rt ^= rtp;
         s14 += rt;
-        rtemp = ra + 0xc67178f2e372532b;
+        rtemp = ra + 0xc67178f2e372532bULL;
         rtemp += s15;
         rtp = ~ rf;
         rtp &= rh;
@@ -2493,7 +2493,7 @@ void verse_sha512_c_portable(uint64_t (*blockPtr)[16], uint64_t counter, uint64_
         rtp = s13 >> 6;
         rt ^= rtp;
         s15 += rt;
-        rtemp = rh + 0xca273eceea26619c;
+        rtemp = rh + 0xca273eceea26619cULL;
         rtemp += s0;
         rtp = ~ re;
         rtp &= rg;
@@ -2518,7 +2518,7 @@ void verse_sha512_c_portable(uint64_t (*blockPtr)[16], uint64_t counter, uint64_
         rtp = rb & rc;
         rt |= rtp;
         rh = rtemp + rt;
-        rtemp = rg + 0xd186b8c721c0c207;
+        rtemp = rg + 0xd186b8c721c0c207ULL;
         rtemp += s1;
         rtp = ~ rd;
         rtp &= rf;
@@ -2543,7 +2543,7 @@ void verse_sha512_c_portable(uint64_t (*blockPtr)[16], uint64_t counter, uint64_
         rtp = ra & rb;
         rt |= rtp;
         rg = rtemp + rt;
-        rtemp = rf + 0xeada7dd6cde0eb1e;
+        rtemp = rf + 0xeada7dd6cde0eb1eULL;
         rtemp += s2;
         rtp = ~ rc;
         rtp &= re;
@@ -2568,7 +2568,7 @@ void verse_sha512_c_portable(uint64_t (*blockPtr)[16], uint64_t counter, uint64_
         rtp = rh & ra;
         rt |= rtp;
         rf = rtemp + rt;
-        rtemp = re + 0xf57d4f7fee6ed178;
+        rtemp = re + 0xf57d4f7fee6ed178ULL;
         rtemp += s3;
         rtp = ~ rb;
         rtp &= rd;
@@ -2593,7 +2593,7 @@ void verse_sha512_c_portable(uint64_t (*blockPtr)[16], uint64_t counter, uint64_
         rtp = rg & rh;
         rt |= rtp;
         re = rtemp + rt;
-        rtemp = rd + 0x06f067aa72176fba;
+        rtemp = rd + 0x06f067aa72176fbaULL;
         rtemp += s4;
         rtp = ~ ra;
         rtp &= rc;
@@ -2618,7 +2618,7 @@ void verse_sha512_c_portable(uint64_t (*blockPtr)[16], uint64_t counter, uint64_
         rtp = rf & rg;
         rt |= rtp;
         rd = rtemp + rt;
-        rtemp = rc + 0x0a637dc5a2c898a6;
+        rtemp = rc + 0x0a637dc5a2c898a6ULL;
         rtemp += s5;
         rtp = ~ rh;
         rtp &= rb;
@@ -2643,7 +2643,7 @@ void verse_sha512_c_portable(uint64_t (*blockPtr)[16], uint64_t counter, uint64_
         rtp = re & rf;
         rt |= rtp;
         rc = rtemp + rt;
-        rtemp = rb + 0x113f9804bef90dae;
+        rtemp = rb + 0x113f9804bef90daeULL;
         rtemp += s6;
         rtp = ~ rg;
         rtp &= ra;
@@ -2668,7 +2668,7 @@ void verse_sha512_c_portable(uint64_t (*blockPtr)[16], uint64_t counter, uint64_
         rtp = rd & re;
         rt |= rtp;
         rb = rtemp + rt;
-        rtemp = ra + 0x1b710b35131c471b;
+        rtemp = ra + 0x1b710b35131c471bULL;
         rtemp += s7;
         rtp = ~ rf;
         rtp &= rh;
@@ -2693,7 +2693,7 @@ void verse_sha512_c_portable(uint64_t (*blockPtr)[16], uint64_t counter, uint64_
         rtp = rc & rd;
         rt |= rtp;
         ra = rtemp + rt;
-        rtemp = rh + 0x28db77f523047d84;
+        rtemp = rh + 0x28db77f523047d84ULL;
         rtemp += s8;
         rtp = ~ re;
         rtp &= rg;
@@ -2718,7 +2718,7 @@ void verse_sha512_c_portable(uint64_t (*blockPtr)[16], uint64_t counter, uint64_
         rtp = rb & rc;
         rt |= rtp;
         rh = rtemp + rt;
-        rtemp = rg + 0x32caab7b40c72493;
+        rtemp = rg + 0x32caab7b40c72493ULL;
         rtemp += s9;
         rtp = ~ rd;
         rtp &= rf;
@@ -2743,7 +2743,7 @@ void verse_sha512_c_portable(uint64_t (*blockPtr)[16], uint64_t counter, uint64_
         rtp = ra & rb;
         rt |= rtp;
         rg = rtemp + rt;
-        rtemp = rf + 0x3c9ebe0a15c9bebc;
+        rtemp = rf + 0x3c9ebe0a15c9bebcULL;
         rtemp += s10;
         rtp = ~ rc;
         rtp &= re;
@@ -2768,7 +2768,7 @@ void verse_sha512_c_portable(uint64_t (*blockPtr)[16], uint64_t counter, uint64_
         rtp = rh & ra;
         rt |= rtp;
         rf = rtemp + rt;
-        rtemp = re + 0x431d67c49c100d4c;
+        rtemp = re + 0x431d67c49c100d4cULL;
         rtemp += s11;
         rtp = ~ rb;
         rtp &= rd;
@@ -2793,7 +2793,7 @@ void verse_sha512_c_portable(uint64_t (*blockPtr)[16], uint64_t counter, uint64_
         rtp = rg & rh;
         rt |= rtp;
         re = rtemp + rt;
-        rtemp = rd + 0x4cc5d4becb3e42b6;
+        rtemp = rd + 0x4cc5d4becb3e42b6ULL;
         rtemp += s12;
         rtp = ~ ra;
         rtp &= rc;
@@ -2818,7 +2818,7 @@ void verse_sha512_c_portable(uint64_t (*blockPtr)[16], uint64_t counter, uint64_
         rtp = rf & rg;
         rt |= rtp;
         rd = rtemp + rt;
-        rtemp = rc + 0x597f299cfc657e2a;
+        rtemp = rc + 0x597f299cfc657e2aULL;
         rtemp += s13;
         rtp = ~ rh;
         rtp &= rb;
@@ -2843,7 +2843,7 @@ void verse_sha512_c_portable(uint64_t (*blockPtr)[16], uint64_t counter, uint64_
         rtp = re & rf;
         rt |= rtp;
         rc = rtemp + rt;
-        rtemp = rb + 0x5fcb6fab3ad6faec;
+        rtemp = rb + 0x5fcb6fab3ad6faecULL;
         rtemp += s14;
         rtp = ~ rg;
         rtp &= ra;
@@ -2868,7 +2868,7 @@ void verse_sha512_c_portable(uint64_t (*blockPtr)[16], uint64_t counter, uint64_
         rtp = rd & re;
         rt |= rtp;
         rb = rtemp + rt;
-        rtemp = ra + 0x6c44198c4a475817;
+        rtemp = ra + 0x6c44198c4a475817ULL;
         rtemp += s15;
         rtp = ~ rf;
         rtp &= rh;

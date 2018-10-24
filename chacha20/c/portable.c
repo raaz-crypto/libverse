@@ -29,10 +29,10 @@ void verse_chacha20_c_portable(uint32_t (*blockPtr)[16], uint64_t counter, uint3
     /*    Iterating over the blocks    */
     while(counter > 0)
     {
-        rx0 =  0x61707865;
-        rx1 =  0x3320646e;
-        rx2 =  0x79622d32;
-        rx3 =  0x6b206574;
+        rx0 =  0x61707865UL;
+        rx1 =  0x3320646eUL;
+        rx2 =  0x79622d32UL;
+        rx3 =  0x6b206574UL;
         rx4 =  p0[0];
         rx5 =  p0[1];
         rx6 =  p0[2];
@@ -1005,10 +1005,10 @@ void verse_chacha20_c_portable(uint32_t (*blockPtr)[16], uint64_t counter, uint3
         rx9 += rx14;
         rx4 ^= rx9;
         rx4 = verse_rotL32(rx4, 7);
-        rx0 += 0x61707865;
-        rx1 += 0x3320646e;
-        rx2 += 0x79622d32;
-        rx3 += 0x6b206574;
+        rx0 += 0x61707865UL;
+        rx1 += 0x3320646eUL;
+        rx2 += 0x79622d32UL;
+        rx3 += 0x6b206574UL;
         rx4 += p0[0];
         rx5 += p0[1];
         rx6 += p0[2];
