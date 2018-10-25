@@ -5,6 +5,7 @@
  *         Byte swapping. Use platform specific ones when we know it.
  */
 
+# pragma GCC optimize "tree-vectorize" /* Enable vectorisation for gcc */
 #ifdef PLATFORM_OSX
 #include <libkern/OSByteOrder.h> /* For PLATFORM OSX */
 
