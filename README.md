@@ -26,14 +26,16 @@ compilation process.
 
 ## Hacking.
 
-Baring a few files `libverse/verse.h` and `libverse/verse.c` that
-provide a minimal set of C functions, all other C and Assembly source
-code are in fact generated from the Coq source using the Verse
-eDSL. Therefore, any implementation of primitives or tweak to existing
-ones is meant to be restricted to editing these coq files which is
-available from the [source repository of verse][verse] under the
-directory `src/Verse/CryptoLib` (See the documentation available there
-for details).
+The C files `libverse/verse.h` and `libverse/verse.c` provide a
+_minimal kernel_ of C functions that provide primitives like endian
+conversion and bitwise rotations that are unfortunately not available
+by default. All other C and Assembly source code are in fact generated
+from the Coq source using the Verse eDSL. Therefore it does not make
+much sense to accept pull requests here unless the patches in question
+changes one of the kernel C files. Rather, consider contributing to
+the original coq source available at [source repository of
+verse][verse]. In particular, the implementation exposed here have
+their coq sources under the directory `src/Verse/CryptoLib`.
 
 ## Convention
 
