@@ -17,8 +17,6 @@ foreign import ccall unsafe
 foreign import ccall unsafe
     verse_blake2b_c_portable_last :: Ptr (Tuple 16 Word64)
                                   -> Word64
-                                  -> Ptr (Tuple 16 Word64)
-                                  -> Word64
                                   -> Word64
                                   -> Word64
                                   -> Word64
