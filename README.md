@@ -5,13 +5,12 @@ eDSL][verse]. This is *not* a standalone cryptographic library as it
 exposes only a C-API for the "tight loops" involved in various
 cryptographic primitives. It is meant to be included in higher level
 libraries which makes use of these tight loops to implement a more
-higher level interface.  In particular, it is hoped that the [`raaz`
-cryptographic library][raaz] will soon move to using `libverse` as its
-source of low-level cryptographic primitives. `Libverse` does *not*
-come with any of the other supporting code like benchmarks or unit
-tests either. Again the higher level crypto library that uses
-`libverse` should have its own set of tests and benchmarks ([raaz]
-indeed comes with such as set).
+higher level interface.  In particular, it is used in the [`raaz`
+cryptographic library][raaz] as a source of low-level cryptographic
+primitives. `Libverse` does *not* come with any of the other
+supporting code like benchmarks or unit tests either. Again the higher
+level crypto library that uses `libverse` should have its own set of
+tests and benchmarks ([raaz] indeed comes with such as set).
 
 
 ## Using `libverse` in your application/library.
