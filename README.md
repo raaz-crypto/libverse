@@ -57,5 +57,28 @@ following convention.
 3. The generated source (C or assembly) will be at
    `p/a/f.ext`
 
+# Legal
+
+Copyright (c) 2018, Piyush P Kurur
+
+The library is licensed under
+
+* Apache License, Version 2.0
+  <http://www.apache.org/licenses/LICENSE-2.0>
+* BSD 3-Clause license
+  <https://opensource.org/licenses/BSD-3-Clause>
+
+You may not use this software except in compliance with one of the
+above Licenses (*at your option*).
+
+SPDX-License-Identifier: (Apache-2.0 OR  BSD-3-Clause)
+
+Unless required by applicable law or agreed to in writing, software
+distributed under these Licenses is distributed on an "AS IS" BASIS,
+WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or
+implied. For the exact terms and conditions see the accompanying
+LICENSE file.
+
+
 [raaz]: <https://github.com/raaz-crypto/raaz> "The Raaz cryptographic library"
 [verse]: <https://github.com/raaz-crypto/verse-coq> "The Verse eDSL for cryptographic primitives"
