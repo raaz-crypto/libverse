@@ -23,18 +23,18 @@ void verse_poly1305_c_portable_incremental(uint64_t (*blockPtr)[2], uint64_t cou
     
     
     ra1 =  p0[0];
-    ra0 = ra0 & 0x00000000ffffffffULL;
+    ra0 = ra1 & 0x00000000ffffffffULL;
     ra1 >>= 32;
     ra3 =  p0[1];
-    ra2 = ra3 & 0x0000000000000020ULL;
+    ra2 = ra3 & 0x00000000ffffffffULL;
     ra3 >>= 32;
     ra4 =  p0[2];
-    rr0 =  p1[0];
-    rr1 = ra0 >> 32;
-    rr0 &= 0x00000000ffffffffULL;
-    rr2 =  p1[1];
-    rr3 = ra2 >> 32;
-    rr2 &= 0x00000000ffffffffULL;
+    rr1 =  p1[0];
+    rr0 = rr1 & 0x00000000ffffffffULL;
+    rr1 >>= 32;
+    rr3 =  p1[1];
+    rr2 = rr3 & 0x00000000ffffffffULL;
+    rr3 >>= 32;
     /*    Iterating over the blocks    */
     while(counter > 0)
     {
@@ -119,12 +119,12 @@ void verse_poly1305_c_portable_incremental(uint64_t (*blockPtr)[2], uint64_t cou
         --counter;
         /*    move to next block    */
     }
-    rT0 = ra1 << 32;
-    rT0 |= ra0;
-    p0[0] =  rT0;
-    rT0 = ra3 << 32;
-    rT0 |= ra2;
-    p0[1] =  rT0;
+    ra1 <<= 32;
+    ra1 |= ra0;
+    p0[0] =  ra1;
+    ra3 <<= 32;
+    ra3 |= ra2;
+    p0[1] =  ra3;
     p0[2] =  ra4;
 }
 #include <stdint.h>
@@ -152,18 +152,18 @@ void verse_poly1305_c_portable_blockmac(uint64_t (*blockPtr)[2], uint64_t counte
     
     
     ra1 =  p0[0];
-    ra0 = ra0 & 0x00000000ffffffffULL;
+    ra0 = ra1 & 0x00000000ffffffffULL;
     ra1 >>= 32;
     ra3 =  p0[1];
-    ra2 = ra3 & 0x0000000000000020ULL;
+    ra2 = ra3 & 0x00000000ffffffffULL;
     ra3 >>= 32;
     ra4 =  p0[2];
-    rr0 =  p1[0];
-    rr1 = ra0 >> 32;
-    rr0 &= 0x00000000ffffffffULL;
-    rr2 =  p1[1];
-    rr3 = ra2 >> 32;
-    rr2 &= 0x00000000ffffffffULL;
+    rr1 =  p1[0];
+    rr0 = rr1 & 0x00000000ffffffffULL;
+    rr1 >>= 32;
+    rr3 =  p1[1];
+    rr2 = rr3 & 0x00000000ffffffffULL;
+    rr3 >>= 32;
     /*    Iterating over the blocks    */
     while(counter > 0)
     {
@@ -298,12 +298,12 @@ void verse_poly1305_c_portable_blockmac(uint64_t (*blockPtr)[2], uint64_t counte
     rT0 = ra3 >> 32;
     ra3 &= 0x00000000ffffffffULL;
     ra4 += rT0;
-    rT0 = ra1 << 32;
-    rT0 |= ra0;
-    p0[0] =  rT0;
-    rT0 = ra3 << 32;
-    rT0 |= ra2;
-    p0[1] =  rT0;
+    ra1 <<= 32;
+    ra1 |= ra0;
+    p0[0] =  ra1;
+    ra3 <<= 32;
+    ra3 |= ra2;
+    p0[1] =  ra3;
     p0[2] =  ra4;
 }
 #include <stdint.h>
@@ -331,18 +331,18 @@ void verse_poly1305_c_portable_partialmac(uint64_t p0[2], uint64_t p1[3], uint64
     
     
     ra1 =  p1[0];
-    ra0 = ra0 & 0x00000000ffffffffULL;
+    ra0 = ra1 & 0x00000000ffffffffULL;
     ra1 >>= 32;
     ra3 =  p1[1];
-    ra2 = ra3 & 0x0000000000000020ULL;
+    ra2 = ra3 & 0x00000000ffffffffULL;
     ra3 >>= 32;
     ra4 =  p1[2];
-    rr0 =  p2[0];
-    rr1 = ra0 >> 32;
-    rr0 &= 0x00000000ffffffffULL;
-    rr2 =  p2[1];
-    rr3 = ra2 >> 32;
-    rr2 &= 0x00000000ffffffffULL;
+    rr1 =  p2[0];
+    rr0 = rr1 & 0x00000000ffffffffULL;
+    rr1 >>= 32;
+    rr3 =  p2[1];
+    rr2 = rr3 & 0x00000000ffffffffULL;
+    rr3 >>= 32;
     rT1 =  verse_from_le64(p0[0]);
     rT0 = rT1 & 0x00000000ffffffffULL;
     rT1 >>= 32;
@@ -469,12 +469,12 @@ void verse_poly1305_c_portable_partialmac(uint64_t p0[2], uint64_t p1[3], uint64
     rT0 = ra3 >> 32;
     ra3 &= 0x00000000ffffffffULL;
     ra4 += rT0;
-    rT0 = ra1 << 32;
-    rT0 |= ra0;
-    p1[0] =  rT0;
-    rT0 = ra3 << 32;
-    rT0 |= ra2;
-    p1[1] =  rT0;
+    ra1 <<= 32;
+    ra1 |= ra0;
+    p1[0] =  ra1;
+    ra3 <<= 32;
+    ra3 |= ra2;
+    p1[1] =  ra3;
     p1[2] =  ra4;
 }
 #include <stdint.h>
