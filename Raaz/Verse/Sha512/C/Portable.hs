@@ -1,7 +1,6 @@
-{-# LANGUAGE
+{-# LANGUAGE 
                 DataKinds,
-                ForeignFunctionInterface
-#-}
+                ForeignFunctionInterface #-}
 module Raaz.Verse.Sha512.C.Portable where
 import Raaz.Core
 import Foreign.Ptr
