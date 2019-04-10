@@ -1,6 +1,5 @@
 {-# LANGUAGE
                 DataKinds,
-                KindSignatures,
                 ForeignFunctionInterface
 #-}
 module Raaz.Verse.Sha512.C.Portable where

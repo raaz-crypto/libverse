@@ -1,6 +1,5 @@
 {-# LANGUAGE
                 DataKinds,
-                KindSignatures,
                 ForeignFunctionInterface
 #-}
 module Raaz.Verse.Blake2b.C.Portable where
