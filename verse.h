@@ -136,3 +136,90 @@ static inline uint32_t verse_rotR32(uint32_t w, int c) {
 static inline uint64_t verse_rotR64(uint64_t w, int c) {
 	return (w >> c) | (w << (64 - c));
 }
+
+/*
+  Yeah, I know the next few functions definitions are lame if you see
+  libverse as a C library, but makes generation of C constants using
+  Coq's notation mechanism. Given the nibbles that make up a value,
+  these function returns the associated value.
+
+*/
+
+static inline uint8_t verse_u8( const uint8_t a,
+				const uint8_t b)
+{
+    return a << 4
+	|  b
+	;
+}
+
+static inline uint16_t verse_u16(const uint16_t a,
+				 const uint16_t b,
+				 const uint16_t c,
+				 const uint16_t d)
+
+{
+    return a << 12
+	|  b << 8
+	|  c << 4
+	|  d
+	;
+}
+
+static inline uint32_t verse_u32( const uint32_t a,
+				  const uint32_t b,
+				  const uint32_t c,
+				  const uint32_t d,
+				  const uint32_t e,
+				  const uint32_t f,
+				  const uint32_t g,
+				  const uint32_t h)
+{
+    return a << 28
+	|  b << 24
+	|  c << 20
+	|  d << 16
+	|  e << 12
+	|  f << 8
+	|  g << 4
+	|  h
+	;
+}
+static inline uint64_t verse_u64( const uint64_t a,
+				  const uint64_t b,
+				  const uint64_t c,
+				  const uint64_t d,
+				  const uint64_t e,
+				  const uint64_t f,
+				  const uint64_t g,
+				  const uint64_t h,
+				  const uint64_t i,
+				  const uint64_t j,
+				  const uint64_t k,
+				  const uint64_t l,
+				  const uint64_t m,
+				  const uint64_t n,
+				  const uint64_t o,
+				  const uint64_t p
+    )
+
+{
+    return a << 60
+	|  b << 56
+	|  c << 52
+	|  d << 48
+	|  e << 44
+	|  f << 40
+	|  g << 36
+	|  h << 32
+	|  i << 28
+	|  j << 24
+	|  k << 20
+	|  l << 16
+	|  m << 12
+	|  n << 8
+	|  o << 4
+	|  p
+	;
+
+}
