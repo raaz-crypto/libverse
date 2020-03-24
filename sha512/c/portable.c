@@ -1,2916 +1,940 @@
 #include <stdint.h>
 #include <verse.h>
-void verse_sha512_c_portable(uint64_t (*blockPtr)[16], uint64_t counter, uint64_t p0[8])
+#define XOR ^
+void verse_sha512_c_portable(uint64_t(*blockPtr)[16],
+			     uint64_t nBlocks, uint64_t hash[8])
 {
-    /*    Local variables    */
-    uint64_t s15;
-    uint64_t s14;
-    uint64_t s13;
-    uint64_t s12;
-    uint64_t s11;
-    uint64_t s10;
-    uint64_t s9;
-    uint64_t s8;
-    uint64_t s7;
-    uint64_t s6;
-    uint64_t s5;
-    uint64_t s4;
-    uint64_t s3;
-    uint64_t s2;
-    uint64_t s1;
-    uint64_t s0;
-    
-    /*    Register variables    */
-    register uint64_t rtemp;
-    register uint64_t rtp;
-    register uint64_t rt;
-    register uint64_t rh;
-    register uint64_t rg;
-    register uint64_t rf;
-    register uint64_t re;
-    register uint64_t rd;
-    register uint64_t rc;
-    register uint64_t rb;
-    register uint64_t ra;
-    
-    
-    ra =  p0[0];
-    rb =  p0[1];
-    rc =  p0[2];
-    rd =  p0[3];
-    re =  p0[4];
-    rf =  p0[5];
-    rg =  p0[6];
-    rh =  p0[7];
-    /*    Iterating over the blocks    */
-    while(counter > 0)
-    {
-        s0 =  verse_from_be64((*blockPtr)[0]);
-        s1 =  verse_from_be64((*blockPtr)[1]);
-        s2 =  verse_from_be64((*blockPtr)[2]);
-        s3 =  verse_from_be64((*blockPtr)[3]);
-        s4 =  verse_from_be64((*blockPtr)[4]);
-        s5 =  verse_from_be64((*blockPtr)[5]);
-        s6 =  verse_from_be64((*blockPtr)[6]);
-        s7 =  verse_from_be64((*blockPtr)[7]);
-        s8 =  verse_from_be64((*blockPtr)[8]);
-        s9 =  verse_from_be64((*blockPtr)[9]);
-        s10 =  verse_from_be64((*blockPtr)[10]);
-        s11 =  verse_from_be64((*blockPtr)[11]);
-        s12 =  verse_from_be64((*blockPtr)[12]);
-        s13 =  verse_from_be64((*blockPtr)[13]);
-        s14 =  verse_from_be64((*blockPtr)[14]);
-        s15 =  verse_from_be64((*blockPtr)[15]);
-        rt = rh + 0x428a2f98d728ae22ULL;
-        rt += s0;
-        rtp = ~ re;
-        rtp &= rg;
-        rtemp = re & rf;
-        rtemp ^= rtp;
-        rt += rtemp;
-        rtemp = verse_rotR64(re, 23);
-        rtemp ^= re;
-        rtemp = verse_rotR64(rtemp, 4);
-        rtemp ^= re;
-        rtemp = verse_rotR64(rtemp, 14);
-        rt += rtemp;
-        rd += rt;
-        rtemp = verse_rotR64(ra, 5);
-        rtemp ^= ra;
-        rtemp = verse_rotR64(rtemp, 6);
-        rtemp ^= ra;
-        rtemp = verse_rotR64(rtemp, 28);
-        rt += rtemp;
-        rtemp = rb | rc;
-        rtemp &= ra;
-        rtp = rb & rc;
-        rtemp |= rtp;
-        rh = rtemp + rt;
-        s0 += s9;
-        rtemp = verse_rotR64(s1, 8);
-        rtp = verse_rotR64(s1, 1);
-        rtemp ^= rtp;
-        rtp = s1 >> 7;
-        rtemp ^= rtp;
-        s0 += rtemp;
-        rtemp = verse_rotR64(s14, 61);
-        rtp = verse_rotR64(s14, 19);
-        rtemp ^= rtp;
-        rtp = s14 >> 6;
-        rtemp ^= rtp;
-        s0 += rtemp;
-        rt = rg + 0x7137449123ef65cdULL;
-        rt += s1;
-        rtp = ~ rd;
-        rtp &= rf;
-        rtemp = rd & re;
-        rtemp ^= rtp;
-        rt += rtemp;
-        rtemp = verse_rotR64(rd, 23);
-        rtemp ^= rd;
-        rtemp = verse_rotR64(rtemp, 4);
-        rtemp ^= rd;
-        rtemp = verse_rotR64(rtemp, 14);
-        rt += rtemp;
-        rc += rt;
-        rtemp = verse_rotR64(rh, 5);
-        rtemp ^= rh;
-        rtemp = verse_rotR64(rtemp, 6);
-        rtemp ^= rh;
-        rtemp = verse_rotR64(rtemp, 28);
-        rt += rtemp;
-        rtemp = ra | rb;
-        rtemp &= rh;
-        rtp = ra & rb;
-        rtemp |= rtp;
-        rg = rtemp + rt;
-        s1 += s10;
-        rtemp = verse_rotR64(s2, 8);
-        rtp = verse_rotR64(s2, 1);
-        rtemp ^= rtp;
-        rtp = s2 >> 7;
-        rtemp ^= rtp;
-        s1 += rtemp;
-        rtemp = verse_rotR64(s15, 61);
-        rtp = verse_rotR64(s15, 19);
-        rtemp ^= rtp;
-        rtp = s15 >> 6;
-        rtemp ^= rtp;
-        s1 += rtemp;
-        rt = rf + 0xb5c0fbcfec4d3b2fULL;
-        rt += s2;
-        rtp = ~ rc;
-        rtp &= re;
-        rtemp = rc & rd;
-        rtemp ^= rtp;
-        rt += rtemp;
-        rtemp = verse_rotR64(rc, 23);
-        rtemp ^= rc;
-        rtemp = verse_rotR64(rtemp, 4);
-        rtemp ^= rc;
-        rtemp = verse_rotR64(rtemp, 14);
-        rt += rtemp;
-        rb += rt;
-        rtemp = verse_rotR64(rg, 5);
-        rtemp ^= rg;
-        rtemp = verse_rotR64(rtemp, 6);
-        rtemp ^= rg;
-        rtemp = verse_rotR64(rtemp, 28);
-        rt += rtemp;
-        rtemp = rh | ra;
-        rtemp &= rg;
-        rtp = rh & ra;
-        rtemp |= rtp;
-        rf = rtemp + rt;
-        s2 += s11;
-        rtemp = verse_rotR64(s3, 8);
-        rtp = verse_rotR64(s3, 1);
-        rtemp ^= rtp;
-        rtp = s3 >> 7;
-        rtemp ^= rtp;
-        s2 += rtemp;
-        rtemp = verse_rotR64(s0, 61);
-        rtp = verse_rotR64(s0, 19);
-        rtemp ^= rtp;
-        rtp = s0 >> 6;
-        rtemp ^= rtp;
-        s2 += rtemp;
-        rt = re + 0xe9b5dba58189dbbcULL;
-        rt += s3;
-        rtp = ~ rb;
-        rtp &= rd;
-        rtemp = rb & rc;
-        rtemp ^= rtp;
-        rt += rtemp;
-        rtemp = verse_rotR64(rb, 23);
-        rtemp ^= rb;
-        rtemp = verse_rotR64(rtemp, 4);
-        rtemp ^= rb;
-        rtemp = verse_rotR64(rtemp, 14);
-        rt += rtemp;
-        ra += rt;
-        rtemp = verse_rotR64(rf, 5);
-        rtemp ^= rf;
-        rtemp = verse_rotR64(rtemp, 6);
-        rtemp ^= rf;
-        rtemp = verse_rotR64(rtemp, 28);
-        rt += rtemp;
-        rtemp = rg | rh;
-        rtemp &= rf;
-        rtp = rg & rh;
-        rtemp |= rtp;
-        re = rtemp + rt;
-        s3 += s12;
-        rtemp = verse_rotR64(s4, 8);
-        rtp = verse_rotR64(s4, 1);
-        rtemp ^= rtp;
-        rtp = s4 >> 7;
-        rtemp ^= rtp;
-        s3 += rtemp;
-        rtemp = verse_rotR64(s1, 61);
-        rtp = verse_rotR64(s1, 19);
-        rtemp ^= rtp;
-        rtp = s1 >> 6;
-        rtemp ^= rtp;
-        s3 += rtemp;
-        rt = rd + 0x3956c25bf348b538ULL;
-        rt += s4;
-        rtp = ~ ra;
-        rtp &= rc;
-        rtemp = ra & rb;
-        rtemp ^= rtp;
-        rt += rtemp;
-        rtemp = verse_rotR64(ra, 23);
-        rtemp ^= ra;
-        rtemp = verse_rotR64(rtemp, 4);
-        rtemp ^= ra;
-        rtemp = verse_rotR64(rtemp, 14);
-        rt += rtemp;
-        rh += rt;
-        rtemp = verse_rotR64(re, 5);
-        rtemp ^= re;
-        rtemp = verse_rotR64(rtemp, 6);
-        rtemp ^= re;
-        rtemp = verse_rotR64(rtemp, 28);
-        rt += rtemp;
-        rtemp = rf | rg;
-        rtemp &= re;
-        rtp = rf & rg;
-        rtemp |= rtp;
-        rd = rtemp + rt;
-        s4 += s13;
-        rtemp = verse_rotR64(s5, 8);
-        rtp = verse_rotR64(s5, 1);
-        rtemp ^= rtp;
-        rtp = s5 >> 7;
-        rtemp ^= rtp;
-        s4 += rtemp;
-        rtemp = verse_rotR64(s2, 61);
-        rtp = verse_rotR64(s2, 19);
-        rtemp ^= rtp;
-        rtp = s2 >> 6;
-        rtemp ^= rtp;
-        s4 += rtemp;
-        rt = rc + 0x59f111f1b605d019ULL;
-        rt += s5;
-        rtp = ~ rh;
-        rtp &= rb;
-        rtemp = rh & ra;
-        rtemp ^= rtp;
-        rt += rtemp;
-        rtemp = verse_rotR64(rh, 23);
-        rtemp ^= rh;
-        rtemp = verse_rotR64(rtemp, 4);
-        rtemp ^= rh;
-        rtemp = verse_rotR64(rtemp, 14);
-        rt += rtemp;
-        rg += rt;
-        rtemp = verse_rotR64(rd, 5);
-        rtemp ^= rd;
-        rtemp = verse_rotR64(rtemp, 6);
-        rtemp ^= rd;
-        rtemp = verse_rotR64(rtemp, 28);
-        rt += rtemp;
-        rtemp = re | rf;
-        rtemp &= rd;
-        rtp = re & rf;
-        rtemp |= rtp;
-        rc = rtemp + rt;
-        s5 += s14;
-        rtemp = verse_rotR64(s6, 8);
-        rtp = verse_rotR64(s6, 1);
-        rtemp ^= rtp;
-        rtp = s6 >> 7;
-        rtemp ^= rtp;
-        s5 += rtemp;
-        rtemp = verse_rotR64(s3, 61);
-        rtp = verse_rotR64(s3, 19);
-        rtemp ^= rtp;
-        rtp = s3 >> 6;
-        rtemp ^= rtp;
-        s5 += rtemp;
-        rt = rb + 0x923f82a4af194f9bULL;
-        rt += s6;
-        rtp = ~ rg;
-        rtp &= ra;
-        rtemp = rg & rh;
-        rtemp ^= rtp;
-        rt += rtemp;
-        rtemp = verse_rotR64(rg, 23);
-        rtemp ^= rg;
-        rtemp = verse_rotR64(rtemp, 4);
-        rtemp ^= rg;
-        rtemp = verse_rotR64(rtemp, 14);
-        rt += rtemp;
-        rf += rt;
-        rtemp = verse_rotR64(rc, 5);
-        rtemp ^= rc;
-        rtemp = verse_rotR64(rtemp, 6);
-        rtemp ^= rc;
-        rtemp = verse_rotR64(rtemp, 28);
-        rt += rtemp;
-        rtemp = rd | re;
-        rtemp &= rc;
-        rtp = rd & re;
-        rtemp |= rtp;
-        rb = rtemp + rt;
-        s6 += s15;
-        rtemp = verse_rotR64(s7, 8);
-        rtp = verse_rotR64(s7, 1);
-        rtemp ^= rtp;
-        rtp = s7 >> 7;
-        rtemp ^= rtp;
-        s6 += rtemp;
-        rtemp = verse_rotR64(s4, 61);
-        rtp = verse_rotR64(s4, 19);
-        rtemp ^= rtp;
-        rtp = s4 >> 6;
-        rtemp ^= rtp;
-        s6 += rtemp;
-        rt = ra + 0xab1c5ed5da6d8118ULL;
-        rt += s7;
-        rtp = ~ rf;
-        rtp &= rh;
-        rtemp = rf & rg;
-        rtemp ^= rtp;
-        rt += rtemp;
-        rtemp = verse_rotR64(rf, 23);
-        rtemp ^= rf;
-        rtemp = verse_rotR64(rtemp, 4);
-        rtemp ^= rf;
-        rtemp = verse_rotR64(rtemp, 14);
-        rt += rtemp;
-        re += rt;
-        rtemp = verse_rotR64(rb, 5);
-        rtemp ^= rb;
-        rtemp = verse_rotR64(rtemp, 6);
-        rtemp ^= rb;
-        rtemp = verse_rotR64(rtemp, 28);
-        rt += rtemp;
-        rtemp = rc | rd;
-        rtemp &= rb;
-        rtp = rc & rd;
-        rtemp |= rtp;
-        ra = rtemp + rt;
-        s7 += s0;
-        rtemp = verse_rotR64(s8, 8);
-        rtp = verse_rotR64(s8, 1);
-        rtemp ^= rtp;
-        rtp = s8 >> 7;
-        rtemp ^= rtp;
-        s7 += rtemp;
-        rtemp = verse_rotR64(s5, 61);
-        rtp = verse_rotR64(s5, 19);
-        rtemp ^= rtp;
-        rtp = s5 >> 6;
-        rtemp ^= rtp;
-        s7 += rtemp;
-        rt = rh + 0xd807aa98a3030242ULL;
-        rt += s8;
-        rtp = ~ re;
-        rtp &= rg;
-        rtemp = re & rf;
-        rtemp ^= rtp;
-        rt += rtemp;
-        rtemp = verse_rotR64(re, 23);
-        rtemp ^= re;
-        rtemp = verse_rotR64(rtemp, 4);
-        rtemp ^= re;
-        rtemp = verse_rotR64(rtemp, 14);
-        rt += rtemp;
-        rd += rt;
-        rtemp = verse_rotR64(ra, 5);
-        rtemp ^= ra;
-        rtemp = verse_rotR64(rtemp, 6);
-        rtemp ^= ra;
-        rtemp = verse_rotR64(rtemp, 28);
-        rt += rtemp;
-        rtemp = rb | rc;
-        rtemp &= ra;
-        rtp = rb & rc;
-        rtemp |= rtp;
-        rh = rtemp + rt;
-        s8 += s1;
-        rtemp = verse_rotR64(s9, 8);
-        rtp = verse_rotR64(s9, 1);
-        rtemp ^= rtp;
-        rtp = s9 >> 7;
-        rtemp ^= rtp;
-        s8 += rtemp;
-        rtemp = verse_rotR64(s6, 61);
-        rtp = verse_rotR64(s6, 19);
-        rtemp ^= rtp;
-        rtp = s6 >> 6;
-        rtemp ^= rtp;
-        s8 += rtemp;
-        rt = rg + 0x12835b0145706fbeULL;
-        rt += s9;
-        rtp = ~ rd;
-        rtp &= rf;
-        rtemp = rd & re;
-        rtemp ^= rtp;
-        rt += rtemp;
-        rtemp = verse_rotR64(rd, 23);
-        rtemp ^= rd;
-        rtemp = verse_rotR64(rtemp, 4);
-        rtemp ^= rd;
-        rtemp = verse_rotR64(rtemp, 14);
-        rt += rtemp;
-        rc += rt;
-        rtemp = verse_rotR64(rh, 5);
-        rtemp ^= rh;
-        rtemp = verse_rotR64(rtemp, 6);
-        rtemp ^= rh;
-        rtemp = verse_rotR64(rtemp, 28);
-        rt += rtemp;
-        rtemp = ra | rb;
-        rtemp &= rh;
-        rtp = ra & rb;
-        rtemp |= rtp;
-        rg = rtemp + rt;
-        s9 += s2;
-        rtemp = verse_rotR64(s10, 8);
-        rtp = verse_rotR64(s10, 1);
-        rtemp ^= rtp;
-        rtp = s10 >> 7;
-        rtemp ^= rtp;
-        s9 += rtemp;
-        rtemp = verse_rotR64(s7, 61);
-        rtp = verse_rotR64(s7, 19);
-        rtemp ^= rtp;
-        rtp = s7 >> 6;
-        rtemp ^= rtp;
-        s9 += rtemp;
-        rt = rf + 0x243185be4ee4b28cULL;
-        rt += s10;
-        rtp = ~ rc;
-        rtp &= re;
-        rtemp = rc & rd;
-        rtemp ^= rtp;
-        rt += rtemp;
-        rtemp = verse_rotR64(rc, 23);
-        rtemp ^= rc;
-        rtemp = verse_rotR64(rtemp, 4);
-        rtemp ^= rc;
-        rtemp = verse_rotR64(rtemp, 14);
-        rt += rtemp;
-        rb += rt;
-        rtemp = verse_rotR64(rg, 5);
-        rtemp ^= rg;
-        rtemp = verse_rotR64(rtemp, 6);
-        rtemp ^= rg;
-        rtemp = verse_rotR64(rtemp, 28);
-        rt += rtemp;
-        rtemp = rh | ra;
-        rtemp &= rg;
-        rtp = rh & ra;
-        rtemp |= rtp;
-        rf = rtemp + rt;
-        s10 += s3;
-        rtemp = verse_rotR64(s11, 8);
-        rtp = verse_rotR64(s11, 1);
-        rtemp ^= rtp;
-        rtp = s11 >> 7;
-        rtemp ^= rtp;
-        s10 += rtemp;
-        rtemp = verse_rotR64(s8, 61);
-        rtp = verse_rotR64(s8, 19);
-        rtemp ^= rtp;
-        rtp = s8 >> 6;
-        rtemp ^= rtp;
-        s10 += rtemp;
-        rt = re + 0x550c7dc3d5ffb4e2ULL;
-        rt += s11;
-        rtp = ~ rb;
-        rtp &= rd;
-        rtemp = rb & rc;
-        rtemp ^= rtp;
-        rt += rtemp;
-        rtemp = verse_rotR64(rb, 23);
-        rtemp ^= rb;
-        rtemp = verse_rotR64(rtemp, 4);
-        rtemp ^= rb;
-        rtemp = verse_rotR64(rtemp, 14);
-        rt += rtemp;
-        ra += rt;
-        rtemp = verse_rotR64(rf, 5);
-        rtemp ^= rf;
-        rtemp = verse_rotR64(rtemp, 6);
-        rtemp ^= rf;
-        rtemp = verse_rotR64(rtemp, 28);
-        rt += rtemp;
-        rtemp = rg | rh;
-        rtemp &= rf;
-        rtp = rg & rh;
-        rtemp |= rtp;
-        re = rtemp + rt;
-        s11 += s4;
-        rtemp = verse_rotR64(s12, 8);
-        rtp = verse_rotR64(s12, 1);
-        rtemp ^= rtp;
-        rtp = s12 >> 7;
-        rtemp ^= rtp;
-        s11 += rtemp;
-        rtemp = verse_rotR64(s9, 61);
-        rtp = verse_rotR64(s9, 19);
-        rtemp ^= rtp;
-        rtp = s9 >> 6;
-        rtemp ^= rtp;
-        s11 += rtemp;
-        rt = rd + 0x72be5d74f27b896fULL;
-        rt += s12;
-        rtp = ~ ra;
-        rtp &= rc;
-        rtemp = ra & rb;
-        rtemp ^= rtp;
-        rt += rtemp;
-        rtemp = verse_rotR64(ra, 23);
-        rtemp ^= ra;
-        rtemp = verse_rotR64(rtemp, 4);
-        rtemp ^= ra;
-        rtemp = verse_rotR64(rtemp, 14);
-        rt += rtemp;
-        rh += rt;
-        rtemp = verse_rotR64(re, 5);
-        rtemp ^= re;
-        rtemp = verse_rotR64(rtemp, 6);
-        rtemp ^= re;
-        rtemp = verse_rotR64(rtemp, 28);
-        rt += rtemp;
-        rtemp = rf | rg;
-        rtemp &= re;
-        rtp = rf & rg;
-        rtemp |= rtp;
-        rd = rtemp + rt;
-        s12 += s5;
-        rtemp = verse_rotR64(s13, 8);
-        rtp = verse_rotR64(s13, 1);
-        rtemp ^= rtp;
-        rtp = s13 >> 7;
-        rtemp ^= rtp;
-        s12 += rtemp;
-        rtemp = verse_rotR64(s10, 61);
-        rtp = verse_rotR64(s10, 19);
-        rtemp ^= rtp;
-        rtp = s10 >> 6;
-        rtemp ^= rtp;
-        s12 += rtemp;
-        rt = rc + 0x80deb1fe3b1696b1ULL;
-        rt += s13;
-        rtp = ~ rh;
-        rtp &= rb;
-        rtemp = rh & ra;
-        rtemp ^= rtp;
-        rt += rtemp;
-        rtemp = verse_rotR64(rh, 23);
-        rtemp ^= rh;
-        rtemp = verse_rotR64(rtemp, 4);
-        rtemp ^= rh;
-        rtemp = verse_rotR64(rtemp, 14);
-        rt += rtemp;
-        rg += rt;
-        rtemp = verse_rotR64(rd, 5);
-        rtemp ^= rd;
-        rtemp = verse_rotR64(rtemp, 6);
-        rtemp ^= rd;
-        rtemp = verse_rotR64(rtemp, 28);
-        rt += rtemp;
-        rtemp = re | rf;
-        rtemp &= rd;
-        rtp = re & rf;
-        rtemp |= rtp;
-        rc = rtemp + rt;
-        s13 += s6;
-        rtemp = verse_rotR64(s14, 8);
-        rtp = verse_rotR64(s14, 1);
-        rtemp ^= rtp;
-        rtp = s14 >> 7;
-        rtemp ^= rtp;
-        s13 += rtemp;
-        rtemp = verse_rotR64(s11, 61);
-        rtp = verse_rotR64(s11, 19);
-        rtemp ^= rtp;
-        rtp = s11 >> 6;
-        rtemp ^= rtp;
-        s13 += rtemp;
-        rt = rb + 0x9bdc06a725c71235ULL;
-        rt += s14;
-        rtp = ~ rg;
-        rtp &= ra;
-        rtemp = rg & rh;
-        rtemp ^= rtp;
-        rt += rtemp;
-        rtemp = verse_rotR64(rg, 23);
-        rtemp ^= rg;
-        rtemp = verse_rotR64(rtemp, 4);
-        rtemp ^= rg;
-        rtemp = verse_rotR64(rtemp, 14);
-        rt += rtemp;
-        rf += rt;
-        rtemp = verse_rotR64(rc, 5);
-        rtemp ^= rc;
-        rtemp = verse_rotR64(rtemp, 6);
-        rtemp ^= rc;
-        rtemp = verse_rotR64(rtemp, 28);
-        rt += rtemp;
-        rtemp = rd | re;
-        rtemp &= rc;
-        rtp = rd & re;
-        rtemp |= rtp;
-        rb = rtemp + rt;
-        s14 += s7;
-        rtemp = verse_rotR64(s15, 8);
-        rtp = verse_rotR64(s15, 1);
-        rtemp ^= rtp;
-        rtp = s15 >> 7;
-        rtemp ^= rtp;
-        s14 += rtemp;
-        rtemp = verse_rotR64(s12, 61);
-        rtp = verse_rotR64(s12, 19);
-        rtemp ^= rtp;
-        rtp = s12 >> 6;
-        rtemp ^= rtp;
-        s14 += rtemp;
-        rt = ra + 0xc19bf174cf692694ULL;
-        rt += s15;
-        rtp = ~ rf;
-        rtp &= rh;
-        rtemp = rf & rg;
-        rtemp ^= rtp;
-        rt += rtemp;
-        rtemp = verse_rotR64(rf, 23);
-        rtemp ^= rf;
-        rtemp = verse_rotR64(rtemp, 4);
-        rtemp ^= rf;
-        rtemp = verse_rotR64(rtemp, 14);
-        rt += rtemp;
-        re += rt;
-        rtemp = verse_rotR64(rb, 5);
-        rtemp ^= rb;
-        rtemp = verse_rotR64(rtemp, 6);
-        rtemp ^= rb;
-        rtemp = verse_rotR64(rtemp, 28);
-        rt += rtemp;
-        rtemp = rc | rd;
-        rtemp &= rb;
-        rtp = rc & rd;
-        rtemp |= rtp;
-        ra = rtemp + rt;
-        s15 += s8;
-        rtemp = verse_rotR64(s0, 8);
-        rtp = verse_rotR64(s0, 1);
-        rtemp ^= rtp;
-        rtp = s0 >> 7;
-        rtemp ^= rtp;
-        s15 += rtemp;
-        rtemp = verse_rotR64(s13, 61);
-        rtp = verse_rotR64(s13, 19);
-        rtemp ^= rtp;
-        rtp = s13 >> 6;
-        rtemp ^= rtp;
-        s15 += rtemp;
-        rt = rh + 0xe49b69c19ef14ad2ULL;
-        rt += s0;
-        rtp = ~ re;
-        rtp &= rg;
-        rtemp = re & rf;
-        rtemp ^= rtp;
-        rt += rtemp;
-        rtemp = verse_rotR64(re, 23);
-        rtemp ^= re;
-        rtemp = verse_rotR64(rtemp, 4);
-        rtemp ^= re;
-        rtemp = verse_rotR64(rtemp, 14);
-        rt += rtemp;
-        rd += rt;
-        rtemp = verse_rotR64(ra, 5);
-        rtemp ^= ra;
-        rtemp = verse_rotR64(rtemp, 6);
-        rtemp ^= ra;
-        rtemp = verse_rotR64(rtemp, 28);
-        rt += rtemp;
-        rtemp = rb | rc;
-        rtemp &= ra;
-        rtp = rb & rc;
-        rtemp |= rtp;
-        rh = rtemp + rt;
-        s0 += s9;
-        rtemp = verse_rotR64(s1, 8);
-        rtp = verse_rotR64(s1, 1);
-        rtemp ^= rtp;
-        rtp = s1 >> 7;
-        rtemp ^= rtp;
-        s0 += rtemp;
-        rtemp = verse_rotR64(s14, 61);
-        rtp = verse_rotR64(s14, 19);
-        rtemp ^= rtp;
-        rtp = s14 >> 6;
-        rtemp ^= rtp;
-        s0 += rtemp;
-        rt = rg + 0xefbe4786384f25e3ULL;
-        rt += s1;
-        rtp = ~ rd;
-        rtp &= rf;
-        rtemp = rd & re;
-        rtemp ^= rtp;
-        rt += rtemp;
-        rtemp = verse_rotR64(rd, 23);
-        rtemp ^= rd;
-        rtemp = verse_rotR64(rtemp, 4);
-        rtemp ^= rd;
-        rtemp = verse_rotR64(rtemp, 14);
-        rt += rtemp;
-        rc += rt;
-        rtemp = verse_rotR64(rh, 5);
-        rtemp ^= rh;
-        rtemp = verse_rotR64(rtemp, 6);
-        rtemp ^= rh;
-        rtemp = verse_rotR64(rtemp, 28);
-        rt += rtemp;
-        rtemp = ra | rb;
-        rtemp &= rh;
-        rtp = ra & rb;
-        rtemp |= rtp;
-        rg = rtemp + rt;
-        s1 += s10;
-        rtemp = verse_rotR64(s2, 8);
-        rtp = verse_rotR64(s2, 1);
-        rtemp ^= rtp;
-        rtp = s2 >> 7;
-        rtemp ^= rtp;
-        s1 += rtemp;
-        rtemp = verse_rotR64(s15, 61);
-        rtp = verse_rotR64(s15, 19);
-        rtemp ^= rtp;
-        rtp = s15 >> 6;
-        rtemp ^= rtp;
-        s1 += rtemp;
-        rt = rf + 0x0fc19dc68b8cd5b5ULL;
-        rt += s2;
-        rtp = ~ rc;
-        rtp &= re;
-        rtemp = rc & rd;
-        rtemp ^= rtp;
-        rt += rtemp;
-        rtemp = verse_rotR64(rc, 23);
-        rtemp ^= rc;
-        rtemp = verse_rotR64(rtemp, 4);
-        rtemp ^= rc;
-        rtemp = verse_rotR64(rtemp, 14);
-        rt += rtemp;
-        rb += rt;
-        rtemp = verse_rotR64(rg, 5);
-        rtemp ^= rg;
-        rtemp = verse_rotR64(rtemp, 6);
-        rtemp ^= rg;
-        rtemp = verse_rotR64(rtemp, 28);
-        rt += rtemp;
-        rtemp = rh | ra;
-        rtemp &= rg;
-        rtp = rh & ra;
-        rtemp |= rtp;
-        rf = rtemp + rt;
-        s2 += s11;
-        rtemp = verse_rotR64(s3, 8);
-        rtp = verse_rotR64(s3, 1);
-        rtemp ^= rtp;
-        rtp = s3 >> 7;
-        rtemp ^= rtp;
-        s2 += rtemp;
-        rtemp = verse_rotR64(s0, 61);
-        rtp = verse_rotR64(s0, 19);
-        rtemp ^= rtp;
-        rtp = s0 >> 6;
-        rtemp ^= rtp;
-        s2 += rtemp;
-        rt = re + 0x240ca1cc77ac9c65ULL;
-        rt += s3;
-        rtp = ~ rb;
-        rtp &= rd;
-        rtemp = rb & rc;
-        rtemp ^= rtp;
-        rt += rtemp;
-        rtemp = verse_rotR64(rb, 23);
-        rtemp ^= rb;
-        rtemp = verse_rotR64(rtemp, 4);
-        rtemp ^= rb;
-        rtemp = verse_rotR64(rtemp, 14);
-        rt += rtemp;
-        ra += rt;
-        rtemp = verse_rotR64(rf, 5);
-        rtemp ^= rf;
-        rtemp = verse_rotR64(rtemp, 6);
-        rtemp ^= rf;
-        rtemp = verse_rotR64(rtemp, 28);
-        rt += rtemp;
-        rtemp = rg | rh;
-        rtemp &= rf;
-        rtp = rg & rh;
-        rtemp |= rtp;
-        re = rtemp + rt;
-        s3 += s12;
-        rtemp = verse_rotR64(s4, 8);
-        rtp = verse_rotR64(s4, 1);
-        rtemp ^= rtp;
-        rtp = s4 >> 7;
-        rtemp ^= rtp;
-        s3 += rtemp;
-        rtemp = verse_rotR64(s1, 61);
-        rtp = verse_rotR64(s1, 19);
-        rtemp ^= rtp;
-        rtp = s1 >> 6;
-        rtemp ^= rtp;
-        s3 += rtemp;
-        rt = rd + 0x2de92c6f592b0275ULL;
-        rt += s4;
-        rtp = ~ ra;
-        rtp &= rc;
-        rtemp = ra & rb;
-        rtemp ^= rtp;
-        rt += rtemp;
-        rtemp = verse_rotR64(ra, 23);
-        rtemp ^= ra;
-        rtemp = verse_rotR64(rtemp, 4);
-        rtemp ^= ra;
-        rtemp = verse_rotR64(rtemp, 14);
-        rt += rtemp;
-        rh += rt;
-        rtemp = verse_rotR64(re, 5);
-        rtemp ^= re;
-        rtemp = verse_rotR64(rtemp, 6);
-        rtemp ^= re;
-        rtemp = verse_rotR64(rtemp, 28);
-        rt += rtemp;
-        rtemp = rf | rg;
-        rtemp &= re;
-        rtp = rf & rg;
-        rtemp |= rtp;
-        rd = rtemp + rt;
-        s4 += s13;
-        rtemp = verse_rotR64(s5, 8);
-        rtp = verse_rotR64(s5, 1);
-        rtemp ^= rtp;
-        rtp = s5 >> 7;
-        rtemp ^= rtp;
-        s4 += rtemp;
-        rtemp = verse_rotR64(s2, 61);
-        rtp = verse_rotR64(s2, 19);
-        rtemp ^= rtp;
-        rtp = s2 >> 6;
-        rtemp ^= rtp;
-        s4 += rtemp;
-        rt = rc + 0x4a7484aa6ea6e483ULL;
-        rt += s5;
-        rtp = ~ rh;
-        rtp &= rb;
-        rtemp = rh & ra;
-        rtemp ^= rtp;
-        rt += rtemp;
-        rtemp = verse_rotR64(rh, 23);
-        rtemp ^= rh;
-        rtemp = verse_rotR64(rtemp, 4);
-        rtemp ^= rh;
-        rtemp = verse_rotR64(rtemp, 14);
-        rt += rtemp;
-        rg += rt;
-        rtemp = verse_rotR64(rd, 5);
-        rtemp ^= rd;
-        rtemp = verse_rotR64(rtemp, 6);
-        rtemp ^= rd;
-        rtemp = verse_rotR64(rtemp, 28);
-        rt += rtemp;
-        rtemp = re | rf;
-        rtemp &= rd;
-        rtp = re & rf;
-        rtemp |= rtp;
-        rc = rtemp + rt;
-        s5 += s14;
-        rtemp = verse_rotR64(s6, 8);
-        rtp = verse_rotR64(s6, 1);
-        rtemp ^= rtp;
-        rtp = s6 >> 7;
-        rtemp ^= rtp;
-        s5 += rtemp;
-        rtemp = verse_rotR64(s3, 61);
-        rtp = verse_rotR64(s3, 19);
-        rtemp ^= rtp;
-        rtp = s3 >> 6;
-        rtemp ^= rtp;
-        s5 += rtemp;
-        rt = rb + 0x5cb0a9dcbd41fbd4ULL;
-        rt += s6;
-        rtp = ~ rg;
-        rtp &= ra;
-        rtemp = rg & rh;
-        rtemp ^= rtp;
-        rt += rtemp;
-        rtemp = verse_rotR64(rg, 23);
-        rtemp ^= rg;
-        rtemp = verse_rotR64(rtemp, 4);
-        rtemp ^= rg;
-        rtemp = verse_rotR64(rtemp, 14);
-        rt += rtemp;
-        rf += rt;
-        rtemp = verse_rotR64(rc, 5);
-        rtemp ^= rc;
-        rtemp = verse_rotR64(rtemp, 6);
-        rtemp ^= rc;
-        rtemp = verse_rotR64(rtemp, 28);
-        rt += rtemp;
-        rtemp = rd | re;
-        rtemp &= rc;
-        rtp = rd & re;
-        rtemp |= rtp;
-        rb = rtemp + rt;
-        s6 += s15;
-        rtemp = verse_rotR64(s7, 8);
-        rtp = verse_rotR64(s7, 1);
-        rtemp ^= rtp;
-        rtp = s7 >> 7;
-        rtemp ^= rtp;
-        s6 += rtemp;
-        rtemp = verse_rotR64(s4, 61);
-        rtp = verse_rotR64(s4, 19);
-        rtemp ^= rtp;
-        rtp = s4 >> 6;
-        rtemp ^= rtp;
-        s6 += rtemp;
-        rt = ra + 0x76f988da831153b5ULL;
-        rt += s7;
-        rtp = ~ rf;
-        rtp &= rh;
-        rtemp = rf & rg;
-        rtemp ^= rtp;
-        rt += rtemp;
-        rtemp = verse_rotR64(rf, 23);
-        rtemp ^= rf;
-        rtemp = verse_rotR64(rtemp, 4);
-        rtemp ^= rf;
-        rtemp = verse_rotR64(rtemp, 14);
-        rt += rtemp;
-        re += rt;
-        rtemp = verse_rotR64(rb, 5);
-        rtemp ^= rb;
-        rtemp = verse_rotR64(rtemp, 6);
-        rtemp ^= rb;
-        rtemp = verse_rotR64(rtemp, 28);
-        rt += rtemp;
-        rtemp = rc | rd;
-        rtemp &= rb;
-        rtp = rc & rd;
-        rtemp |= rtp;
-        ra = rtemp + rt;
-        s7 += s0;
-        rtemp = verse_rotR64(s8, 8);
-        rtp = verse_rotR64(s8, 1);
-        rtemp ^= rtp;
-        rtp = s8 >> 7;
-        rtemp ^= rtp;
-        s7 += rtemp;
-        rtemp = verse_rotR64(s5, 61);
-        rtp = verse_rotR64(s5, 19);
-        rtemp ^= rtp;
-        rtp = s5 >> 6;
-        rtemp ^= rtp;
-        s7 += rtemp;
-        rt = rh + 0x983e5152ee66dfabULL;
-        rt += s8;
-        rtp = ~ re;
-        rtp &= rg;
-        rtemp = re & rf;
-        rtemp ^= rtp;
-        rt += rtemp;
-        rtemp = verse_rotR64(re, 23);
-        rtemp ^= re;
-        rtemp = verse_rotR64(rtemp, 4);
-        rtemp ^= re;
-        rtemp = verse_rotR64(rtemp, 14);
-        rt += rtemp;
-        rd += rt;
-        rtemp = verse_rotR64(ra, 5);
-        rtemp ^= ra;
-        rtemp = verse_rotR64(rtemp, 6);
-        rtemp ^= ra;
-        rtemp = verse_rotR64(rtemp, 28);
-        rt += rtemp;
-        rtemp = rb | rc;
-        rtemp &= ra;
-        rtp = rb & rc;
-        rtemp |= rtp;
-        rh = rtemp + rt;
-        s8 += s1;
-        rtemp = verse_rotR64(s9, 8);
-        rtp = verse_rotR64(s9, 1);
-        rtemp ^= rtp;
-        rtp = s9 >> 7;
-        rtemp ^= rtp;
-        s8 += rtemp;
-        rtemp = verse_rotR64(s6, 61);
-        rtp = verse_rotR64(s6, 19);
-        rtemp ^= rtp;
-        rtp = s6 >> 6;
-        rtemp ^= rtp;
-        s8 += rtemp;
-        rt = rg + 0xa831c66d2db43210ULL;
-        rt += s9;
-        rtp = ~ rd;
-        rtp &= rf;
-        rtemp = rd & re;
-        rtemp ^= rtp;
-        rt += rtemp;
-        rtemp = verse_rotR64(rd, 23);
-        rtemp ^= rd;
-        rtemp = verse_rotR64(rtemp, 4);
-        rtemp ^= rd;
-        rtemp = verse_rotR64(rtemp, 14);
-        rt += rtemp;
-        rc += rt;
-        rtemp = verse_rotR64(rh, 5);
-        rtemp ^= rh;
-        rtemp = verse_rotR64(rtemp, 6);
-        rtemp ^= rh;
-        rtemp = verse_rotR64(rtemp, 28);
-        rt += rtemp;
-        rtemp = ra | rb;
-        rtemp &= rh;
-        rtp = ra & rb;
-        rtemp |= rtp;
-        rg = rtemp + rt;
-        s9 += s2;
-        rtemp = verse_rotR64(s10, 8);
-        rtp = verse_rotR64(s10, 1);
-        rtemp ^= rtp;
-        rtp = s10 >> 7;
-        rtemp ^= rtp;
-        s9 += rtemp;
-        rtemp = verse_rotR64(s7, 61);
-        rtp = verse_rotR64(s7, 19);
-        rtemp ^= rtp;
-        rtp = s7 >> 6;
-        rtemp ^= rtp;
-        s9 += rtemp;
-        rt = rf + 0xb00327c898fb213fULL;
-        rt += s10;
-        rtp = ~ rc;
-        rtp &= re;
-        rtemp = rc & rd;
-        rtemp ^= rtp;
-        rt += rtemp;
-        rtemp = verse_rotR64(rc, 23);
-        rtemp ^= rc;
-        rtemp = verse_rotR64(rtemp, 4);
-        rtemp ^= rc;
-        rtemp = verse_rotR64(rtemp, 14);
-        rt += rtemp;
-        rb += rt;
-        rtemp = verse_rotR64(rg, 5);
-        rtemp ^= rg;
-        rtemp = verse_rotR64(rtemp, 6);
-        rtemp ^= rg;
-        rtemp = verse_rotR64(rtemp, 28);
-        rt += rtemp;
-        rtemp = rh | ra;
-        rtemp &= rg;
-        rtp = rh & ra;
-        rtemp |= rtp;
-        rf = rtemp + rt;
-        s10 += s3;
-        rtemp = verse_rotR64(s11, 8);
-        rtp = verse_rotR64(s11, 1);
-        rtemp ^= rtp;
-        rtp = s11 >> 7;
-        rtemp ^= rtp;
-        s10 += rtemp;
-        rtemp = verse_rotR64(s8, 61);
-        rtp = verse_rotR64(s8, 19);
-        rtemp ^= rtp;
-        rtp = s8 >> 6;
-        rtemp ^= rtp;
-        s10 += rtemp;
-        rt = re + 0xbf597fc7beef0ee4ULL;
-        rt += s11;
-        rtp = ~ rb;
-        rtp &= rd;
-        rtemp = rb & rc;
-        rtemp ^= rtp;
-        rt += rtemp;
-        rtemp = verse_rotR64(rb, 23);
-        rtemp ^= rb;
-        rtemp = verse_rotR64(rtemp, 4);
-        rtemp ^= rb;
-        rtemp = verse_rotR64(rtemp, 14);
-        rt += rtemp;
-        ra += rt;
-        rtemp = verse_rotR64(rf, 5);
-        rtemp ^= rf;
-        rtemp = verse_rotR64(rtemp, 6);
-        rtemp ^= rf;
-        rtemp = verse_rotR64(rtemp, 28);
-        rt += rtemp;
-        rtemp = rg | rh;
-        rtemp &= rf;
-        rtp = rg & rh;
-        rtemp |= rtp;
-        re = rtemp + rt;
-        s11 += s4;
-        rtemp = verse_rotR64(s12, 8);
-        rtp = verse_rotR64(s12, 1);
-        rtemp ^= rtp;
-        rtp = s12 >> 7;
-        rtemp ^= rtp;
-        s11 += rtemp;
-        rtemp = verse_rotR64(s9, 61);
-        rtp = verse_rotR64(s9, 19);
-        rtemp ^= rtp;
-        rtp = s9 >> 6;
-        rtemp ^= rtp;
-        s11 += rtemp;
-        rt = rd + 0xc6e00bf33da88fc2ULL;
-        rt += s12;
-        rtp = ~ ra;
-        rtp &= rc;
-        rtemp = ra & rb;
-        rtemp ^= rtp;
-        rt += rtemp;
-        rtemp = verse_rotR64(ra, 23);
-        rtemp ^= ra;
-        rtemp = verse_rotR64(rtemp, 4);
-        rtemp ^= ra;
-        rtemp = verse_rotR64(rtemp, 14);
-        rt += rtemp;
-        rh += rt;
-        rtemp = verse_rotR64(re, 5);
-        rtemp ^= re;
-        rtemp = verse_rotR64(rtemp, 6);
-        rtemp ^= re;
-        rtemp = verse_rotR64(rtemp, 28);
-        rt += rtemp;
-        rtemp = rf | rg;
-        rtemp &= re;
-        rtp = rf & rg;
-        rtemp |= rtp;
-        rd = rtemp + rt;
-        s12 += s5;
-        rtemp = verse_rotR64(s13, 8);
-        rtp = verse_rotR64(s13, 1);
-        rtemp ^= rtp;
-        rtp = s13 >> 7;
-        rtemp ^= rtp;
-        s12 += rtemp;
-        rtemp = verse_rotR64(s10, 61);
-        rtp = verse_rotR64(s10, 19);
-        rtemp ^= rtp;
-        rtp = s10 >> 6;
-        rtemp ^= rtp;
-        s12 += rtemp;
-        rt = rc + 0xd5a79147930aa725ULL;
-        rt += s13;
-        rtp = ~ rh;
-        rtp &= rb;
-        rtemp = rh & ra;
-        rtemp ^= rtp;
-        rt += rtemp;
-        rtemp = verse_rotR64(rh, 23);
-        rtemp ^= rh;
-        rtemp = verse_rotR64(rtemp, 4);
-        rtemp ^= rh;
-        rtemp = verse_rotR64(rtemp, 14);
-        rt += rtemp;
-        rg += rt;
-        rtemp = verse_rotR64(rd, 5);
-        rtemp ^= rd;
-        rtemp = verse_rotR64(rtemp, 6);
-        rtemp ^= rd;
-        rtemp = verse_rotR64(rtemp, 28);
-        rt += rtemp;
-        rtemp = re | rf;
-        rtemp &= rd;
-        rtp = re & rf;
-        rtemp |= rtp;
-        rc = rtemp + rt;
-        s13 += s6;
-        rtemp = verse_rotR64(s14, 8);
-        rtp = verse_rotR64(s14, 1);
-        rtemp ^= rtp;
-        rtp = s14 >> 7;
-        rtemp ^= rtp;
-        s13 += rtemp;
-        rtemp = verse_rotR64(s11, 61);
-        rtp = verse_rotR64(s11, 19);
-        rtemp ^= rtp;
-        rtp = s11 >> 6;
-        rtemp ^= rtp;
-        s13 += rtemp;
-        rt = rb + 0x06ca6351e003826fULL;
-        rt += s14;
-        rtp = ~ rg;
-        rtp &= ra;
-        rtemp = rg & rh;
-        rtemp ^= rtp;
-        rt += rtemp;
-        rtemp = verse_rotR64(rg, 23);
-        rtemp ^= rg;
-        rtemp = verse_rotR64(rtemp, 4);
-        rtemp ^= rg;
-        rtemp = verse_rotR64(rtemp, 14);
-        rt += rtemp;
-        rf += rt;
-        rtemp = verse_rotR64(rc, 5);
-        rtemp ^= rc;
-        rtemp = verse_rotR64(rtemp, 6);
-        rtemp ^= rc;
-        rtemp = verse_rotR64(rtemp, 28);
-        rt += rtemp;
-        rtemp = rd | re;
-        rtemp &= rc;
-        rtp = rd & re;
-        rtemp |= rtp;
-        rb = rtemp + rt;
-        s14 += s7;
-        rtemp = verse_rotR64(s15, 8);
-        rtp = verse_rotR64(s15, 1);
-        rtemp ^= rtp;
-        rtp = s15 >> 7;
-        rtemp ^= rtp;
-        s14 += rtemp;
-        rtemp = verse_rotR64(s12, 61);
-        rtp = verse_rotR64(s12, 19);
-        rtemp ^= rtp;
-        rtp = s12 >> 6;
-        rtemp ^= rtp;
-        s14 += rtemp;
-        rt = ra + 0x142929670a0e6e70ULL;
-        rt += s15;
-        rtp = ~ rf;
-        rtp &= rh;
-        rtemp = rf & rg;
-        rtemp ^= rtp;
-        rt += rtemp;
-        rtemp = verse_rotR64(rf, 23);
-        rtemp ^= rf;
-        rtemp = verse_rotR64(rtemp, 4);
-        rtemp ^= rf;
-        rtemp = verse_rotR64(rtemp, 14);
-        rt += rtemp;
-        re += rt;
-        rtemp = verse_rotR64(rb, 5);
-        rtemp ^= rb;
-        rtemp = verse_rotR64(rtemp, 6);
-        rtemp ^= rb;
-        rtemp = verse_rotR64(rtemp, 28);
-        rt += rtemp;
-        rtemp = rc | rd;
-        rtemp &= rb;
-        rtp = rc & rd;
-        rtemp |= rtp;
-        ra = rtemp + rt;
-        s15 += s8;
-        rtemp = verse_rotR64(s0, 8);
-        rtp = verse_rotR64(s0, 1);
-        rtemp ^= rtp;
-        rtp = s0 >> 7;
-        rtemp ^= rtp;
-        s15 += rtemp;
-        rtemp = verse_rotR64(s13, 61);
-        rtp = verse_rotR64(s13, 19);
-        rtemp ^= rtp;
-        rtp = s13 >> 6;
-        rtemp ^= rtp;
-        s15 += rtemp;
-        rt = rh + 0x27b70a8546d22ffcULL;
-        rt += s0;
-        rtp = ~ re;
-        rtp &= rg;
-        rtemp = re & rf;
-        rtemp ^= rtp;
-        rt += rtemp;
-        rtemp = verse_rotR64(re, 23);
-        rtemp ^= re;
-        rtemp = verse_rotR64(rtemp, 4);
-        rtemp ^= re;
-        rtemp = verse_rotR64(rtemp, 14);
-        rt += rtemp;
-        rd += rt;
-        rtemp = verse_rotR64(ra, 5);
-        rtemp ^= ra;
-        rtemp = verse_rotR64(rtemp, 6);
-        rtemp ^= ra;
-        rtemp = verse_rotR64(rtemp, 28);
-        rt += rtemp;
-        rtemp = rb | rc;
-        rtemp &= ra;
-        rtp = rb & rc;
-        rtemp |= rtp;
-        rh = rtemp + rt;
-        s0 += s9;
-        rtemp = verse_rotR64(s1, 8);
-        rtp = verse_rotR64(s1, 1);
-        rtemp ^= rtp;
-        rtp = s1 >> 7;
-        rtemp ^= rtp;
-        s0 += rtemp;
-        rtemp = verse_rotR64(s14, 61);
-        rtp = verse_rotR64(s14, 19);
-        rtemp ^= rtp;
-        rtp = s14 >> 6;
-        rtemp ^= rtp;
-        s0 += rtemp;
-        rt = rg + 0x2e1b21385c26c926ULL;
-        rt += s1;
-        rtp = ~ rd;
-        rtp &= rf;
-        rtemp = rd & re;
-        rtemp ^= rtp;
-        rt += rtemp;
-        rtemp = verse_rotR64(rd, 23);
-        rtemp ^= rd;
-        rtemp = verse_rotR64(rtemp, 4);
-        rtemp ^= rd;
-        rtemp = verse_rotR64(rtemp, 14);
-        rt += rtemp;
-        rc += rt;
-        rtemp = verse_rotR64(rh, 5);
-        rtemp ^= rh;
-        rtemp = verse_rotR64(rtemp, 6);
-        rtemp ^= rh;
-        rtemp = verse_rotR64(rtemp, 28);
-        rt += rtemp;
-        rtemp = ra | rb;
-        rtemp &= rh;
-        rtp = ra & rb;
-        rtemp |= rtp;
-        rg = rtemp + rt;
-        s1 += s10;
-        rtemp = verse_rotR64(s2, 8);
-        rtp = verse_rotR64(s2, 1);
-        rtemp ^= rtp;
-        rtp = s2 >> 7;
-        rtemp ^= rtp;
-        s1 += rtemp;
-        rtemp = verse_rotR64(s15, 61);
-        rtp = verse_rotR64(s15, 19);
-        rtemp ^= rtp;
-        rtp = s15 >> 6;
-        rtemp ^= rtp;
-        s1 += rtemp;
-        rt = rf + 0x4d2c6dfc5ac42aedULL;
-        rt += s2;
-        rtp = ~ rc;
-        rtp &= re;
-        rtemp = rc & rd;
-        rtemp ^= rtp;
-        rt += rtemp;
-        rtemp = verse_rotR64(rc, 23);
-        rtemp ^= rc;
-        rtemp = verse_rotR64(rtemp, 4);
-        rtemp ^= rc;
-        rtemp = verse_rotR64(rtemp, 14);
-        rt += rtemp;
-        rb += rt;
-        rtemp = verse_rotR64(rg, 5);
-        rtemp ^= rg;
-        rtemp = verse_rotR64(rtemp, 6);
-        rtemp ^= rg;
-        rtemp = verse_rotR64(rtemp, 28);
-        rt += rtemp;
-        rtemp = rh | ra;
-        rtemp &= rg;
-        rtp = rh & ra;
-        rtemp |= rtp;
-        rf = rtemp + rt;
-        s2 += s11;
-        rtemp = verse_rotR64(s3, 8);
-        rtp = verse_rotR64(s3, 1);
-        rtemp ^= rtp;
-        rtp = s3 >> 7;
-        rtemp ^= rtp;
-        s2 += rtemp;
-        rtemp = verse_rotR64(s0, 61);
-        rtp = verse_rotR64(s0, 19);
-        rtemp ^= rtp;
-        rtp = s0 >> 6;
-        rtemp ^= rtp;
-        s2 += rtemp;
-        rt = re + 0x53380d139d95b3dfULL;
-        rt += s3;
-        rtp = ~ rb;
-        rtp &= rd;
-        rtemp = rb & rc;
-        rtemp ^= rtp;
-        rt += rtemp;
-        rtemp = verse_rotR64(rb, 23);
-        rtemp ^= rb;
-        rtemp = verse_rotR64(rtemp, 4);
-        rtemp ^= rb;
-        rtemp = verse_rotR64(rtemp, 14);
-        rt += rtemp;
-        ra += rt;
-        rtemp = verse_rotR64(rf, 5);
-        rtemp ^= rf;
-        rtemp = verse_rotR64(rtemp, 6);
-        rtemp ^= rf;
-        rtemp = verse_rotR64(rtemp, 28);
-        rt += rtemp;
-        rtemp = rg | rh;
-        rtemp &= rf;
-        rtp = rg & rh;
-        rtemp |= rtp;
-        re = rtemp + rt;
-        s3 += s12;
-        rtemp = verse_rotR64(s4, 8);
-        rtp = verse_rotR64(s4, 1);
-        rtemp ^= rtp;
-        rtp = s4 >> 7;
-        rtemp ^= rtp;
-        s3 += rtemp;
-        rtemp = verse_rotR64(s1, 61);
-        rtp = verse_rotR64(s1, 19);
-        rtemp ^= rtp;
-        rtp = s1 >> 6;
-        rtemp ^= rtp;
-        s3 += rtemp;
-        rt = rd + 0x650a73548baf63deULL;
-        rt += s4;
-        rtp = ~ ra;
-        rtp &= rc;
-        rtemp = ra & rb;
-        rtemp ^= rtp;
-        rt += rtemp;
-        rtemp = verse_rotR64(ra, 23);
-        rtemp ^= ra;
-        rtemp = verse_rotR64(rtemp, 4);
-        rtemp ^= ra;
-        rtemp = verse_rotR64(rtemp, 14);
-        rt += rtemp;
-        rh += rt;
-        rtemp = verse_rotR64(re, 5);
-        rtemp ^= re;
-        rtemp = verse_rotR64(rtemp, 6);
-        rtemp ^= re;
-        rtemp = verse_rotR64(rtemp, 28);
-        rt += rtemp;
-        rtemp = rf | rg;
-        rtemp &= re;
-        rtp = rf & rg;
-        rtemp |= rtp;
-        rd = rtemp + rt;
-        s4 += s13;
-        rtemp = verse_rotR64(s5, 8);
-        rtp = verse_rotR64(s5, 1);
-        rtemp ^= rtp;
-        rtp = s5 >> 7;
-        rtemp ^= rtp;
-        s4 += rtemp;
-        rtemp = verse_rotR64(s2, 61);
-        rtp = verse_rotR64(s2, 19);
-        rtemp ^= rtp;
-        rtp = s2 >> 6;
-        rtemp ^= rtp;
-        s4 += rtemp;
-        rt = rc + 0x766a0abb3c77b2a8ULL;
-        rt += s5;
-        rtp = ~ rh;
-        rtp &= rb;
-        rtemp = rh & ra;
-        rtemp ^= rtp;
-        rt += rtemp;
-        rtemp = verse_rotR64(rh, 23);
-        rtemp ^= rh;
-        rtemp = verse_rotR64(rtemp, 4);
-        rtemp ^= rh;
-        rtemp = verse_rotR64(rtemp, 14);
-        rt += rtemp;
-        rg += rt;
-        rtemp = verse_rotR64(rd, 5);
-        rtemp ^= rd;
-        rtemp = verse_rotR64(rtemp, 6);
-        rtemp ^= rd;
-        rtemp = verse_rotR64(rtemp, 28);
-        rt += rtemp;
-        rtemp = re | rf;
-        rtemp &= rd;
-        rtp = re & rf;
-        rtemp |= rtp;
-        rc = rtemp + rt;
-        s5 += s14;
-        rtemp = verse_rotR64(s6, 8);
-        rtp = verse_rotR64(s6, 1);
-        rtemp ^= rtp;
-        rtp = s6 >> 7;
-        rtemp ^= rtp;
-        s5 += rtemp;
-        rtemp = verse_rotR64(s3, 61);
-        rtp = verse_rotR64(s3, 19);
-        rtemp ^= rtp;
-        rtp = s3 >> 6;
-        rtemp ^= rtp;
-        s5 += rtemp;
-        rt = rb + 0x81c2c92e47edaee6ULL;
-        rt += s6;
-        rtp = ~ rg;
-        rtp &= ra;
-        rtemp = rg & rh;
-        rtemp ^= rtp;
-        rt += rtemp;
-        rtemp = verse_rotR64(rg, 23);
-        rtemp ^= rg;
-        rtemp = verse_rotR64(rtemp, 4);
-        rtemp ^= rg;
-        rtemp = verse_rotR64(rtemp, 14);
-        rt += rtemp;
-        rf += rt;
-        rtemp = verse_rotR64(rc, 5);
-        rtemp ^= rc;
-        rtemp = verse_rotR64(rtemp, 6);
-        rtemp ^= rc;
-        rtemp = verse_rotR64(rtemp, 28);
-        rt += rtemp;
-        rtemp = rd | re;
-        rtemp &= rc;
-        rtp = rd & re;
-        rtemp |= rtp;
-        rb = rtemp + rt;
-        s6 += s15;
-        rtemp = verse_rotR64(s7, 8);
-        rtp = verse_rotR64(s7, 1);
-        rtemp ^= rtp;
-        rtp = s7 >> 7;
-        rtemp ^= rtp;
-        s6 += rtemp;
-        rtemp = verse_rotR64(s4, 61);
-        rtp = verse_rotR64(s4, 19);
-        rtemp ^= rtp;
-        rtp = s4 >> 6;
-        rtemp ^= rtp;
-        s6 += rtemp;
-        rt = ra + 0x92722c851482353bULL;
-        rt += s7;
-        rtp = ~ rf;
-        rtp &= rh;
-        rtemp = rf & rg;
-        rtemp ^= rtp;
-        rt += rtemp;
-        rtemp = verse_rotR64(rf, 23);
-        rtemp ^= rf;
-        rtemp = verse_rotR64(rtemp, 4);
-        rtemp ^= rf;
-        rtemp = verse_rotR64(rtemp, 14);
-        rt += rtemp;
-        re += rt;
-        rtemp = verse_rotR64(rb, 5);
-        rtemp ^= rb;
-        rtemp = verse_rotR64(rtemp, 6);
-        rtemp ^= rb;
-        rtemp = verse_rotR64(rtemp, 28);
-        rt += rtemp;
-        rtemp = rc | rd;
-        rtemp &= rb;
-        rtp = rc & rd;
-        rtemp |= rtp;
-        ra = rtemp + rt;
-        s7 += s0;
-        rtemp = verse_rotR64(s8, 8);
-        rtp = verse_rotR64(s8, 1);
-        rtemp ^= rtp;
-        rtp = s8 >> 7;
-        rtemp ^= rtp;
-        s7 += rtemp;
-        rtemp = verse_rotR64(s5, 61);
-        rtp = verse_rotR64(s5, 19);
-        rtemp ^= rtp;
-        rtp = s5 >> 6;
-        rtemp ^= rtp;
-        s7 += rtemp;
-        rt = rh + 0xa2bfe8a14cf10364ULL;
-        rt += s8;
-        rtp = ~ re;
-        rtp &= rg;
-        rtemp = re & rf;
-        rtemp ^= rtp;
-        rt += rtemp;
-        rtemp = verse_rotR64(re, 23);
-        rtemp ^= re;
-        rtemp = verse_rotR64(rtemp, 4);
-        rtemp ^= re;
-        rtemp = verse_rotR64(rtemp, 14);
-        rt += rtemp;
-        rd += rt;
-        rtemp = verse_rotR64(ra, 5);
-        rtemp ^= ra;
-        rtemp = verse_rotR64(rtemp, 6);
-        rtemp ^= ra;
-        rtemp = verse_rotR64(rtemp, 28);
-        rt += rtemp;
-        rtemp = rb | rc;
-        rtemp &= ra;
-        rtp = rb & rc;
-        rtemp |= rtp;
-        rh = rtemp + rt;
-        s8 += s1;
-        rtemp = verse_rotR64(s9, 8);
-        rtp = verse_rotR64(s9, 1);
-        rtemp ^= rtp;
-        rtp = s9 >> 7;
-        rtemp ^= rtp;
-        s8 += rtemp;
-        rtemp = verse_rotR64(s6, 61);
-        rtp = verse_rotR64(s6, 19);
-        rtemp ^= rtp;
-        rtp = s6 >> 6;
-        rtemp ^= rtp;
-        s8 += rtemp;
-        rt = rg + 0xa81a664bbc423001ULL;
-        rt += s9;
-        rtp = ~ rd;
-        rtp &= rf;
-        rtemp = rd & re;
-        rtemp ^= rtp;
-        rt += rtemp;
-        rtemp = verse_rotR64(rd, 23);
-        rtemp ^= rd;
-        rtemp = verse_rotR64(rtemp, 4);
-        rtemp ^= rd;
-        rtemp = verse_rotR64(rtemp, 14);
-        rt += rtemp;
-        rc += rt;
-        rtemp = verse_rotR64(rh, 5);
-        rtemp ^= rh;
-        rtemp = verse_rotR64(rtemp, 6);
-        rtemp ^= rh;
-        rtemp = verse_rotR64(rtemp, 28);
-        rt += rtemp;
-        rtemp = ra | rb;
-        rtemp &= rh;
-        rtp = ra & rb;
-        rtemp |= rtp;
-        rg = rtemp + rt;
-        s9 += s2;
-        rtemp = verse_rotR64(s10, 8);
-        rtp = verse_rotR64(s10, 1);
-        rtemp ^= rtp;
-        rtp = s10 >> 7;
-        rtemp ^= rtp;
-        s9 += rtemp;
-        rtemp = verse_rotR64(s7, 61);
-        rtp = verse_rotR64(s7, 19);
-        rtemp ^= rtp;
-        rtp = s7 >> 6;
-        rtemp ^= rtp;
-        s9 += rtemp;
-        rt = rf + 0xc24b8b70d0f89791ULL;
-        rt += s10;
-        rtp = ~ rc;
-        rtp &= re;
-        rtemp = rc & rd;
-        rtemp ^= rtp;
-        rt += rtemp;
-        rtemp = verse_rotR64(rc, 23);
-        rtemp ^= rc;
-        rtemp = verse_rotR64(rtemp, 4);
-        rtemp ^= rc;
-        rtemp = verse_rotR64(rtemp, 14);
-        rt += rtemp;
-        rb += rt;
-        rtemp = verse_rotR64(rg, 5);
-        rtemp ^= rg;
-        rtemp = verse_rotR64(rtemp, 6);
-        rtemp ^= rg;
-        rtemp = verse_rotR64(rtemp, 28);
-        rt += rtemp;
-        rtemp = rh | ra;
-        rtemp &= rg;
-        rtp = rh & ra;
-        rtemp |= rtp;
-        rf = rtemp + rt;
-        s10 += s3;
-        rtemp = verse_rotR64(s11, 8);
-        rtp = verse_rotR64(s11, 1);
-        rtemp ^= rtp;
-        rtp = s11 >> 7;
-        rtemp ^= rtp;
-        s10 += rtemp;
-        rtemp = verse_rotR64(s8, 61);
-        rtp = verse_rotR64(s8, 19);
-        rtemp ^= rtp;
-        rtp = s8 >> 6;
-        rtemp ^= rtp;
-        s10 += rtemp;
-        rt = re + 0xc76c51a30654be30ULL;
-        rt += s11;
-        rtp = ~ rb;
-        rtp &= rd;
-        rtemp = rb & rc;
-        rtemp ^= rtp;
-        rt += rtemp;
-        rtemp = verse_rotR64(rb, 23);
-        rtemp ^= rb;
-        rtemp = verse_rotR64(rtemp, 4);
-        rtemp ^= rb;
-        rtemp = verse_rotR64(rtemp, 14);
-        rt += rtemp;
-        ra += rt;
-        rtemp = verse_rotR64(rf, 5);
-        rtemp ^= rf;
-        rtemp = verse_rotR64(rtemp, 6);
-        rtemp ^= rf;
-        rtemp = verse_rotR64(rtemp, 28);
-        rt += rtemp;
-        rtemp = rg | rh;
-        rtemp &= rf;
-        rtp = rg & rh;
-        rtemp |= rtp;
-        re = rtemp + rt;
-        s11 += s4;
-        rtemp = verse_rotR64(s12, 8);
-        rtp = verse_rotR64(s12, 1);
-        rtemp ^= rtp;
-        rtp = s12 >> 7;
-        rtemp ^= rtp;
-        s11 += rtemp;
-        rtemp = verse_rotR64(s9, 61);
-        rtp = verse_rotR64(s9, 19);
-        rtemp ^= rtp;
-        rtp = s9 >> 6;
-        rtemp ^= rtp;
-        s11 += rtemp;
-        rt = rd + 0xd192e819d6ef5218ULL;
-        rt += s12;
-        rtp = ~ ra;
-        rtp &= rc;
-        rtemp = ra & rb;
-        rtemp ^= rtp;
-        rt += rtemp;
-        rtemp = verse_rotR64(ra, 23);
-        rtemp ^= ra;
-        rtemp = verse_rotR64(rtemp, 4);
-        rtemp ^= ra;
-        rtemp = verse_rotR64(rtemp, 14);
-        rt += rtemp;
-        rh += rt;
-        rtemp = verse_rotR64(re, 5);
-        rtemp ^= re;
-        rtemp = verse_rotR64(rtemp, 6);
-        rtemp ^= re;
-        rtemp = verse_rotR64(rtemp, 28);
-        rt += rtemp;
-        rtemp = rf | rg;
-        rtemp &= re;
-        rtp = rf & rg;
-        rtemp |= rtp;
-        rd = rtemp + rt;
-        s12 += s5;
-        rtemp = verse_rotR64(s13, 8);
-        rtp = verse_rotR64(s13, 1);
-        rtemp ^= rtp;
-        rtp = s13 >> 7;
-        rtemp ^= rtp;
-        s12 += rtemp;
-        rtemp = verse_rotR64(s10, 61);
-        rtp = verse_rotR64(s10, 19);
-        rtemp ^= rtp;
-        rtp = s10 >> 6;
-        rtemp ^= rtp;
-        s12 += rtemp;
-        rt = rc + 0xd69906245565a910ULL;
-        rt += s13;
-        rtp = ~ rh;
-        rtp &= rb;
-        rtemp = rh & ra;
-        rtemp ^= rtp;
-        rt += rtemp;
-        rtemp = verse_rotR64(rh, 23);
-        rtemp ^= rh;
-        rtemp = verse_rotR64(rtemp, 4);
-        rtemp ^= rh;
-        rtemp = verse_rotR64(rtemp, 14);
-        rt += rtemp;
-        rg += rt;
-        rtemp = verse_rotR64(rd, 5);
-        rtemp ^= rd;
-        rtemp = verse_rotR64(rtemp, 6);
-        rtemp ^= rd;
-        rtemp = verse_rotR64(rtemp, 28);
-        rt += rtemp;
-        rtemp = re | rf;
-        rtemp &= rd;
-        rtp = re & rf;
-        rtemp |= rtp;
-        rc = rtemp + rt;
-        s13 += s6;
-        rtemp = verse_rotR64(s14, 8);
-        rtp = verse_rotR64(s14, 1);
-        rtemp ^= rtp;
-        rtp = s14 >> 7;
-        rtemp ^= rtp;
-        s13 += rtemp;
-        rtemp = verse_rotR64(s11, 61);
-        rtp = verse_rotR64(s11, 19);
-        rtemp ^= rtp;
-        rtp = s11 >> 6;
-        rtemp ^= rtp;
-        s13 += rtemp;
-        rt = rb + 0xf40e35855771202aULL;
-        rt += s14;
-        rtp = ~ rg;
-        rtp &= ra;
-        rtemp = rg & rh;
-        rtemp ^= rtp;
-        rt += rtemp;
-        rtemp = verse_rotR64(rg, 23);
-        rtemp ^= rg;
-        rtemp = verse_rotR64(rtemp, 4);
-        rtemp ^= rg;
-        rtemp = verse_rotR64(rtemp, 14);
-        rt += rtemp;
-        rf += rt;
-        rtemp = verse_rotR64(rc, 5);
-        rtemp ^= rc;
-        rtemp = verse_rotR64(rtemp, 6);
-        rtemp ^= rc;
-        rtemp = verse_rotR64(rtemp, 28);
-        rt += rtemp;
-        rtemp = rd | re;
-        rtemp &= rc;
-        rtp = rd & re;
-        rtemp |= rtp;
-        rb = rtemp + rt;
-        s14 += s7;
-        rtemp = verse_rotR64(s15, 8);
-        rtp = verse_rotR64(s15, 1);
-        rtemp ^= rtp;
-        rtp = s15 >> 7;
-        rtemp ^= rtp;
-        s14 += rtemp;
-        rtemp = verse_rotR64(s12, 61);
-        rtp = verse_rotR64(s12, 19);
-        rtemp ^= rtp;
-        rtp = s12 >> 6;
-        rtemp ^= rtp;
-        s14 += rtemp;
-        rt = ra + 0x106aa07032bbd1b8ULL;
-        rt += s15;
-        rtp = ~ rf;
-        rtp &= rh;
-        rtemp = rf & rg;
-        rtemp ^= rtp;
-        rt += rtemp;
-        rtemp = verse_rotR64(rf, 23);
-        rtemp ^= rf;
-        rtemp = verse_rotR64(rtemp, 4);
-        rtemp ^= rf;
-        rtemp = verse_rotR64(rtemp, 14);
-        rt += rtemp;
-        re += rt;
-        rtemp = verse_rotR64(rb, 5);
-        rtemp ^= rb;
-        rtemp = verse_rotR64(rtemp, 6);
-        rtemp ^= rb;
-        rtemp = verse_rotR64(rtemp, 28);
-        rt += rtemp;
-        rtemp = rc | rd;
-        rtemp &= rb;
-        rtp = rc & rd;
-        rtemp |= rtp;
-        ra = rtemp + rt;
-        s15 += s8;
-        rtemp = verse_rotR64(s0, 8);
-        rtp = verse_rotR64(s0, 1);
-        rtemp ^= rtp;
-        rtp = s0 >> 7;
-        rtemp ^= rtp;
-        s15 += rtemp;
-        rtemp = verse_rotR64(s13, 61);
-        rtp = verse_rotR64(s13, 19);
-        rtemp ^= rtp;
-        rtp = s13 >> 6;
-        rtemp ^= rtp;
-        s15 += rtemp;
-        rt = rh + 0x19a4c116b8d2d0c8ULL;
-        rt += s0;
-        rtp = ~ re;
-        rtp &= rg;
-        rtemp = re & rf;
-        rtemp ^= rtp;
-        rt += rtemp;
-        rtemp = verse_rotR64(re, 23);
-        rtemp ^= re;
-        rtemp = verse_rotR64(rtemp, 4);
-        rtemp ^= re;
-        rtemp = verse_rotR64(rtemp, 14);
-        rt += rtemp;
-        rd += rt;
-        rtemp = verse_rotR64(ra, 5);
-        rtemp ^= ra;
-        rtemp = verse_rotR64(rtemp, 6);
-        rtemp ^= ra;
-        rtemp = verse_rotR64(rtemp, 28);
-        rt += rtemp;
-        rtemp = rb | rc;
-        rtemp &= ra;
-        rtp = rb & rc;
-        rtemp |= rtp;
-        rh = rtemp + rt;
-        s0 += s9;
-        rtemp = verse_rotR64(s1, 8);
-        rtp = verse_rotR64(s1, 1);
-        rtemp ^= rtp;
-        rtp = s1 >> 7;
-        rtemp ^= rtp;
-        s0 += rtemp;
-        rtemp = verse_rotR64(s14, 61);
-        rtp = verse_rotR64(s14, 19);
-        rtemp ^= rtp;
-        rtp = s14 >> 6;
-        rtemp ^= rtp;
-        s0 += rtemp;
-        rt = rg + 0x1e376c085141ab53ULL;
-        rt += s1;
-        rtp = ~ rd;
-        rtp &= rf;
-        rtemp = rd & re;
-        rtemp ^= rtp;
-        rt += rtemp;
-        rtemp = verse_rotR64(rd, 23);
-        rtemp ^= rd;
-        rtemp = verse_rotR64(rtemp, 4);
-        rtemp ^= rd;
-        rtemp = verse_rotR64(rtemp, 14);
-        rt += rtemp;
-        rc += rt;
-        rtemp = verse_rotR64(rh, 5);
-        rtemp ^= rh;
-        rtemp = verse_rotR64(rtemp, 6);
-        rtemp ^= rh;
-        rtemp = verse_rotR64(rtemp, 28);
-        rt += rtemp;
-        rtemp = ra | rb;
-        rtemp &= rh;
-        rtp = ra & rb;
-        rtemp |= rtp;
-        rg = rtemp + rt;
-        s1 += s10;
-        rtemp = verse_rotR64(s2, 8);
-        rtp = verse_rotR64(s2, 1);
-        rtemp ^= rtp;
-        rtp = s2 >> 7;
-        rtemp ^= rtp;
-        s1 += rtemp;
-        rtemp = verse_rotR64(s15, 61);
-        rtp = verse_rotR64(s15, 19);
-        rtemp ^= rtp;
-        rtp = s15 >> 6;
-        rtemp ^= rtp;
-        s1 += rtemp;
-        rt = rf + 0x2748774cdf8eeb99ULL;
-        rt += s2;
-        rtp = ~ rc;
-        rtp &= re;
-        rtemp = rc & rd;
-        rtemp ^= rtp;
-        rt += rtemp;
-        rtemp = verse_rotR64(rc, 23);
-        rtemp ^= rc;
-        rtemp = verse_rotR64(rtemp, 4);
-        rtemp ^= rc;
-        rtemp = verse_rotR64(rtemp, 14);
-        rt += rtemp;
-        rb += rt;
-        rtemp = verse_rotR64(rg, 5);
-        rtemp ^= rg;
-        rtemp = verse_rotR64(rtemp, 6);
-        rtemp ^= rg;
-        rtemp = verse_rotR64(rtemp, 28);
-        rt += rtemp;
-        rtemp = rh | ra;
-        rtemp &= rg;
-        rtp = rh & ra;
-        rtemp |= rtp;
-        rf = rtemp + rt;
-        s2 += s11;
-        rtemp = verse_rotR64(s3, 8);
-        rtp = verse_rotR64(s3, 1);
-        rtemp ^= rtp;
-        rtp = s3 >> 7;
-        rtemp ^= rtp;
-        s2 += rtemp;
-        rtemp = verse_rotR64(s0, 61);
-        rtp = verse_rotR64(s0, 19);
-        rtemp ^= rtp;
-        rtp = s0 >> 6;
-        rtemp ^= rtp;
-        s2 += rtemp;
-        rt = re + 0x34b0bcb5e19b48a8ULL;
-        rt += s3;
-        rtp = ~ rb;
-        rtp &= rd;
-        rtemp = rb & rc;
-        rtemp ^= rtp;
-        rt += rtemp;
-        rtemp = verse_rotR64(rb, 23);
-        rtemp ^= rb;
-        rtemp = verse_rotR64(rtemp, 4);
-        rtemp ^= rb;
-        rtemp = verse_rotR64(rtemp, 14);
-        rt += rtemp;
-        ra += rt;
-        rtemp = verse_rotR64(rf, 5);
-        rtemp ^= rf;
-        rtemp = verse_rotR64(rtemp, 6);
-        rtemp ^= rf;
-        rtemp = verse_rotR64(rtemp, 28);
-        rt += rtemp;
-        rtemp = rg | rh;
-        rtemp &= rf;
-        rtp = rg & rh;
-        rtemp |= rtp;
-        re = rtemp + rt;
-        s3 += s12;
-        rtemp = verse_rotR64(s4, 8);
-        rtp = verse_rotR64(s4, 1);
-        rtemp ^= rtp;
-        rtp = s4 >> 7;
-        rtemp ^= rtp;
-        s3 += rtemp;
-        rtemp = verse_rotR64(s1, 61);
-        rtp = verse_rotR64(s1, 19);
-        rtemp ^= rtp;
-        rtp = s1 >> 6;
-        rtemp ^= rtp;
-        s3 += rtemp;
-        rt = rd + 0x391c0cb3c5c95a63ULL;
-        rt += s4;
-        rtp = ~ ra;
-        rtp &= rc;
-        rtemp = ra & rb;
-        rtemp ^= rtp;
-        rt += rtemp;
-        rtemp = verse_rotR64(ra, 23);
-        rtemp ^= ra;
-        rtemp = verse_rotR64(rtemp, 4);
-        rtemp ^= ra;
-        rtemp = verse_rotR64(rtemp, 14);
-        rt += rtemp;
-        rh += rt;
-        rtemp = verse_rotR64(re, 5);
-        rtemp ^= re;
-        rtemp = verse_rotR64(rtemp, 6);
-        rtemp ^= re;
-        rtemp = verse_rotR64(rtemp, 28);
-        rt += rtemp;
-        rtemp = rf | rg;
-        rtemp &= re;
-        rtp = rf & rg;
-        rtemp |= rtp;
-        rd = rtemp + rt;
-        s4 += s13;
-        rtemp = verse_rotR64(s5, 8);
-        rtp = verse_rotR64(s5, 1);
-        rtemp ^= rtp;
-        rtp = s5 >> 7;
-        rtemp ^= rtp;
-        s4 += rtemp;
-        rtemp = verse_rotR64(s2, 61);
-        rtp = verse_rotR64(s2, 19);
-        rtemp ^= rtp;
-        rtp = s2 >> 6;
-        rtemp ^= rtp;
-        s4 += rtemp;
-        rt = rc + 0x4ed8aa4ae3418acbULL;
-        rt += s5;
-        rtp = ~ rh;
-        rtp &= rb;
-        rtemp = rh & ra;
-        rtemp ^= rtp;
-        rt += rtemp;
-        rtemp = verse_rotR64(rh, 23);
-        rtemp ^= rh;
-        rtemp = verse_rotR64(rtemp, 4);
-        rtemp ^= rh;
-        rtemp = verse_rotR64(rtemp, 14);
-        rt += rtemp;
-        rg += rt;
-        rtemp = verse_rotR64(rd, 5);
-        rtemp ^= rd;
-        rtemp = verse_rotR64(rtemp, 6);
-        rtemp ^= rd;
-        rtemp = verse_rotR64(rtemp, 28);
-        rt += rtemp;
-        rtemp = re | rf;
-        rtemp &= rd;
-        rtp = re & rf;
-        rtemp |= rtp;
-        rc = rtemp + rt;
-        s5 += s14;
-        rtemp = verse_rotR64(s6, 8);
-        rtp = verse_rotR64(s6, 1);
-        rtemp ^= rtp;
-        rtp = s6 >> 7;
-        rtemp ^= rtp;
-        s5 += rtemp;
-        rtemp = verse_rotR64(s3, 61);
-        rtp = verse_rotR64(s3, 19);
-        rtemp ^= rtp;
-        rtp = s3 >> 6;
-        rtemp ^= rtp;
-        s5 += rtemp;
-        rt = rb + 0x5b9cca4f7763e373ULL;
-        rt += s6;
-        rtp = ~ rg;
-        rtp &= ra;
-        rtemp = rg & rh;
-        rtemp ^= rtp;
-        rt += rtemp;
-        rtemp = verse_rotR64(rg, 23);
-        rtemp ^= rg;
-        rtemp = verse_rotR64(rtemp, 4);
-        rtemp ^= rg;
-        rtemp = verse_rotR64(rtemp, 14);
-        rt += rtemp;
-        rf += rt;
-        rtemp = verse_rotR64(rc, 5);
-        rtemp ^= rc;
-        rtemp = verse_rotR64(rtemp, 6);
-        rtemp ^= rc;
-        rtemp = verse_rotR64(rtemp, 28);
-        rt += rtemp;
-        rtemp = rd | re;
-        rtemp &= rc;
-        rtp = rd & re;
-        rtemp |= rtp;
-        rb = rtemp + rt;
-        s6 += s15;
-        rtemp = verse_rotR64(s7, 8);
-        rtp = verse_rotR64(s7, 1);
-        rtemp ^= rtp;
-        rtp = s7 >> 7;
-        rtemp ^= rtp;
-        s6 += rtemp;
-        rtemp = verse_rotR64(s4, 61);
-        rtp = verse_rotR64(s4, 19);
-        rtemp ^= rtp;
-        rtp = s4 >> 6;
-        rtemp ^= rtp;
-        s6 += rtemp;
-        rt = ra + 0x682e6ff3d6b2b8a3ULL;
-        rt += s7;
-        rtp = ~ rf;
-        rtp &= rh;
-        rtemp = rf & rg;
-        rtemp ^= rtp;
-        rt += rtemp;
-        rtemp = verse_rotR64(rf, 23);
-        rtemp ^= rf;
-        rtemp = verse_rotR64(rtemp, 4);
-        rtemp ^= rf;
-        rtemp = verse_rotR64(rtemp, 14);
-        rt += rtemp;
-        re += rt;
-        rtemp = verse_rotR64(rb, 5);
-        rtemp ^= rb;
-        rtemp = verse_rotR64(rtemp, 6);
-        rtemp ^= rb;
-        rtemp = verse_rotR64(rtemp, 28);
-        rt += rtemp;
-        rtemp = rc | rd;
-        rtemp &= rb;
-        rtp = rc & rd;
-        rtemp |= rtp;
-        ra = rtemp + rt;
-        s7 += s0;
-        rtemp = verse_rotR64(s8, 8);
-        rtp = verse_rotR64(s8, 1);
-        rtemp ^= rtp;
-        rtp = s8 >> 7;
-        rtemp ^= rtp;
-        s7 += rtemp;
-        rtemp = verse_rotR64(s5, 61);
-        rtp = verse_rotR64(s5, 19);
-        rtemp ^= rtp;
-        rtp = s5 >> 6;
-        rtemp ^= rtp;
-        s7 += rtemp;
-        rt = rh + 0x748f82ee5defb2fcULL;
-        rt += s8;
-        rtp = ~ re;
-        rtp &= rg;
-        rtemp = re & rf;
-        rtemp ^= rtp;
-        rt += rtemp;
-        rtemp = verse_rotR64(re, 23);
-        rtemp ^= re;
-        rtemp = verse_rotR64(rtemp, 4);
-        rtemp ^= re;
-        rtemp = verse_rotR64(rtemp, 14);
-        rt += rtemp;
-        rd += rt;
-        rtemp = verse_rotR64(ra, 5);
-        rtemp ^= ra;
-        rtemp = verse_rotR64(rtemp, 6);
-        rtemp ^= ra;
-        rtemp = verse_rotR64(rtemp, 28);
-        rt += rtemp;
-        rtemp = rb | rc;
-        rtemp &= ra;
-        rtp = rb & rc;
-        rtemp |= rtp;
-        rh = rtemp + rt;
-        s8 += s1;
-        rtemp = verse_rotR64(s9, 8);
-        rtp = verse_rotR64(s9, 1);
-        rtemp ^= rtp;
-        rtp = s9 >> 7;
-        rtemp ^= rtp;
-        s8 += rtemp;
-        rtemp = verse_rotR64(s6, 61);
-        rtp = verse_rotR64(s6, 19);
-        rtemp ^= rtp;
-        rtp = s6 >> 6;
-        rtemp ^= rtp;
-        s8 += rtemp;
-        rt = rg + 0x78a5636f43172f60ULL;
-        rt += s9;
-        rtp = ~ rd;
-        rtp &= rf;
-        rtemp = rd & re;
-        rtemp ^= rtp;
-        rt += rtemp;
-        rtemp = verse_rotR64(rd, 23);
-        rtemp ^= rd;
-        rtemp = verse_rotR64(rtemp, 4);
-        rtemp ^= rd;
-        rtemp = verse_rotR64(rtemp, 14);
-        rt += rtemp;
-        rc += rt;
-        rtemp = verse_rotR64(rh, 5);
-        rtemp ^= rh;
-        rtemp = verse_rotR64(rtemp, 6);
-        rtemp ^= rh;
-        rtemp = verse_rotR64(rtemp, 28);
-        rt += rtemp;
-        rtemp = ra | rb;
-        rtemp &= rh;
-        rtp = ra & rb;
-        rtemp |= rtp;
-        rg = rtemp + rt;
-        s9 += s2;
-        rtemp = verse_rotR64(s10, 8);
-        rtp = verse_rotR64(s10, 1);
-        rtemp ^= rtp;
-        rtp = s10 >> 7;
-        rtemp ^= rtp;
-        s9 += rtemp;
-        rtemp = verse_rotR64(s7, 61);
-        rtp = verse_rotR64(s7, 19);
-        rtemp ^= rtp;
-        rtp = s7 >> 6;
-        rtemp ^= rtp;
-        s9 += rtemp;
-        rt = rf + 0x84c87814a1f0ab72ULL;
-        rt += s10;
-        rtp = ~ rc;
-        rtp &= re;
-        rtemp = rc & rd;
-        rtemp ^= rtp;
-        rt += rtemp;
-        rtemp = verse_rotR64(rc, 23);
-        rtemp ^= rc;
-        rtemp = verse_rotR64(rtemp, 4);
-        rtemp ^= rc;
-        rtemp = verse_rotR64(rtemp, 14);
-        rt += rtemp;
-        rb += rt;
-        rtemp = verse_rotR64(rg, 5);
-        rtemp ^= rg;
-        rtemp = verse_rotR64(rtemp, 6);
-        rtemp ^= rg;
-        rtemp = verse_rotR64(rtemp, 28);
-        rt += rtemp;
-        rtemp = rh | ra;
-        rtemp &= rg;
-        rtp = rh & ra;
-        rtemp |= rtp;
-        rf = rtemp + rt;
-        s10 += s3;
-        rtemp = verse_rotR64(s11, 8);
-        rtp = verse_rotR64(s11, 1);
-        rtemp ^= rtp;
-        rtp = s11 >> 7;
-        rtemp ^= rtp;
-        s10 += rtemp;
-        rtemp = verse_rotR64(s8, 61);
-        rtp = verse_rotR64(s8, 19);
-        rtemp ^= rtp;
-        rtp = s8 >> 6;
-        rtemp ^= rtp;
-        s10 += rtemp;
-        rt = re + 0x8cc702081a6439ecULL;
-        rt += s11;
-        rtp = ~ rb;
-        rtp &= rd;
-        rtemp = rb & rc;
-        rtemp ^= rtp;
-        rt += rtemp;
-        rtemp = verse_rotR64(rb, 23);
-        rtemp ^= rb;
-        rtemp = verse_rotR64(rtemp, 4);
-        rtemp ^= rb;
-        rtemp = verse_rotR64(rtemp, 14);
-        rt += rtemp;
-        ra += rt;
-        rtemp = verse_rotR64(rf, 5);
-        rtemp ^= rf;
-        rtemp = verse_rotR64(rtemp, 6);
-        rtemp ^= rf;
-        rtemp = verse_rotR64(rtemp, 28);
-        rt += rtemp;
-        rtemp = rg | rh;
-        rtemp &= rf;
-        rtp = rg & rh;
-        rtemp |= rtp;
-        re = rtemp + rt;
-        s11 += s4;
-        rtemp = verse_rotR64(s12, 8);
-        rtp = verse_rotR64(s12, 1);
-        rtemp ^= rtp;
-        rtp = s12 >> 7;
-        rtemp ^= rtp;
-        s11 += rtemp;
-        rtemp = verse_rotR64(s9, 61);
-        rtp = verse_rotR64(s9, 19);
-        rtemp ^= rtp;
-        rtp = s9 >> 6;
-        rtemp ^= rtp;
-        s11 += rtemp;
-        rt = rd + 0x90befffa23631e28ULL;
-        rt += s12;
-        rtp = ~ ra;
-        rtp &= rc;
-        rtemp = ra & rb;
-        rtemp ^= rtp;
-        rt += rtemp;
-        rtemp = verse_rotR64(ra, 23);
-        rtemp ^= ra;
-        rtemp = verse_rotR64(rtemp, 4);
-        rtemp ^= ra;
-        rtemp = verse_rotR64(rtemp, 14);
-        rt += rtemp;
-        rh += rt;
-        rtemp = verse_rotR64(re, 5);
-        rtemp ^= re;
-        rtemp = verse_rotR64(rtemp, 6);
-        rtemp ^= re;
-        rtemp = verse_rotR64(rtemp, 28);
-        rt += rtemp;
-        rtemp = rf | rg;
-        rtemp &= re;
-        rtp = rf & rg;
-        rtemp |= rtp;
-        rd = rtemp + rt;
-        s12 += s5;
-        rtemp = verse_rotR64(s13, 8);
-        rtp = verse_rotR64(s13, 1);
-        rtemp ^= rtp;
-        rtp = s13 >> 7;
-        rtemp ^= rtp;
-        s12 += rtemp;
-        rtemp = verse_rotR64(s10, 61);
-        rtp = verse_rotR64(s10, 19);
-        rtemp ^= rtp;
-        rtp = s10 >> 6;
-        rtemp ^= rtp;
-        s12 += rtemp;
-        rt = rc + 0xa4506cebde82bde9ULL;
-        rt += s13;
-        rtp = ~ rh;
-        rtp &= rb;
-        rtemp = rh & ra;
-        rtemp ^= rtp;
-        rt += rtemp;
-        rtemp = verse_rotR64(rh, 23);
-        rtemp ^= rh;
-        rtemp = verse_rotR64(rtemp, 4);
-        rtemp ^= rh;
-        rtemp = verse_rotR64(rtemp, 14);
-        rt += rtemp;
-        rg += rt;
-        rtemp = verse_rotR64(rd, 5);
-        rtemp ^= rd;
-        rtemp = verse_rotR64(rtemp, 6);
-        rtemp ^= rd;
-        rtemp = verse_rotR64(rtemp, 28);
-        rt += rtemp;
-        rtemp = re | rf;
-        rtemp &= rd;
-        rtp = re & rf;
-        rtemp |= rtp;
-        rc = rtemp + rt;
-        s13 += s6;
-        rtemp = verse_rotR64(s14, 8);
-        rtp = verse_rotR64(s14, 1);
-        rtemp ^= rtp;
-        rtp = s14 >> 7;
-        rtemp ^= rtp;
-        s13 += rtemp;
-        rtemp = verse_rotR64(s11, 61);
-        rtp = verse_rotR64(s11, 19);
-        rtemp ^= rtp;
-        rtp = s11 >> 6;
-        rtemp ^= rtp;
-        s13 += rtemp;
-        rt = rb + 0xbef9a3f7b2c67915ULL;
-        rt += s14;
-        rtp = ~ rg;
-        rtp &= ra;
-        rtemp = rg & rh;
-        rtemp ^= rtp;
-        rt += rtemp;
-        rtemp = verse_rotR64(rg, 23);
-        rtemp ^= rg;
-        rtemp = verse_rotR64(rtemp, 4);
-        rtemp ^= rg;
-        rtemp = verse_rotR64(rtemp, 14);
-        rt += rtemp;
-        rf += rt;
-        rtemp = verse_rotR64(rc, 5);
-        rtemp ^= rc;
-        rtemp = verse_rotR64(rtemp, 6);
-        rtemp ^= rc;
-        rtemp = verse_rotR64(rtemp, 28);
-        rt += rtemp;
-        rtemp = rd | re;
-        rtemp &= rc;
-        rtp = rd & re;
-        rtemp |= rtp;
-        rb = rtemp + rt;
-        s14 += s7;
-        rtemp = verse_rotR64(s15, 8);
-        rtp = verse_rotR64(s15, 1);
-        rtemp ^= rtp;
-        rtp = s15 >> 7;
-        rtemp ^= rtp;
-        s14 += rtemp;
-        rtemp = verse_rotR64(s12, 61);
-        rtp = verse_rotR64(s12, 19);
-        rtemp ^= rtp;
-        rtp = s12 >> 6;
-        rtemp ^= rtp;
-        s14 += rtemp;
-        rt = ra + 0xc67178f2e372532bULL;
-        rt += s15;
-        rtp = ~ rf;
-        rtp &= rh;
-        rtemp = rf & rg;
-        rtemp ^= rtp;
-        rt += rtemp;
-        rtemp = verse_rotR64(rf, 23);
-        rtemp ^= rf;
-        rtemp = verse_rotR64(rtemp, 4);
-        rtemp ^= rf;
-        rtemp = verse_rotR64(rtemp, 14);
-        rt += rtemp;
-        re += rt;
-        rtemp = verse_rotR64(rb, 5);
-        rtemp ^= rb;
-        rtemp = verse_rotR64(rtemp, 6);
-        rtemp ^= rb;
-        rtemp = verse_rotR64(rtemp, 28);
-        rt += rtemp;
-        rtemp = rc | rd;
-        rtemp &= rb;
-        rtp = rc & rd;
-        rtemp |= rtp;
-        ra = rtemp + rt;
-        s15 += s8;
-        rtemp = verse_rotR64(s0, 8);
-        rtp = verse_rotR64(s0, 1);
-        rtemp ^= rtp;
-        rtp = s0 >> 7;
-        rtemp ^= rtp;
-        s15 += rtemp;
-        rtemp = verse_rotR64(s13, 61);
-        rtp = verse_rotR64(s13, 19);
-        rtemp ^= rtp;
-        rtp = s13 >> 6;
-        rtemp ^= rtp;
-        s15 += rtemp;
-        rt = rh + 0xca273eceea26619cULL;
-        rt += s0;
-        rtp = ~ re;
-        rtp &= rg;
-        rtemp = re & rf;
-        rtemp ^= rtp;
-        rt += rtemp;
-        rtemp = verse_rotR64(re, 23);
-        rtemp ^= re;
-        rtemp = verse_rotR64(rtemp, 4);
-        rtemp ^= re;
-        rtemp = verse_rotR64(rtemp, 14);
-        rt += rtemp;
-        rd += rt;
-        rtemp = verse_rotR64(ra, 5);
-        rtemp ^= ra;
-        rtemp = verse_rotR64(rtemp, 6);
-        rtemp ^= ra;
-        rtemp = verse_rotR64(rtemp, 28);
-        rt += rtemp;
-        rtemp = rb | rc;
-        rtemp &= ra;
-        rtp = rb & rc;
-        rtemp |= rtp;
-        rh = rtemp + rt;
-        rt = rg + 0xd186b8c721c0c207ULL;
-        rt += s1;
-        rtp = ~ rd;
-        rtp &= rf;
-        rtemp = rd & re;
-        rtemp ^= rtp;
-        rt += rtemp;
-        rtemp = verse_rotR64(rd, 23);
-        rtemp ^= rd;
-        rtemp = verse_rotR64(rtemp, 4);
-        rtemp ^= rd;
-        rtemp = verse_rotR64(rtemp, 14);
-        rt += rtemp;
-        rc += rt;
-        rtemp = verse_rotR64(rh, 5);
-        rtemp ^= rh;
-        rtemp = verse_rotR64(rtemp, 6);
-        rtemp ^= rh;
-        rtemp = verse_rotR64(rtemp, 28);
-        rt += rtemp;
-        rtemp = ra | rb;
-        rtemp &= rh;
-        rtp = ra & rb;
-        rtemp |= rtp;
-        rg = rtemp + rt;
-        rt = rf + 0xeada7dd6cde0eb1eULL;
-        rt += s2;
-        rtp = ~ rc;
-        rtp &= re;
-        rtemp = rc & rd;
-        rtemp ^= rtp;
-        rt += rtemp;
-        rtemp = verse_rotR64(rc, 23);
-        rtemp ^= rc;
-        rtemp = verse_rotR64(rtemp, 4);
-        rtemp ^= rc;
-        rtemp = verse_rotR64(rtemp, 14);
-        rt += rtemp;
-        rb += rt;
-        rtemp = verse_rotR64(rg, 5);
-        rtemp ^= rg;
-        rtemp = verse_rotR64(rtemp, 6);
-        rtemp ^= rg;
-        rtemp = verse_rotR64(rtemp, 28);
-        rt += rtemp;
-        rtemp = rh | ra;
-        rtemp &= rg;
-        rtp = rh & ra;
-        rtemp |= rtp;
-        rf = rtemp + rt;
-        rt = re + 0xf57d4f7fee6ed178ULL;
-        rt += s3;
-        rtp = ~ rb;
-        rtp &= rd;
-        rtemp = rb & rc;
-        rtemp ^= rtp;
-        rt += rtemp;
-        rtemp = verse_rotR64(rb, 23);
-        rtemp ^= rb;
-        rtemp = verse_rotR64(rtemp, 4);
-        rtemp ^= rb;
-        rtemp = verse_rotR64(rtemp, 14);
-        rt += rtemp;
-        ra += rt;
-        rtemp = verse_rotR64(rf, 5);
-        rtemp ^= rf;
-        rtemp = verse_rotR64(rtemp, 6);
-        rtemp ^= rf;
-        rtemp = verse_rotR64(rtemp, 28);
-        rt += rtemp;
-        rtemp = rg | rh;
-        rtemp &= rf;
-        rtp = rg & rh;
-        rtemp |= rtp;
-        re = rtemp + rt;
-        rt = rd + 0x06f067aa72176fbaULL;
-        rt += s4;
-        rtp = ~ ra;
-        rtp &= rc;
-        rtemp = ra & rb;
-        rtemp ^= rtp;
-        rt += rtemp;
-        rtemp = verse_rotR64(ra, 23);
-        rtemp ^= ra;
-        rtemp = verse_rotR64(rtemp, 4);
-        rtemp ^= ra;
-        rtemp = verse_rotR64(rtemp, 14);
-        rt += rtemp;
-        rh += rt;
-        rtemp = verse_rotR64(re, 5);
-        rtemp ^= re;
-        rtemp = verse_rotR64(rtemp, 6);
-        rtemp ^= re;
-        rtemp = verse_rotR64(rtemp, 28);
-        rt += rtemp;
-        rtemp = rf | rg;
-        rtemp &= re;
-        rtp = rf & rg;
-        rtemp |= rtp;
-        rd = rtemp + rt;
-        rt = rc + 0x0a637dc5a2c898a6ULL;
-        rt += s5;
-        rtp = ~ rh;
-        rtp &= rb;
-        rtemp = rh & ra;
-        rtemp ^= rtp;
-        rt += rtemp;
-        rtemp = verse_rotR64(rh, 23);
-        rtemp ^= rh;
-        rtemp = verse_rotR64(rtemp, 4);
-        rtemp ^= rh;
-        rtemp = verse_rotR64(rtemp, 14);
-        rt += rtemp;
-        rg += rt;
-        rtemp = verse_rotR64(rd, 5);
-        rtemp ^= rd;
-        rtemp = verse_rotR64(rtemp, 6);
-        rtemp ^= rd;
-        rtemp = verse_rotR64(rtemp, 28);
-        rt += rtemp;
-        rtemp = re | rf;
-        rtemp &= rd;
-        rtp = re & rf;
-        rtemp |= rtp;
-        rc = rtemp + rt;
-        rt = rb + 0x113f9804bef90daeULL;
-        rt += s6;
-        rtp = ~ rg;
-        rtp &= ra;
-        rtemp = rg & rh;
-        rtemp ^= rtp;
-        rt += rtemp;
-        rtemp = verse_rotR64(rg, 23);
-        rtemp ^= rg;
-        rtemp = verse_rotR64(rtemp, 4);
-        rtemp ^= rg;
-        rtemp = verse_rotR64(rtemp, 14);
-        rt += rtemp;
-        rf += rt;
-        rtemp = verse_rotR64(rc, 5);
-        rtemp ^= rc;
-        rtemp = verse_rotR64(rtemp, 6);
-        rtemp ^= rc;
-        rtemp = verse_rotR64(rtemp, 28);
-        rt += rtemp;
-        rtemp = rd | re;
-        rtemp &= rc;
-        rtp = rd & re;
-        rtemp |= rtp;
-        rb = rtemp + rt;
-        rt = ra + 0x1b710b35131c471bULL;
-        rt += s7;
-        rtp = ~ rf;
-        rtp &= rh;
-        rtemp = rf & rg;
-        rtemp ^= rtp;
-        rt += rtemp;
-        rtemp = verse_rotR64(rf, 23);
-        rtemp ^= rf;
-        rtemp = verse_rotR64(rtemp, 4);
-        rtemp ^= rf;
-        rtemp = verse_rotR64(rtemp, 14);
-        rt += rtemp;
-        re += rt;
-        rtemp = verse_rotR64(rb, 5);
-        rtemp ^= rb;
-        rtemp = verse_rotR64(rtemp, 6);
-        rtemp ^= rb;
-        rtemp = verse_rotR64(rtemp, 28);
-        rt += rtemp;
-        rtemp = rc | rd;
-        rtemp &= rb;
-        rtp = rc & rd;
-        rtemp |= rtp;
-        ra = rtemp + rt;
-        rt = rh + 0x28db77f523047d84ULL;
-        rt += s8;
-        rtp = ~ re;
-        rtp &= rg;
-        rtemp = re & rf;
-        rtemp ^= rtp;
-        rt += rtemp;
-        rtemp = verse_rotR64(re, 23);
-        rtemp ^= re;
-        rtemp = verse_rotR64(rtemp, 4);
-        rtemp ^= re;
-        rtemp = verse_rotR64(rtemp, 14);
-        rt += rtemp;
-        rd += rt;
-        rtemp = verse_rotR64(ra, 5);
-        rtemp ^= ra;
-        rtemp = verse_rotR64(rtemp, 6);
-        rtemp ^= ra;
-        rtemp = verse_rotR64(rtemp, 28);
-        rt += rtemp;
-        rtemp = rb | rc;
-        rtemp &= ra;
-        rtp = rb & rc;
-        rtemp |= rtp;
-        rh = rtemp + rt;
-        rt = rg + 0x32caab7b40c72493ULL;
-        rt += s9;
-        rtp = ~ rd;
-        rtp &= rf;
-        rtemp = rd & re;
-        rtemp ^= rtp;
-        rt += rtemp;
-        rtemp = verse_rotR64(rd, 23);
-        rtemp ^= rd;
-        rtemp = verse_rotR64(rtemp, 4);
-        rtemp ^= rd;
-        rtemp = verse_rotR64(rtemp, 14);
-        rt += rtemp;
-        rc += rt;
-        rtemp = verse_rotR64(rh, 5);
-        rtemp ^= rh;
-        rtemp = verse_rotR64(rtemp, 6);
-        rtemp ^= rh;
-        rtemp = verse_rotR64(rtemp, 28);
-        rt += rtemp;
-        rtemp = ra | rb;
-        rtemp &= rh;
-        rtp = ra & rb;
-        rtemp |= rtp;
-        rg = rtemp + rt;
-        rt = rf + 0x3c9ebe0a15c9bebcULL;
-        rt += s10;
-        rtp = ~ rc;
-        rtp &= re;
-        rtemp = rc & rd;
-        rtemp ^= rtp;
-        rt += rtemp;
-        rtemp = verse_rotR64(rc, 23);
-        rtemp ^= rc;
-        rtemp = verse_rotR64(rtemp, 4);
-        rtemp ^= rc;
-        rtemp = verse_rotR64(rtemp, 14);
-        rt += rtemp;
-        rb += rt;
-        rtemp = verse_rotR64(rg, 5);
-        rtemp ^= rg;
-        rtemp = verse_rotR64(rtemp, 6);
-        rtemp ^= rg;
-        rtemp = verse_rotR64(rtemp, 28);
-        rt += rtemp;
-        rtemp = rh | ra;
-        rtemp &= rg;
-        rtp = rh & ra;
-        rtemp |= rtp;
-        rf = rtemp + rt;
-        rt = re + 0x431d67c49c100d4cULL;
-        rt += s11;
-        rtp = ~ rb;
-        rtp &= rd;
-        rtemp = rb & rc;
-        rtemp ^= rtp;
-        rt += rtemp;
-        rtemp = verse_rotR64(rb, 23);
-        rtemp ^= rb;
-        rtemp = verse_rotR64(rtemp, 4);
-        rtemp ^= rb;
-        rtemp = verse_rotR64(rtemp, 14);
-        rt += rtemp;
-        ra += rt;
-        rtemp = verse_rotR64(rf, 5);
-        rtemp ^= rf;
-        rtemp = verse_rotR64(rtemp, 6);
-        rtemp ^= rf;
-        rtemp = verse_rotR64(rtemp, 28);
-        rt += rtemp;
-        rtemp = rg | rh;
-        rtemp &= rf;
-        rtp = rg & rh;
-        rtemp |= rtp;
-        re = rtemp + rt;
-        rt = rd + 0x4cc5d4becb3e42b6ULL;
-        rt += s12;
-        rtp = ~ ra;
-        rtp &= rc;
-        rtemp = ra & rb;
-        rtemp ^= rtp;
-        rt += rtemp;
-        rtemp = verse_rotR64(ra, 23);
-        rtemp ^= ra;
-        rtemp = verse_rotR64(rtemp, 4);
-        rtemp ^= ra;
-        rtemp = verse_rotR64(rtemp, 14);
-        rt += rtemp;
-        rh += rt;
-        rtemp = verse_rotR64(re, 5);
-        rtemp ^= re;
-        rtemp = verse_rotR64(rtemp, 6);
-        rtemp ^= re;
-        rtemp = verse_rotR64(rtemp, 28);
-        rt += rtemp;
-        rtemp = rf | rg;
-        rtemp &= re;
-        rtp = rf & rg;
-        rtemp |= rtp;
-        rd = rtemp + rt;
-        rt = rc + 0x597f299cfc657e2aULL;
-        rt += s13;
-        rtp = ~ rh;
-        rtp &= rb;
-        rtemp = rh & ra;
-        rtemp ^= rtp;
-        rt += rtemp;
-        rtemp = verse_rotR64(rh, 23);
-        rtemp ^= rh;
-        rtemp = verse_rotR64(rtemp, 4);
-        rtemp ^= rh;
-        rtemp = verse_rotR64(rtemp, 14);
-        rt += rtemp;
-        rg += rt;
-        rtemp = verse_rotR64(rd, 5);
-        rtemp ^= rd;
-        rtemp = verse_rotR64(rtemp, 6);
-        rtemp ^= rd;
-        rtemp = verse_rotR64(rtemp, 28);
-        rt += rtemp;
-        rtemp = re | rf;
-        rtemp &= rd;
-        rtp = re & rf;
-        rtemp |= rtp;
-        rc = rtemp + rt;
-        rt = rb + 0x5fcb6fab3ad6faecULL;
-        rt += s14;
-        rtp = ~ rg;
-        rtp &= ra;
-        rtemp = rg & rh;
-        rtemp ^= rtp;
-        rt += rtemp;
-        rtemp = verse_rotR64(rg, 23);
-        rtemp ^= rg;
-        rtemp = verse_rotR64(rtemp, 4);
-        rtemp ^= rg;
-        rtemp = verse_rotR64(rtemp, 14);
-        rt += rtemp;
-        rf += rt;
-        rtemp = verse_rotR64(rc, 5);
-        rtemp ^= rc;
-        rtemp = verse_rotR64(rtemp, 6);
-        rtemp ^= rc;
-        rtemp = verse_rotR64(rtemp, 28);
-        rt += rtemp;
-        rtemp = rd | re;
-        rtemp &= rc;
-        rtp = rd & re;
-        rtemp |= rtp;
-        rb = rtemp + rt;
-        rt = ra + 0x6c44198c4a475817ULL;
-        rt += s15;
-        rtp = ~ rf;
-        rtp &= rh;
-        rtemp = rf & rg;
-        rtemp ^= rtp;
-        rt += rtemp;
-        rtemp = verse_rotR64(rf, 23);
-        rtemp ^= rf;
-        rtemp = verse_rotR64(rtemp, 4);
-        rtemp ^= rf;
-        rtemp = verse_rotR64(rtemp, 14);
-        rt += rtemp;
-        re += rt;
-        rtemp = verse_rotR64(rb, 5);
-        rtemp ^= rb;
-        rtemp = verse_rotR64(rtemp, 6);
-        rtemp ^= rb;
-        rtemp = verse_rotR64(rtemp, 28);
-        rt += rtemp;
-        rtemp = rc | rd;
-        rtemp &= rb;
-        rtp = rc & rd;
-        rtemp |= rtp;
-        ra = rtemp + rt;
-        ra += p0[0];
-        rb += p0[1];
-        rc += p0[2];
-        rd += p0[3];
-        re += p0[4];
-        rf += p0[5];
-        rg += p0[6];
-        rh += p0[7];
-        p0[0] =  ra;
-        p0[1] =  rb;
-        p0[2] =  rc;
-        p0[3] =  rd;
-        p0[4] =  re;
-        p0[5] =  rf;
-        p0[6] =  rg;
-        p0[7] =  rh;
-        ++blockPtr;
-        --counter;
-        /*    move to next block    */
-    }
+	auto uint64_t w0;
+	auto uint64_t w1;
+	auto uint64_t w2;
+	auto uint64_t w3;
+	auto uint64_t w4;
+	auto uint64_t w5;
+	auto uint64_t w6;
+	auto uint64_t w7;
+	auto uint64_t w8;
+	auto uint64_t w9;
+	auto uint64_t w10;
+	auto uint64_t w11;
+	auto uint64_t w12;
+	auto uint64_t w13;
+	auto uint64_t w14;
+	auto uint64_t w15;
+	auto uint64_t a;
+	auto uint64_t b;
+	auto uint64_t c;
+	auto uint64_t d;
+	auto uint64_t e;
+	auto uint64_t f;
+	auto uint64_t g;
+	auto uint64_t h;
+	auto uint64_t t;
+	a = hash[0];
+	b = hash[1];
+	c = hash[2];
+	d = hash[3];
+	e = hash[4];
+	f = hash[5];
+	g = hash[6];
+	h = hash[7];
+	while (nBlocks > 0) {
+		w0 = verse_from_be64((*blockPtr)[0]);
+		w1 = verse_from_be64((*blockPtr)[1]);
+		w2 = verse_from_be64((*blockPtr)[2]);
+		w3 = verse_from_be64((*blockPtr)[3]);
+		w4 = verse_from_be64((*blockPtr)[4]);
+		w5 = verse_from_be64((*blockPtr)[5]);
+		w6 = verse_from_be64((*blockPtr)[6]);
+		w7 = verse_from_be64((*blockPtr)[7]);
+		w8 = verse_from_be64((*blockPtr)[8]);
+		w9 = verse_from_be64((*blockPtr)[9]);
+		w10 = verse_from_be64((*blockPtr)[10]);
+		w11 = verse_from_be64((*blockPtr)[11]);
+		w12 = verse_from_be64((*blockPtr)[12]);
+		w13 = verse_from_be64((*blockPtr)[13]);
+		w14 = verse_from_be64((*blockPtr)[14]);
+		w15 = verse_from_be64((*blockPtr)[15]);
+		t = h + 0x428a2f98d728ae22ULL + w0 + (g XOR e & (f XOR g)) +
+		    (verse_rotR64(e, 41) XOR verse_rotR64(e, 18) XOR
+		     verse_rotR64(e, 14));
+		d += t;
+		h = t +
+		    (verse_rotR64(a, 39) XOR verse_rotR64(a, 34) XOR
+		     verse_rotR64(a, 28)) + (a & b | c & (b | a));
+		w0 +=
+		    w9 +
+		    (verse_rotR64(w1, 8) XOR verse_rotR64(w1, 1) XOR w1 >> 7) +
+		    (verse_rotR64(w14, 61) XOR verse_rotR64(w14, 19) XOR w14 >>
+		     6);
+		t = g + 0x7137449123ef65cdULL + w1 + (f XOR d & (e XOR f)) +
+		    (verse_rotR64(d, 41) XOR verse_rotR64(d, 18) XOR
+		     verse_rotR64(d, 14));
+		c += t;
+		g = t +
+		    (verse_rotR64(h, 39) XOR verse_rotR64(h, 34) XOR
+		     verse_rotR64(h, 28)) + (h & a | b & (a | h));
+		w1 +=
+		    w10 +
+		    (verse_rotR64(w2, 8) XOR verse_rotR64(w2, 1) XOR w2 >> 7) +
+		    (verse_rotR64(w15, 61) XOR verse_rotR64(w15, 19) XOR w15 >>
+		     6);
+		t = f + 0xb5c0fbcfec4d3b2fULL + w2 + (e XOR c & (d XOR e)) +
+		    (verse_rotR64(c, 41) XOR verse_rotR64(c, 18) XOR
+		     verse_rotR64(c, 14));
+		b += t;
+		f = t +
+		    (verse_rotR64(g, 39) XOR verse_rotR64(g, 34) XOR
+		     verse_rotR64(g, 28)) + (g & h | a & (h | g));
+		w2 +=
+		    w11 +
+		    (verse_rotR64(w3, 8) XOR verse_rotR64(w3, 1) XOR w3 >> 7) +
+		    (verse_rotR64(w0, 61) XOR verse_rotR64(w0, 19) XOR w0 >> 6);
+		t = e + 0xe9b5dba58189dbbcULL + w3 + (d XOR b & (c XOR d)) +
+		    (verse_rotR64(b, 41) XOR verse_rotR64(b, 18) XOR
+		     verse_rotR64(b, 14));
+		a += t;
+		e = t +
+		    (verse_rotR64(f, 39) XOR verse_rotR64(f, 34) XOR
+		     verse_rotR64(f, 28)) + (f & g | h & (g | f));
+		w3 +=
+		    w12 +
+		    (verse_rotR64(w4, 8) XOR verse_rotR64(w4, 1) XOR w4 >> 7) +
+		    (verse_rotR64(w1, 61) XOR verse_rotR64(w1, 19) XOR w1 >> 6);
+		t = d + 0x3956c25bf348b538ULL + w4 + (c XOR a & (b XOR c)) +
+		    (verse_rotR64(a, 41) XOR verse_rotR64(a, 18) XOR
+		     verse_rotR64(a, 14));
+		h += t;
+		d = t +
+		    (verse_rotR64(e, 39) XOR verse_rotR64(e, 34) XOR
+		     verse_rotR64(e, 28)) + (e & f | g & (f | e));
+		w4 +=
+		    w13 +
+		    (verse_rotR64(w5, 8) XOR verse_rotR64(w5, 1) XOR w5 >> 7) +
+		    (verse_rotR64(w2, 61) XOR verse_rotR64(w2, 19) XOR w2 >> 6);
+		t = c + 0x59f111f1b605d019ULL + w5 + (b XOR h & (a XOR b)) +
+		    (verse_rotR64(h, 41) XOR verse_rotR64(h, 18) XOR
+		     verse_rotR64(h, 14));
+		g += t;
+		c = t +
+		    (verse_rotR64(d, 39) XOR verse_rotR64(d, 34) XOR
+		     verse_rotR64(d, 28)) + (d & e | f & (e | d));
+		w5 +=
+		    w14 +
+		    (verse_rotR64(w6, 8) XOR verse_rotR64(w6, 1) XOR w6 >> 7) +
+		    (verse_rotR64(w3, 61) XOR verse_rotR64(w3, 19) XOR w3 >> 6);
+		t = b + 0x923f82a4af194f9bULL + w6 + (a XOR g & (h XOR a)) +
+		    (verse_rotR64(g, 41) XOR verse_rotR64(g, 18) XOR
+		     verse_rotR64(g, 14));
+		f += t;
+		b = t +
+		    (verse_rotR64(c, 39) XOR verse_rotR64(c, 34) XOR
+		     verse_rotR64(c, 28)) + (c & d | e & (d | c));
+		w6 +=
+		    w15 +
+		    (verse_rotR64(w7, 8) XOR verse_rotR64(w7, 1) XOR w7 >> 7) +
+		    (verse_rotR64(w4, 61) XOR verse_rotR64(w4, 19) XOR w4 >> 6);
+		t = a + 0xab1c5ed5da6d8118ULL + w7 + (h XOR f & (g XOR h)) +
+		    (verse_rotR64(f, 41) XOR verse_rotR64(f, 18) XOR
+		     verse_rotR64(f, 14));
+		e += t;
+		a = t +
+		    (verse_rotR64(b, 39) XOR verse_rotR64(b, 34) XOR
+		     verse_rotR64(b, 28)) + (b & c | d & (c | b));
+		w7 +=
+		    w0 +
+		    (verse_rotR64(w8, 8) XOR verse_rotR64(w8, 1) XOR w8 >> 7) +
+		    (verse_rotR64(w5, 61) XOR verse_rotR64(w5, 19) XOR w5 >> 6);
+		t = h + 0xd807aa98a3030242ULL + w8 + (g XOR e & (f XOR g)) +
+		    (verse_rotR64(e, 41) XOR verse_rotR64(e, 18) XOR
+		     verse_rotR64(e, 14));
+		d += t;
+		h = t +
+		    (verse_rotR64(a, 39) XOR verse_rotR64(a, 34) XOR
+		     verse_rotR64(a, 28)) + (a & b | c & (b | a));
+		w8 +=
+		    w1 +
+		    (verse_rotR64(w9, 8) XOR verse_rotR64(w9, 1) XOR w9 >> 7) +
+		    (verse_rotR64(w6, 61) XOR verse_rotR64(w6, 19) XOR w6 >> 6);
+		t = g + 0x12835b0145706fbeULL + w9 + (f XOR d & (e XOR f)) +
+		    (verse_rotR64(d, 41) XOR verse_rotR64(d, 18) XOR
+		     verse_rotR64(d, 14));
+		c += t;
+		g = t +
+		    (verse_rotR64(h, 39) XOR verse_rotR64(h, 34) XOR
+		     verse_rotR64(h, 28)) + (h & a | b & (a | h));
+		w9 +=
+		    w2 +
+		    (verse_rotR64(w10, 8) XOR verse_rotR64(w10, 1) XOR w10 >> 7)
+		    +
+		    (verse_rotR64(w7, 61) XOR verse_rotR64(w7, 19) XOR w7 >> 6);
+		t = f + 0x243185be4ee4b28cULL + w10 + (e XOR c & (d XOR e)) +
+		    (verse_rotR64(c, 41) XOR verse_rotR64(c, 18) XOR
+		     verse_rotR64(c, 14));
+		b += t;
+		f = t +
+		    (verse_rotR64(g, 39) XOR verse_rotR64(g, 34) XOR
+		     verse_rotR64(g, 28)) + (g & h | a & (h | g));
+		w10 +=
+		    w3 +
+		    (verse_rotR64(w11, 8) XOR verse_rotR64(w11, 1) XOR w11 >> 7)
+		    +
+		    (verse_rotR64(w8, 61) XOR verse_rotR64(w8, 19) XOR w8 >> 6);
+		t = e + 0x550c7dc3d5ffb4e2ULL + w11 + (d XOR b & (c XOR d)) +
+		    (verse_rotR64(b, 41) XOR verse_rotR64(b, 18) XOR
+		     verse_rotR64(b, 14));
+		a += t;
+		e = t +
+		    (verse_rotR64(f, 39) XOR verse_rotR64(f, 34) XOR
+		     verse_rotR64(f, 28)) + (f & g | h & (g | f));
+		w11 +=
+		    w4 +
+		    (verse_rotR64(w12, 8) XOR verse_rotR64(w12, 1) XOR w12 >> 7)
+		    +
+		    (verse_rotR64(w9, 61) XOR verse_rotR64(w9, 19) XOR w9 >> 6);
+		t = d + 0x72be5d74f27b896fULL + w12 + (c XOR a & (b XOR c)) +
+		    (verse_rotR64(a, 41) XOR verse_rotR64(a, 18) XOR
+		     verse_rotR64(a, 14));
+		h += t;
+		d = t +
+		    (verse_rotR64(e, 39) XOR verse_rotR64(e, 34) XOR
+		     verse_rotR64(e, 28)) + (e & f | g & (f | e));
+		w12 +=
+		    w5 +
+		    (verse_rotR64(w13, 8) XOR verse_rotR64(w13, 1) XOR w13 >> 7)
+		    +
+		    (verse_rotR64(w10, 61) XOR verse_rotR64(w10, 19) XOR w10 >>
+		     6);
+		t = c + 0x80deb1fe3b1696b1ULL + w13 + (b XOR h & (a XOR b)) +
+		    (verse_rotR64(h, 41) XOR verse_rotR64(h, 18) XOR
+		     verse_rotR64(h, 14));
+		g += t;
+		c = t +
+		    (verse_rotR64(d, 39) XOR verse_rotR64(d, 34) XOR
+		     verse_rotR64(d, 28)) + (d & e | f & (e | d));
+		w13 +=
+		    w6 +
+		    (verse_rotR64(w14, 8) XOR verse_rotR64(w14, 1) XOR w14 >> 7)
+		    +
+		    (verse_rotR64(w11, 61) XOR verse_rotR64(w11, 19) XOR w11 >>
+		     6);
+		t = b + 0x9bdc06a725c71235ULL + w14 + (a XOR g & (h XOR a)) +
+		    (verse_rotR64(g, 41) XOR verse_rotR64(g, 18) XOR
+		     verse_rotR64(g, 14));
+		f += t;
+		b = t +
+		    (verse_rotR64(c, 39) XOR verse_rotR64(c, 34) XOR
+		     verse_rotR64(c, 28)) + (c & d | e & (d | c));
+		w14 +=
+		    w7 +
+		    (verse_rotR64(w15, 8) XOR verse_rotR64(w15, 1) XOR w15 >> 7)
+		    +
+		    (verse_rotR64(w12, 61) XOR verse_rotR64(w12, 19) XOR w12 >>
+		     6);
+		t = a + 0xc19bf174cf692694ULL + w15 + (h XOR f & (g XOR h)) +
+		    (verse_rotR64(f, 41) XOR verse_rotR64(f, 18) XOR
+		     verse_rotR64(f, 14));
+		e += t;
+		a = t +
+		    (verse_rotR64(b, 39) XOR verse_rotR64(b, 34) XOR
+		     verse_rotR64(b, 28)) + (b & c | d & (c | b));
+		w15 +=
+		    w8 +
+		    (verse_rotR64(w0, 8) XOR verse_rotR64(w0, 1) XOR w0 >> 7) +
+		    (verse_rotR64(w13, 61) XOR verse_rotR64(w13, 19) XOR w13 >>
+		     6);
+		t = h + 0xe49b69c19ef14ad2ULL + w0 + (g XOR e & (f XOR g)) +
+		    (verse_rotR64(e, 41) XOR verse_rotR64(e, 18) XOR
+		     verse_rotR64(e, 14));
+		d += t;
+		h = t +
+		    (verse_rotR64(a, 39) XOR verse_rotR64(a, 34) XOR
+		     verse_rotR64(a, 28)) + (a & b | c & (b | a));
+		w0 +=
+		    w9 +
+		    (verse_rotR64(w1, 8) XOR verse_rotR64(w1, 1) XOR w1 >> 7) +
+		    (verse_rotR64(w14, 61) XOR verse_rotR64(w14, 19) XOR w14 >>
+		     6);
+		t = g + 0xefbe4786384f25e3ULL + w1 + (f XOR d & (e XOR f)) +
+		    (verse_rotR64(d, 41) XOR verse_rotR64(d, 18) XOR
+		     verse_rotR64(d, 14));
+		c += t;
+		g = t +
+		    (verse_rotR64(h, 39) XOR verse_rotR64(h, 34) XOR
+		     verse_rotR64(h, 28)) + (h & a | b & (a | h));
+		w1 +=
+		    w10 +
+		    (verse_rotR64(w2, 8) XOR verse_rotR64(w2, 1) XOR w2 >> 7) +
+		    (verse_rotR64(w15, 61) XOR verse_rotR64(w15, 19) XOR w15 >>
+		     6);
+		t = f + 0x0fc19dc68b8cd5b5ULL + w2 + (e XOR c & (d XOR e)) +
+		    (verse_rotR64(c, 41) XOR verse_rotR64(c, 18) XOR
+		     verse_rotR64(c, 14));
+		b += t;
+		f = t +
+		    (verse_rotR64(g, 39) XOR verse_rotR64(g, 34) XOR
+		     verse_rotR64(g, 28)) + (g & h | a & (h | g));
+		w2 +=
+		    w11 +
+		    (verse_rotR64(w3, 8) XOR verse_rotR64(w3, 1) XOR w3 >> 7) +
+		    (verse_rotR64(w0, 61) XOR verse_rotR64(w0, 19) XOR w0 >> 6);
+		t = e + 0x240ca1cc77ac9c65ULL + w3 + (d XOR b & (c XOR d)) +
+		    (verse_rotR64(b, 41) XOR verse_rotR64(b, 18) XOR
+		     verse_rotR64(b, 14));
+		a += t;
+		e = t +
+		    (verse_rotR64(f, 39) XOR verse_rotR64(f, 34) XOR
+		     verse_rotR64(f, 28)) + (f & g | h & (g | f));
+		w3 +=
+		    w12 +
+		    (verse_rotR64(w4, 8) XOR verse_rotR64(w4, 1) XOR w4 >> 7) +
+		    (verse_rotR64(w1, 61) XOR verse_rotR64(w1, 19) XOR w1 >> 6);
+		t = d + 0x2de92c6f592b0275ULL + w4 + (c XOR a & (b XOR c)) +
+		    (verse_rotR64(a, 41) XOR verse_rotR64(a, 18) XOR
+		     verse_rotR64(a, 14));
+		h += t;
+		d = t +
+		    (verse_rotR64(e, 39) XOR verse_rotR64(e, 34) XOR
+		     verse_rotR64(e, 28)) + (e & f | g & (f | e));
+		w4 +=
+		    w13 +
+		    (verse_rotR64(w5, 8) XOR verse_rotR64(w5, 1) XOR w5 >> 7) +
+		    (verse_rotR64(w2, 61) XOR verse_rotR64(w2, 19) XOR w2 >> 6);
+		t = c + 0x4a7484aa6ea6e483ULL + w5 + (b XOR h & (a XOR b)) +
+		    (verse_rotR64(h, 41) XOR verse_rotR64(h, 18) XOR
+		     verse_rotR64(h, 14));
+		g += t;
+		c = t +
+		    (verse_rotR64(d, 39) XOR verse_rotR64(d, 34) XOR
+		     verse_rotR64(d, 28)) + (d & e | f & (e | d));
+		w5 +=
+		    w14 +
+		    (verse_rotR64(w6, 8) XOR verse_rotR64(w6, 1) XOR w6 >> 7) +
+		    (verse_rotR64(w3, 61) XOR verse_rotR64(w3, 19) XOR w3 >> 6);
+		t = b + 0x5cb0a9dcbd41fbd4ULL + w6 + (a XOR g & (h XOR a)) +
+		    (verse_rotR64(g, 41) XOR verse_rotR64(g, 18) XOR
+		     verse_rotR64(g, 14));
+		f += t;
+		b = t +
+		    (verse_rotR64(c, 39) XOR verse_rotR64(c, 34) XOR
+		     verse_rotR64(c, 28)) + (c & d | e & (d | c));
+		w6 +=
+		    w15 +
+		    (verse_rotR64(w7, 8) XOR verse_rotR64(w7, 1) XOR w7 >> 7) +
+		    (verse_rotR64(w4, 61) XOR verse_rotR64(w4, 19) XOR w4 >> 6);
+		t = a + 0x76f988da831153b5ULL + w7 + (h XOR f & (g XOR h)) +
+		    (verse_rotR64(f, 41) XOR verse_rotR64(f, 18) XOR
+		     verse_rotR64(f, 14));
+		e += t;
+		a = t +
+		    (verse_rotR64(b, 39) XOR verse_rotR64(b, 34) XOR
+		     verse_rotR64(b, 28)) + (b & c | d & (c | b));
+		w7 +=
+		    w0 +
+		    (verse_rotR64(w8, 8) XOR verse_rotR64(w8, 1) XOR w8 >> 7) +
+		    (verse_rotR64(w5, 61) XOR verse_rotR64(w5, 19) XOR w5 >> 6);
+		t = h + 0x983e5152ee66dfabULL + w8 + (g XOR e & (f XOR g)) +
+		    (verse_rotR64(e, 41) XOR verse_rotR64(e, 18) XOR
+		     verse_rotR64(e, 14));
+		d += t;
+		h = t +
+		    (verse_rotR64(a, 39) XOR verse_rotR64(a, 34) XOR
+		     verse_rotR64(a, 28)) + (a & b | c & (b | a));
+		w8 +=
+		    w1 +
+		    (verse_rotR64(w9, 8) XOR verse_rotR64(w9, 1) XOR w9 >> 7) +
+		    (verse_rotR64(w6, 61) XOR verse_rotR64(w6, 19) XOR w6 >> 6);
+		t = g + 0xa831c66d2db43210ULL + w9 + (f XOR d & (e XOR f)) +
+		    (verse_rotR64(d, 41) XOR verse_rotR64(d, 18) XOR
+		     verse_rotR64(d, 14));
+		c += t;
+		g = t +
+		    (verse_rotR64(h, 39) XOR verse_rotR64(h, 34) XOR
+		     verse_rotR64(h, 28)) + (h & a | b & (a | h));
+		w9 +=
+		    w2 +
+		    (verse_rotR64(w10, 8) XOR verse_rotR64(w10, 1) XOR w10 >> 7)
+		    +
+		    (verse_rotR64(w7, 61) XOR verse_rotR64(w7, 19) XOR w7 >> 6);
+		t = f + 0xb00327c898fb213fULL + w10 + (e XOR c & (d XOR e)) +
+		    (verse_rotR64(c, 41) XOR verse_rotR64(c, 18) XOR
+		     verse_rotR64(c, 14));
+		b += t;
+		f = t +
+		    (verse_rotR64(g, 39) XOR verse_rotR64(g, 34) XOR
+		     verse_rotR64(g, 28)) + (g & h | a & (h | g));
+		w10 +=
+		    w3 +
+		    (verse_rotR64(w11, 8) XOR verse_rotR64(w11, 1) XOR w11 >> 7)
+		    +
+		    (verse_rotR64(w8, 61) XOR verse_rotR64(w8, 19) XOR w8 >> 6);
+		t = e + 0xbf597fc7beef0ee4ULL + w11 + (d XOR b & (c XOR d)) +
+		    (verse_rotR64(b, 41) XOR verse_rotR64(b, 18) XOR
+		     verse_rotR64(b, 14));
+		a += t;
+		e = t +
+		    (verse_rotR64(f, 39) XOR verse_rotR64(f, 34) XOR
+		     verse_rotR64(f, 28)) + (f & g | h & (g | f));
+		w11 +=
+		    w4 +
+		    (verse_rotR64(w12, 8) XOR verse_rotR64(w12, 1) XOR w12 >> 7)
+		    +
+		    (verse_rotR64(w9, 61) XOR verse_rotR64(w9, 19) XOR w9 >> 6);
+		t = d + 0xc6e00bf33da88fc2ULL + w12 + (c XOR a & (b XOR c)) +
+		    (verse_rotR64(a, 41) XOR verse_rotR64(a, 18) XOR
+		     verse_rotR64(a, 14));
+		h += t;
+		d = t +
+		    (verse_rotR64(e, 39) XOR verse_rotR64(e, 34) XOR
+		     verse_rotR64(e, 28)) + (e & f | g & (f | e));
+		w12 +=
+		    w5 +
+		    (verse_rotR64(w13, 8) XOR verse_rotR64(w13, 1) XOR w13 >> 7)
+		    +
+		    (verse_rotR64(w10, 61) XOR verse_rotR64(w10, 19) XOR w10 >>
+		     6);
+		t = c + 0xd5a79147930aa725ULL + w13 + (b XOR h & (a XOR b)) +
+		    (verse_rotR64(h, 41) XOR verse_rotR64(h, 18) XOR
+		     verse_rotR64(h, 14));
+		g += t;
+		c = t +
+		    (verse_rotR64(d, 39) XOR verse_rotR64(d, 34) XOR
+		     verse_rotR64(d, 28)) + (d & e | f & (e | d));
+		w13 +=
+		    w6 +
+		    (verse_rotR64(w14, 8) XOR verse_rotR64(w14, 1) XOR w14 >> 7)
+		    +
+		    (verse_rotR64(w11, 61) XOR verse_rotR64(w11, 19) XOR w11 >>
+		     6);
+		t = b + 0x06ca6351e003826fULL + w14 + (a XOR g & (h XOR a)) +
+		    (verse_rotR64(g, 41) XOR verse_rotR64(g, 18) XOR
+		     verse_rotR64(g, 14));
+		f += t;
+		b = t +
+		    (verse_rotR64(c, 39) XOR verse_rotR64(c, 34) XOR
+		     verse_rotR64(c, 28)) + (c & d | e & (d | c));
+		w14 +=
+		    w7 +
+		    (verse_rotR64(w15, 8) XOR verse_rotR64(w15, 1) XOR w15 >> 7)
+		    +
+		    (verse_rotR64(w12, 61) XOR verse_rotR64(w12, 19) XOR w12 >>
+		     6);
+		t = a + 0x142929670a0e6e70ULL + w15 + (h XOR f & (g XOR h)) +
+		    (verse_rotR64(f, 41) XOR verse_rotR64(f, 18) XOR
+		     verse_rotR64(f, 14));
+		e += t;
+		a = t +
+		    (verse_rotR64(b, 39) XOR verse_rotR64(b, 34) XOR
+		     verse_rotR64(b, 28)) + (b & c | d & (c | b));
+		w15 +=
+		    w8 +
+		    (verse_rotR64(w0, 8) XOR verse_rotR64(w0, 1) XOR w0 >> 7) +
+		    (verse_rotR64(w13, 61) XOR verse_rotR64(w13, 19) XOR w13 >>
+		     6);
+		t = h + 0x27b70a8546d22ffcULL + w0 + (g XOR e & (f XOR g)) +
+		    (verse_rotR64(e, 41) XOR verse_rotR64(e, 18) XOR
+		     verse_rotR64(e, 14));
+		d += t;
+		h = t +
+		    (verse_rotR64(a, 39) XOR verse_rotR64(a, 34) XOR
+		     verse_rotR64(a, 28)) + (a & b | c & (b | a));
+		w0 +=
+		    w9 +
+		    (verse_rotR64(w1, 8) XOR verse_rotR64(w1, 1) XOR w1 >> 7) +
+		    (verse_rotR64(w14, 61) XOR verse_rotR64(w14, 19) XOR w14 >>
+		     6);
+		t = g + 0x2e1b21385c26c926ULL + w1 + (f XOR d & (e XOR f)) +
+		    (verse_rotR64(d, 41) XOR verse_rotR64(d, 18) XOR
+		     verse_rotR64(d, 14));
+		c += t;
+		g = t +
+		    (verse_rotR64(h, 39) XOR verse_rotR64(h, 34) XOR
+		     verse_rotR64(h, 28)) + (h & a | b & (a | h));
+		w1 +=
+		    w10 +
+		    (verse_rotR64(w2, 8) XOR verse_rotR64(w2, 1) XOR w2 >> 7) +
+		    (verse_rotR64(w15, 61) XOR verse_rotR64(w15, 19) XOR w15 >>
+		     6);
+		t = f + 0x4d2c6dfc5ac42aedULL + w2 + (e XOR c & (d XOR e)) +
+		    (verse_rotR64(c, 41) XOR verse_rotR64(c, 18) XOR
+		     verse_rotR64(c, 14));
+		b += t;
+		f = t +
+		    (verse_rotR64(g, 39) XOR verse_rotR64(g, 34) XOR
+		     verse_rotR64(g, 28)) + (g & h | a & (h | g));
+		w2 +=
+		    w11 +
+		    (verse_rotR64(w3, 8) XOR verse_rotR64(w3, 1) XOR w3 >> 7) +
+		    (verse_rotR64(w0, 61) XOR verse_rotR64(w0, 19) XOR w0 >> 6);
+		t = e + 0x53380d139d95b3dfULL + w3 + (d XOR b & (c XOR d)) +
+		    (verse_rotR64(b, 41) XOR verse_rotR64(b, 18) XOR
+		     verse_rotR64(b, 14));
+		a += t;
+		e = t +
+		    (verse_rotR64(f, 39) XOR verse_rotR64(f, 34) XOR
+		     verse_rotR64(f, 28)) + (f & g | h & (g | f));
+		w3 +=
+		    w12 +
+		    (verse_rotR64(w4, 8) XOR verse_rotR64(w4, 1) XOR w4 >> 7) +
+		    (verse_rotR64(w1, 61) XOR verse_rotR64(w1, 19) XOR w1 >> 6);
+		t = d + 0x650a73548baf63deULL + w4 + (c XOR a & (b XOR c)) +
+		    (verse_rotR64(a, 41) XOR verse_rotR64(a, 18) XOR
+		     verse_rotR64(a, 14));
+		h += t;
+		d = t +
+		    (verse_rotR64(e, 39) XOR verse_rotR64(e, 34) XOR
+		     verse_rotR64(e, 28)) + (e & f | g & (f | e));
+		w4 +=
+		    w13 +
+		    (verse_rotR64(w5, 8) XOR verse_rotR64(w5, 1) XOR w5 >> 7) +
+		    (verse_rotR64(w2, 61) XOR verse_rotR64(w2, 19) XOR w2 >> 6);
+		t = c + 0x766a0abb3c77b2a8ULL + w5 + (b XOR h & (a XOR b)) +
+		    (verse_rotR64(h, 41) XOR verse_rotR64(h, 18) XOR
+		     verse_rotR64(h, 14));
+		g += t;
+		c = t +
+		    (verse_rotR64(d, 39) XOR verse_rotR64(d, 34) XOR
+		     verse_rotR64(d, 28)) + (d & e | f & (e | d));
+		w5 +=
+		    w14 +
+		    (verse_rotR64(w6, 8) XOR verse_rotR64(w6, 1) XOR w6 >> 7) +
+		    (verse_rotR64(w3, 61) XOR verse_rotR64(w3, 19) XOR w3 >> 6);
+		t = b + 0x81c2c92e47edaee6ULL + w6 + (a XOR g & (h XOR a)) +
+		    (verse_rotR64(g, 41) XOR verse_rotR64(g, 18) XOR
+		     verse_rotR64(g, 14));
+		f += t;
+		b = t +
+		    (verse_rotR64(c, 39) XOR verse_rotR64(c, 34) XOR
+		     verse_rotR64(c, 28)) + (c & d | e & (d | c));
+		w6 +=
+		    w15 +
+		    (verse_rotR64(w7, 8) XOR verse_rotR64(w7, 1) XOR w7 >> 7) +
+		    (verse_rotR64(w4, 61) XOR verse_rotR64(w4, 19) XOR w4 >> 6);
+		t = a + 0x92722c851482353bULL + w7 + (h XOR f & (g XOR h)) +
+		    (verse_rotR64(f, 41) XOR verse_rotR64(f, 18) XOR
+		     verse_rotR64(f, 14));
+		e += t;
+		a = t +
+		    (verse_rotR64(b, 39) XOR verse_rotR64(b, 34) XOR
+		     verse_rotR64(b, 28)) + (b & c | d & (c | b));
+		w7 +=
+		    w0 +
+		    (verse_rotR64(w8, 8) XOR verse_rotR64(w8, 1) XOR w8 >> 7) +
+		    (verse_rotR64(w5, 61) XOR verse_rotR64(w5, 19) XOR w5 >> 6);
+		t = h + 0xa2bfe8a14cf10364ULL + w8 + (g XOR e & (f XOR g)) +
+		    (verse_rotR64(e, 41) XOR verse_rotR64(e, 18) XOR
+		     verse_rotR64(e, 14));
+		d += t;
+		h = t +
+		    (verse_rotR64(a, 39) XOR verse_rotR64(a, 34) XOR
+		     verse_rotR64(a, 28)) + (a & b | c & (b | a));
+		w8 +=
+		    w1 +
+		    (verse_rotR64(w9, 8) XOR verse_rotR64(w9, 1) XOR w9 >> 7) +
+		    (verse_rotR64(w6, 61) XOR verse_rotR64(w6, 19) XOR w6 >> 6);
+		t = g + 0xa81a664bbc423001ULL + w9 + (f XOR d & (e XOR f)) +
+		    (verse_rotR64(d, 41) XOR verse_rotR64(d, 18) XOR
+		     verse_rotR64(d, 14));
+		c += t;
+		g = t +
+		    (verse_rotR64(h, 39) XOR verse_rotR64(h, 34) XOR
+		     verse_rotR64(h, 28)) + (h & a | b & (a | h));
+		w9 +=
+		    w2 +
+		    (verse_rotR64(w10, 8) XOR verse_rotR64(w10, 1) XOR w10 >> 7)
+		    +
+		    (verse_rotR64(w7, 61) XOR verse_rotR64(w7, 19) XOR w7 >> 6);
+		t = f + 0xc24b8b70d0f89791ULL + w10 + (e XOR c & (d XOR e)) +
+		    (verse_rotR64(c, 41) XOR verse_rotR64(c, 18) XOR
+		     verse_rotR64(c, 14));
+		b += t;
+		f = t +
+		    (verse_rotR64(g, 39) XOR verse_rotR64(g, 34) XOR
+		     verse_rotR64(g, 28)) + (g & h | a & (h | g));
+		w10 +=
+		    w3 +
+		    (verse_rotR64(w11, 8) XOR verse_rotR64(w11, 1) XOR w11 >> 7)
+		    +
+		    (verse_rotR64(w8, 61) XOR verse_rotR64(w8, 19) XOR w8 >> 6);
+		t = e + 0xc76c51a30654be30ULL + w11 + (d XOR b & (c XOR d)) +
+		    (verse_rotR64(b, 41) XOR verse_rotR64(b, 18) XOR
+		     verse_rotR64(b, 14));
+		a += t;
+		e = t +
+		    (verse_rotR64(f, 39) XOR verse_rotR64(f, 34) XOR
+		     verse_rotR64(f, 28)) + (f & g | h & (g | f));
+		w11 +=
+		    w4 +
+		    (verse_rotR64(w12, 8) XOR verse_rotR64(w12, 1) XOR w12 >> 7)
+		    +
+		    (verse_rotR64(w9, 61) XOR verse_rotR64(w9, 19) XOR w9 >> 6);
+		t = d + 0xd192e819d6ef5218ULL + w12 + (c XOR a & (b XOR c)) +
+		    (verse_rotR64(a, 41) XOR verse_rotR64(a, 18) XOR
+		     verse_rotR64(a, 14));
+		h += t;
+		d = t +
+		    (verse_rotR64(e, 39) XOR verse_rotR64(e, 34) XOR
+		     verse_rotR64(e, 28)) + (e & f | g & (f | e));
+		w12 +=
+		    w5 +
+		    (verse_rotR64(w13, 8) XOR verse_rotR64(w13, 1) XOR w13 >> 7)
+		    +
+		    (verse_rotR64(w10, 61) XOR verse_rotR64(w10, 19) XOR w10 >>
+		     6);
+		t = c + 0xd69906245565a910ULL + w13 + (b XOR h & (a XOR b)) +
+		    (verse_rotR64(h, 41) XOR verse_rotR64(h, 18) XOR
+		     verse_rotR64(h, 14));
+		g += t;
+		c = t +
+		    (verse_rotR64(d, 39) XOR verse_rotR64(d, 34) XOR
+		     verse_rotR64(d, 28)) + (d & e | f & (e | d));
+		w13 +=
+		    w6 +
+		    (verse_rotR64(w14, 8) XOR verse_rotR64(w14, 1) XOR w14 >> 7)
+		    +
+		    (verse_rotR64(w11, 61) XOR verse_rotR64(w11, 19) XOR w11 >>
+		     6);
+		t = b + 0xf40e35855771202aULL + w14 + (a XOR g & (h XOR a)) +
+		    (verse_rotR64(g, 41) XOR verse_rotR64(g, 18) XOR
+		     verse_rotR64(g, 14));
+		f += t;
+		b = t +
+		    (verse_rotR64(c, 39) XOR verse_rotR64(c, 34) XOR
+		     verse_rotR64(c, 28)) + (c & d | e & (d | c));
+		w14 +=
+		    w7 +
+		    (verse_rotR64(w15, 8) XOR verse_rotR64(w15, 1) XOR w15 >> 7)
+		    +
+		    (verse_rotR64(w12, 61) XOR verse_rotR64(w12, 19) XOR w12 >>
+		     6);
+		t = a + 0x106aa07032bbd1b8ULL + w15 + (h XOR f & (g XOR h)) +
+		    (verse_rotR64(f, 41) XOR verse_rotR64(f, 18) XOR
+		     verse_rotR64(f, 14));
+		e += t;
+		a = t +
+		    (verse_rotR64(b, 39) XOR verse_rotR64(b, 34) XOR
+		     verse_rotR64(b, 28)) + (b & c | d & (c | b));
+		w15 +=
+		    w8 +
+		    (verse_rotR64(w0, 8) XOR verse_rotR64(w0, 1) XOR w0 >> 7) +
+		    (verse_rotR64(w13, 61) XOR verse_rotR64(w13, 19) XOR w13 >>
+		     6);
+		t = h + 0x19a4c116b8d2d0c8ULL + w0 + (g XOR e & (f XOR g)) +
+		    (verse_rotR64(e, 41) XOR verse_rotR64(e, 18) XOR
+		     verse_rotR64(e, 14));
+		d += t;
+		h = t +
+		    (verse_rotR64(a, 39) XOR verse_rotR64(a, 34) XOR
+		     verse_rotR64(a, 28)) + (a & b | c & (b | a));
+		w0 +=
+		    w9 +
+		    (verse_rotR64(w1, 8) XOR verse_rotR64(w1, 1) XOR w1 >> 7) +
+		    (verse_rotR64(w14, 61) XOR verse_rotR64(w14, 19) XOR w14 >>
+		     6);
+		t = g + 0x1e376c085141ab53ULL + w1 + (f XOR d & (e XOR f)) +
+		    (verse_rotR64(d, 41) XOR verse_rotR64(d, 18) XOR
+		     verse_rotR64(d, 14));
+		c += t;
+		g = t +
+		    (verse_rotR64(h, 39) XOR verse_rotR64(h, 34) XOR
+		     verse_rotR64(h, 28)) + (h & a | b & (a | h));
+		w1 +=
+		    w10 +
+		    (verse_rotR64(w2, 8) XOR verse_rotR64(w2, 1) XOR w2 >> 7) +
+		    (verse_rotR64(w15, 61) XOR verse_rotR64(w15, 19) XOR w15 >>
+		     6);
+		t = f + 0x2748774cdf8eeb99ULL + w2 + (e XOR c & (d XOR e)) +
+		    (verse_rotR64(c, 41) XOR verse_rotR64(c, 18) XOR
+		     verse_rotR64(c, 14));
+		b += t;
+		f = t +
+		    (verse_rotR64(g, 39) XOR verse_rotR64(g, 34) XOR
+		     verse_rotR64(g, 28)) + (g & h | a & (h | g));
+		w2 +=
+		    w11 +
+		    (verse_rotR64(w3, 8) XOR verse_rotR64(w3, 1) XOR w3 >> 7) +
+		    (verse_rotR64(w0, 61) XOR verse_rotR64(w0, 19) XOR w0 >> 6);
+		t = e + 0x34b0bcb5e19b48a8ULL + w3 + (d XOR b & (c XOR d)) +
+		    (verse_rotR64(b, 41) XOR verse_rotR64(b, 18) XOR
+		     verse_rotR64(b, 14));
+		a += t;
+		e = t +
+		    (verse_rotR64(f, 39) XOR verse_rotR64(f, 34) XOR
+		     verse_rotR64(f, 28)) + (f & g | h & (g | f));
+		w3 +=
+		    w12 +
+		    (verse_rotR64(w4, 8) XOR verse_rotR64(w4, 1) XOR w4 >> 7) +
+		    (verse_rotR64(w1, 61) XOR verse_rotR64(w1, 19) XOR w1 >> 6);
+		t = d + 0x391c0cb3c5c95a63ULL + w4 + (c XOR a & (b XOR c)) +
+		    (verse_rotR64(a, 41) XOR verse_rotR64(a, 18) XOR
+		     verse_rotR64(a, 14));
+		h += t;
+		d = t +
+		    (verse_rotR64(e, 39) XOR verse_rotR64(e, 34) XOR
+		     verse_rotR64(e, 28)) + (e & f | g & (f | e));
+		w4 +=
+		    w13 +
+		    (verse_rotR64(w5, 8) XOR verse_rotR64(w5, 1) XOR w5 >> 7) +
+		    (verse_rotR64(w2, 61) XOR verse_rotR64(w2, 19) XOR w2 >> 6);
+		t = c + 0x4ed8aa4ae3418acbULL + w5 + (b XOR h & (a XOR b)) +
+		    (verse_rotR64(h, 41) XOR verse_rotR64(h, 18) XOR
+		     verse_rotR64(h, 14));
+		g += t;
+		c = t +
+		    (verse_rotR64(d, 39) XOR verse_rotR64(d, 34) XOR
+		     verse_rotR64(d, 28)) + (d & e | f & (e | d));
+		w5 +=
+		    w14 +
+		    (verse_rotR64(w6, 8) XOR verse_rotR64(w6, 1) XOR w6 >> 7) +
+		    (verse_rotR64(w3, 61) XOR verse_rotR64(w3, 19) XOR w3 >> 6);
+		t = b + 0x5b9cca4f7763e373ULL + w6 + (a XOR g & (h XOR a)) +
+		    (verse_rotR64(g, 41) XOR verse_rotR64(g, 18) XOR
+		     verse_rotR64(g, 14));
+		f += t;
+		b = t +
+		    (verse_rotR64(c, 39) XOR verse_rotR64(c, 34) XOR
+		     verse_rotR64(c, 28)) + (c & d | e & (d | c));
+		w6 +=
+		    w15 +
+		    (verse_rotR64(w7, 8) XOR verse_rotR64(w7, 1) XOR w7 >> 7) +
+		    (verse_rotR64(w4, 61) XOR verse_rotR64(w4, 19) XOR w4 >> 6);
+		t = a + 0x682e6ff3d6b2b8a3ULL + w7 + (h XOR f & (g XOR h)) +
+		    (verse_rotR64(f, 41) XOR verse_rotR64(f, 18) XOR
+		     verse_rotR64(f, 14));
+		e += t;
+		a = t +
+		    (verse_rotR64(b, 39) XOR verse_rotR64(b, 34) XOR
+		     verse_rotR64(b, 28)) + (b & c | d & (c | b));
+		w7 +=
+		    w0 +
+		    (verse_rotR64(w8, 8) XOR verse_rotR64(w8, 1) XOR w8 >> 7) +
+		    (verse_rotR64(w5, 61) XOR verse_rotR64(w5, 19) XOR w5 >> 6);
+		t = h + 0x748f82ee5defb2fcULL + w8 + (g XOR e & (f XOR g)) +
+		    (verse_rotR64(e, 41) XOR verse_rotR64(e, 18) XOR
+		     verse_rotR64(e, 14));
+		d += t;
+		h = t +
+		    (verse_rotR64(a, 39) XOR verse_rotR64(a, 34) XOR
+		     verse_rotR64(a, 28)) + (a & b | c & (b | a));
+		w8 +=
+		    w1 +
+		    (verse_rotR64(w9, 8) XOR verse_rotR64(w9, 1) XOR w9 >> 7) +
+		    (verse_rotR64(w6, 61) XOR verse_rotR64(w6, 19) XOR w6 >> 6);
+		t = g + 0x78a5636f43172f60ULL + w9 + (f XOR d & (e XOR f)) +
+		    (verse_rotR64(d, 41) XOR verse_rotR64(d, 18) XOR
+		     verse_rotR64(d, 14));
+		c += t;
+		g = t +
+		    (verse_rotR64(h, 39) XOR verse_rotR64(h, 34) XOR
+		     verse_rotR64(h, 28)) + (h & a | b & (a | h));
+		w9 +=
+		    w2 +
+		    (verse_rotR64(w10, 8) XOR verse_rotR64(w10, 1) XOR w10 >> 7)
+		    +
+		    (verse_rotR64(w7, 61) XOR verse_rotR64(w7, 19) XOR w7 >> 6);
+		t = f + 0x84c87814a1f0ab72ULL + w10 + (e XOR c & (d XOR e)) +
+		    (verse_rotR64(c, 41) XOR verse_rotR64(c, 18) XOR
+		     verse_rotR64(c, 14));
+		b += t;
+		f = t +
+		    (verse_rotR64(g, 39) XOR verse_rotR64(g, 34) XOR
+		     verse_rotR64(g, 28)) + (g & h | a & (h | g));
+		w10 +=
+		    w3 +
+		    (verse_rotR64(w11, 8) XOR verse_rotR64(w11, 1) XOR w11 >> 7)
+		    +
+		    (verse_rotR64(w8, 61) XOR verse_rotR64(w8, 19) XOR w8 >> 6);
+		t = e + 0x8cc702081a6439ecULL + w11 + (d XOR b & (c XOR d)) +
+		    (verse_rotR64(b, 41) XOR verse_rotR64(b, 18) XOR
+		     verse_rotR64(b, 14));
+		a += t;
+		e = t +
+		    (verse_rotR64(f, 39) XOR verse_rotR64(f, 34) XOR
+		     verse_rotR64(f, 28)) + (f & g | h & (g | f));
+		w11 +=
+		    w4 +
+		    (verse_rotR64(w12, 8) XOR verse_rotR64(w12, 1) XOR w12 >> 7)
+		    +
+		    (verse_rotR64(w9, 61) XOR verse_rotR64(w9, 19) XOR w9 >> 6);
+		t = d + 0x90befffa23631e28ULL + w12 + (c XOR a & (b XOR c)) +
+		    (verse_rotR64(a, 41) XOR verse_rotR64(a, 18) XOR
+		     verse_rotR64(a, 14));
+		h += t;
+		d = t +
+		    (verse_rotR64(e, 39) XOR verse_rotR64(e, 34) XOR
+		     verse_rotR64(e, 28)) + (e & f | g & (f | e));
+		w12 +=
+		    w5 +
+		    (verse_rotR64(w13, 8) XOR verse_rotR64(w13, 1) XOR w13 >> 7)
+		    +
+		    (verse_rotR64(w10, 61) XOR verse_rotR64(w10, 19) XOR w10 >>
+		     6);
+		t = c + 0xa4506cebde82bde9ULL + w13 + (b XOR h & (a XOR b)) +
+		    (verse_rotR64(h, 41) XOR verse_rotR64(h, 18) XOR
+		     verse_rotR64(h, 14));
+		g += t;
+		c = t +
+		    (verse_rotR64(d, 39) XOR verse_rotR64(d, 34) XOR
+		     verse_rotR64(d, 28)) + (d & e | f & (e | d));
+		w13 +=
+		    w6 +
+		    (verse_rotR64(w14, 8) XOR verse_rotR64(w14, 1) XOR w14 >> 7)
+		    +
+		    (verse_rotR64(w11, 61) XOR verse_rotR64(w11, 19) XOR w11 >>
+		     6);
+		t = b + 0xbef9a3f7b2c67915ULL + w14 + (a XOR g & (h XOR a)) +
+		    (verse_rotR64(g, 41) XOR verse_rotR64(g, 18) XOR
+		     verse_rotR64(g, 14));
+		f += t;
+		b = t +
+		    (verse_rotR64(c, 39) XOR verse_rotR64(c, 34) XOR
+		     verse_rotR64(c, 28)) + (c & d | e & (d | c));
+		w14 +=
+		    w7 +
+		    (verse_rotR64(w15, 8) XOR verse_rotR64(w15, 1) XOR w15 >> 7)
+		    +
+		    (verse_rotR64(w12, 61) XOR verse_rotR64(w12, 19) XOR w12 >>
+		     6);
+		t = a + 0xc67178f2e372532bULL + w15 + (h XOR f & (g XOR h)) +
+		    (verse_rotR64(f, 41) XOR verse_rotR64(f, 18) XOR
+		     verse_rotR64(f, 14));
+		e += t;
+		a = t +
+		    (verse_rotR64(b, 39) XOR verse_rotR64(b, 34) XOR
+		     verse_rotR64(b, 28)) + (b & c | d & (c | b));
+		w15 +=
+		    w8 +
+		    (verse_rotR64(w0, 8) XOR verse_rotR64(w0, 1) XOR w0 >> 7) +
+		    (verse_rotR64(w13, 61) XOR verse_rotR64(w13, 19) XOR w13 >>
+		     6);
+		t = h + 0xca273eceea26619cULL + w0 + (g XOR e & (f XOR g)) +
+		    (verse_rotR64(e, 41) XOR verse_rotR64(e, 18) XOR
+		     verse_rotR64(e, 14));
+		d += t;
+		h = t +
+		    (verse_rotR64(a, 39) XOR verse_rotR64(a, 34) XOR
+		     verse_rotR64(a, 28)) + (a & b | c & (b | a));
+		t = g + 0xd186b8c721c0c207ULL + w1 + (f XOR d & (e XOR f)) +
+		    (verse_rotR64(d, 41) XOR verse_rotR64(d, 18) XOR
+		     verse_rotR64(d, 14));
+		c += t;
+		g = t +
+		    (verse_rotR64(h, 39) XOR verse_rotR64(h, 34) XOR
+		     verse_rotR64(h, 28)) + (h & a | b & (a | h));
+		t = f + 0xeada7dd6cde0eb1eULL + w2 + (e XOR c & (d XOR e)) +
+		    (verse_rotR64(c, 41) XOR verse_rotR64(c, 18) XOR
+		     verse_rotR64(c, 14));
+		b += t;
+		f = t +
+		    (verse_rotR64(g, 39) XOR verse_rotR64(g, 34) XOR
+		     verse_rotR64(g, 28)) + (g & h | a & (h | g));
+		t = e + 0xf57d4f7fee6ed178ULL + w3 + (d XOR b & (c XOR d)) +
+		    (verse_rotR64(b, 41) XOR verse_rotR64(b, 18) XOR
+		     verse_rotR64(b, 14));
+		a += t;
+		e = t +
+		    (verse_rotR64(f, 39) XOR verse_rotR64(f, 34) XOR
+		     verse_rotR64(f, 28)) + (f & g | h & (g | f));
+		t = d + 0x06f067aa72176fbaULL + w4 + (c XOR a & (b XOR c)) +
+		    (verse_rotR64(a, 41) XOR verse_rotR64(a, 18) XOR
+		     verse_rotR64(a, 14));
+		h += t;
+		d = t +
+		    (verse_rotR64(e, 39) XOR verse_rotR64(e, 34) XOR
+		     verse_rotR64(e, 28)) + (e & f | g & (f | e));
+		t = c + 0x0a637dc5a2c898a6ULL + w5 + (b XOR h & (a XOR b)) +
+		    (verse_rotR64(h, 41) XOR verse_rotR64(h, 18) XOR
+		     verse_rotR64(h, 14));
+		g += t;
+		c = t +
+		    (verse_rotR64(d, 39) XOR verse_rotR64(d, 34) XOR
+		     verse_rotR64(d, 28)) + (d & e | f & (e | d));
+		t = b + 0x113f9804bef90daeULL + w6 + (a XOR g & (h XOR a)) +
+		    (verse_rotR64(g, 41) XOR verse_rotR64(g, 18) XOR
+		     verse_rotR64(g, 14));
+		f += t;
+		b = t +
+		    (verse_rotR64(c, 39) XOR verse_rotR64(c, 34) XOR
+		     verse_rotR64(c, 28)) + (c & d | e & (d | c));
+		t = a + 0x1b710b35131c471bULL + w7 + (h XOR f & (g XOR h)) +
+		    (verse_rotR64(f, 41) XOR verse_rotR64(f, 18) XOR
+		     verse_rotR64(f, 14));
+		e += t;
+		a = t +
+		    (verse_rotR64(b, 39) XOR verse_rotR64(b, 34) XOR
+		     verse_rotR64(b, 28)) + (b & c | d & (c | b));
+		t = h + 0x28db77f523047d84ULL + w8 + (g XOR e & (f XOR g)) +
+		    (verse_rotR64(e, 41) XOR verse_rotR64(e, 18) XOR
+		     verse_rotR64(e, 14));
+		d += t;
+		h = t +
+		    (verse_rotR64(a, 39) XOR verse_rotR64(a, 34) XOR
+		     verse_rotR64(a, 28)) + (a & b | c & (b | a));
+		t = g + 0x32caab7b40c72493ULL + w9 + (f XOR d & (e XOR f)) +
+		    (verse_rotR64(d, 41) XOR verse_rotR64(d, 18) XOR
+		     verse_rotR64(d, 14));
+		c += t;
+		g = t +
+		    (verse_rotR64(h, 39) XOR verse_rotR64(h, 34) XOR
+		     verse_rotR64(h, 28)) + (h & a | b & (a | h));
+		t = f + 0x3c9ebe0a15c9bebcULL + w10 + (e XOR c & (d XOR e)) +
+		    (verse_rotR64(c, 41) XOR verse_rotR64(c, 18) XOR
+		     verse_rotR64(c, 14));
+		b += t;
+		f = t +
+		    (verse_rotR64(g, 39) XOR verse_rotR64(g, 34) XOR
+		     verse_rotR64(g, 28)) + (g & h | a & (h | g));
+		t = e + 0x431d67c49c100d4cULL + w11 + (d XOR b & (c XOR d)) +
+		    (verse_rotR64(b, 41) XOR verse_rotR64(b, 18) XOR
+		     verse_rotR64(b, 14));
+		a += t;
+		e = t +
+		    (verse_rotR64(f, 39) XOR verse_rotR64(f, 34) XOR
+		     verse_rotR64(f, 28)) + (f & g | h & (g | f));
+		t = d + 0x4cc5d4becb3e42b6ULL + w12 + (c XOR a & (b XOR c)) +
+		    (verse_rotR64(a, 41) XOR verse_rotR64(a, 18) XOR
+		     verse_rotR64(a, 14));
+		h += t;
+		d = t +
+		    (verse_rotR64(e, 39) XOR verse_rotR64(e, 34) XOR
+		     verse_rotR64(e, 28)) + (e & f | g & (f | e));
+		t = c + 0x597f299cfc657e2aULL + w13 + (b XOR h & (a XOR b)) +
+		    (verse_rotR64(h, 41) XOR verse_rotR64(h, 18) XOR
+		     verse_rotR64(h, 14));
+		g += t;
+		c = t +
+		    (verse_rotR64(d, 39) XOR verse_rotR64(d, 34) XOR
+		     verse_rotR64(d, 28)) + (d & e | f & (e | d));
+		t = b + 0x5fcb6fab3ad6faecULL + w14 + (a XOR g & (h XOR a)) +
+		    (verse_rotR64(g, 41) XOR verse_rotR64(g, 18) XOR
+		     verse_rotR64(g, 14));
+		f += t;
+		b = t +
+		    (verse_rotR64(c, 39) XOR verse_rotR64(c, 34) XOR
+		     verse_rotR64(c, 28)) + (c & d | e & (d | c));
+		t = a + 0x6c44198c4a475817ULL + w15 + (h XOR f & (g XOR h)) +
+		    (verse_rotR64(f, 41) XOR verse_rotR64(f, 18) XOR
+		     verse_rotR64(f, 14));
+		e += t;
+		a = t +
+		    (verse_rotR64(b, 39) XOR verse_rotR64(b, 34) XOR
+		     verse_rotR64(b, 28)) + (b & c | d & (c | b));
+		a += hash[0];
+		b += hash[1];
+		c += hash[2];
+		d += hash[3];
+		e += hash[4];
+		f += hash[5];
+		g += hash[6];
+		h += hash[7];
+		hash[0] = a;
+		hash[1] = b;
+		hash[2] = c;
+		hash[3] = d;
+		hash[4] = e;
+		hash[5] = f;
+		hash[6] = g;
+		hash[7] = h;
+		++blockPtr;
+		--nBlocks;
+	};
 }
