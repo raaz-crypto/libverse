@@ -1,16 +1,27 @@
 # LibVerse: The low level crypto library.
 
 LibVerse is a _low level cryptographic library_ built using the [verse
-eDSL][verse]. This is *not* a standalone cryptographic library as it
-exposes only a C-API for the "tight loops" involved in various
-cryptographic primitives. It is meant to be included in higher level
-libraries which makes use of these tight loops to implement a more
-higher level interface.  In particular, it is used in the [`raaz`
-cryptographic library][raaz] as a source of low-level cryptographic
-primitives. `Libverse` does *not* come with any of the other
-supporting code like benchmarks or unit tests either. Again the higher
-level crypto library that uses `libverse` should have its own set of
-tests and benchmarks ([raaz] indeed comes with such as set).
+eDSL][verse]. It is _not_ a standalone cryptographic library, and is
+expected to be used by other high level libraries in C or other high
+level languages like Haskell, Python etc (i.e. languages that support
+_foreign function interface_ to C). It fact, it was designed primarily
+for the [`raaz` cryptographic library][raaz] as a source of low-level
+cryptographic primitives. This focus means that `libverse` does not
+come with any supporting code like benchmarks or unit tests. In fact
+it does not even come with the full implementations of standard
+primitives --- only the "tight loops" of these primitives are
+exposed. The higher level crypto library that uses `libverse` should
+provide these missing features to make libverse usable.
+
+Why this low level design ? Although a higher level of abstraction is
+always better for the safety and portability of software, high level
+languages are often prone to leak of side channel information which
+can be deadly for cryptographic libraries. Hence `libverse` is at this
+low level of abstraction. Instead of writing this low level code by
+hand (which is problematic in a different way), we express this code
+in the [verse eDSL] at a much higher level of abstraction by . Since
+it is written in Coq, we can even hope to verify a significant portion
+of it by using the full power of a proof assistant like Coq.
 
 
 ## Using `libverse` in your application/library.
@@ -18,9 +29,9 @@ tests and benchmarks ([raaz] indeed comes with such as set).
 Although the actual cryptographic implementations are themselves
 written in [verse] which in turn is an eDSL in Coq, the source code
 available in this repository is the extracted C or assembly language
-functions. Hence all you need is `gcc` or a FFI interface to call C in
-case of languages like Haskell. Just include the source code somewhere
-in your applications/library's directory and hook it to your
+functions. Hence all you need is a C compiler or a FFI interface to
+call C in case of languages like Haskell. Just include the source code
+somewhere in your applications/library's directory and hook it to your
 compilation process.
 
 ## Hacking.
@@ -37,7 +48,6 @@ verse][verse]. In particular, the implementation exposed here have
 their coq sources under the directory `src/Verse/CryptoLib`.
 
 ## Convention
-
 
 LibVerse expose C function as well as assembly language functions for
 various primitives. The source code is arranged according to the
