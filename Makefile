@@ -4,10 +4,7 @@ include Implementations.mk # This file includes the implementations
                            # release should include one such file.
 
 
-IMPLS_C  = $(wildcard $(addsuffix .c, ${IMPLS}))
-IMPLS_S  = $(wildcard $(addsuffix .s, ${IMPLS}))
-SRC      = ${IMPLS_C} ${IMPLS_S}
-OBJ      = $(addsuffix .o, $(basename ${SRC}))
+OBJS= $(addsuffix .o, $(basename ${IMPLS}))
 
 
 CFLAGS += -I.
@@ -37,19 +34,16 @@ endif
 
 
 
-.PHONY: git-add objs clean
+%.o: %.c
+	${CC} ${CFLAGS} -c $< -o $@
 
-libverse.a: verse.o objs
-	ar cr libverse.a verse.o ${OBJ}
+.PHONY: git-add clean
+
+libverse.a: verse.o ${OBJS}
+	ar cr libverse.a verse.o ${OBJS}
 	ranlib libverse.a
-
-verse.o: verse.c
-	 ${CC} ${CFLAGS} -c verse.c
-objs:
-	$(foreach src, ${SRC}, ${CC} ${CFLAGS} -c ${src} \
-		-o $(addsuffix .o, $(basename ${src}));)
 clean:
-	rm -f libverse.a verse.o ${OBJ}
+	rm -f libverse.a verse.o ${OBJS}
 
 git-add:
 	git add ${SRC} Implementations.mk
