@@ -1,9 +1,5 @@
-include Implementations.mk # This file includes the implementations
-                           # defined in this release. It is generated
-                           # from the verse extraction process. Every
-                           # release should include one such file.
-
-
+PRIMS= sha256 sha512 chacha20 poly1305 blake2b blake2s
+IMPLS=$(addsuffix /c/portable.c, ${PRIMS})
 OBJS= $(addsuffix .o, $(basename ${IMPLS}))
 
 
