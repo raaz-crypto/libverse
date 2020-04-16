@@ -45,7 +45,7 @@ void verse_poly1305_c_portable_incremental(uint64_t(*blockPtr)[2],
 		T1 >>= 32;
 		a2 += T0;
 		a3 += T1;
-		++a4;
+		a4 += 0x0000000000000001ULL;
 		p3 = a0 * r3;
 		T0 = a1 * r2;
 		p3 += T0;
@@ -167,7 +167,7 @@ void verse_poly1305_c_portable_blockmac(uint64_t(*blockPtr)[2],
 		T1 >>= 32;
 		a2 += T0;
 		a3 += T1;
-		++a4;
+		a4 += 0x0000000000000001ULL;
 		p3 = a0 * r3;
 		T0 = a1 * r2;
 		p3 += T0;

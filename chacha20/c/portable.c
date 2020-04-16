@@ -1065,7 +1065,7 @@ void verse_chacha20_c_portable(uint32_t(*blockPtr)[16],
 		Temp = verse_from_le32((*blockPtr)[15]);
 		Temp ^= x15;
 		(*blockPtr)[15] = verse_to_le32(Temp);
-		++ctr;
+		ctr += 0x00000001UL;
 		++blockPtr;
 		--nBlocks;
 	};
@@ -3109,7 +3109,7 @@ void verse_chacha20csprg_c_portable(uint32_t(*blockPtr)[16],
 		(*blockPtr)[13] = x13;
 		(*blockPtr)[14] = x14;
 		(*blockPtr)[15] = x15;
-		++ctr;
+		ctr += 0x00000001UL;
 		++blockPtr;
 		--nBlocks;
 	};
