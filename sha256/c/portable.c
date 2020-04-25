@@ -1,782 +1,912 @@
 #include <stdint.h>
 #include <verse.h>
 #define XOR ^
-void verse_sha256_c_portable(uint32_t(*blockPtr)[16],
-			     uint64_t nBlocks, uint32_t hash[8])
+void verse_sha256_c_portable(uint32_t(*bPtr)[16], uint64_t cTr, uint32_t v0[8])
 {
-	auto uint32_t w0;
-	auto uint32_t w1;
-	auto uint32_t w2;
-	auto uint32_t w3;
-	auto uint32_t w4;
-	auto uint32_t w5;
-	auto uint32_t w6;
-	auto uint32_t w7;
-	auto uint32_t w8;
-	auto uint32_t w9;
-	auto uint32_t w10;
-	auto uint32_t w11;
-	auto uint32_t w12;
-	auto uint32_t w13;
-	auto uint32_t w14;
-	auto uint32_t w15;
-	auto uint32_t a;
-	auto uint32_t b;
-	auto uint32_t c;
-	auto uint32_t d;
-	auto uint32_t e;
-	auto uint32_t f;
-	auto uint32_t g;
-	auto uint32_t h;
-	auto uint32_t t;
-	a = hash[0];
-	b = hash[1];
-	c = hash[2];
-	d = hash[3];
-	e = hash[4];
-	f = hash[5];
-	g = hash[6];
-	h = hash[7];
-	while (nBlocks > 0) {
-		w0 = verse_from_be32((*blockPtr)[0]);
-		w1 = verse_from_be32((*blockPtr)[1]);
-		w2 = verse_from_be32((*blockPtr)[2]);
-		w3 = verse_from_be32((*blockPtr)[3]);
-		w4 = verse_from_be32((*blockPtr)[4]);
-		w5 = verse_from_be32((*blockPtr)[5]);
-		w6 = verse_from_be32((*blockPtr)[6]);
-		w7 = verse_from_be32((*blockPtr)[7]);
-		w8 = verse_from_be32((*blockPtr)[8]);
-		w9 = verse_from_be32((*blockPtr)[9]);
-		w10 = verse_from_be32((*blockPtr)[10]);
-		w11 = verse_from_be32((*blockPtr)[11]);
-		w12 = verse_from_be32((*blockPtr)[12]);
-		w13 = verse_from_be32((*blockPtr)[13]);
-		w14 = verse_from_be32((*blockPtr)[14]);
-		w15 = verse_from_be32((*blockPtr)[15]);
-		t = h + 0x428a2f98UL + w0 + (g XOR e & (f XOR g)) +
-		    (verse_rotR32(e, 25) XOR verse_rotR32(e, 11) XOR
-		     verse_rotR32(e, 6));
-		d += t;
-		h = t +
-		    (verse_rotR32(a, 22) XOR verse_rotR32(a, 13) XOR
-		     verse_rotR32(a, 2)) + (a & b | c & (b | a));
-		w0 +=
-		    w9 +
-		    (verse_rotR32(w1, 18) XOR verse_rotR32(w1, 7) XOR w1 >> 3) +
-		    (verse_rotR32(w14, 19) XOR verse_rotR32(w14, 17) XOR w14 >>
+	auto uint32_t v1;
+	auto uint32_t v2;
+	auto uint32_t v3;
+	auto uint32_t v4;
+	auto uint32_t v5;
+	auto uint32_t v6;
+	auto uint32_t v7;
+	auto uint32_t v8;
+	auto uint32_t v9;
+	auto uint32_t v10;
+	auto uint32_t v11;
+	auto uint32_t v12;
+	auto uint32_t v13;
+	auto uint32_t v14;
+	auto uint32_t v15;
+	auto uint32_t v16;
+	auto uint32_t v17;
+	auto uint32_t v18;
+	auto uint32_t v19;
+	auto uint32_t v20;
+	auto uint32_t v21;
+	auto uint32_t v22;
+	auto uint32_t v23;
+	auto uint32_t v24;
+	auto uint32_t v25;
+	v17 = v0[0];
+	v18 = v0[1];
+	v19 = v0[2];
+	v20 = v0[3];
+	v21 = v0[4];
+	v22 = v0[5];
+	v23 = v0[6];
+	v24 = v0[7];
+	while (cTr > 0) {
+		v1 = verse_from_be32((*bPtr)[0]);
+		v2 = verse_from_be32((*bPtr)[1]);
+		v3 = verse_from_be32((*bPtr)[2]);
+		v4 = verse_from_be32((*bPtr)[3]);
+		v5 = verse_from_be32((*bPtr)[4]);
+		v6 = verse_from_be32((*bPtr)[5]);
+		v7 = verse_from_be32((*bPtr)[6]);
+		v8 = verse_from_be32((*bPtr)[7]);
+		v9 = verse_from_be32((*bPtr)[8]);
+		v10 = verse_from_be32((*bPtr)[9]);
+		v11 = verse_from_be32((*bPtr)[10]);
+		v12 = verse_from_be32((*bPtr)[11]);
+		v13 = verse_from_be32((*bPtr)[12]);
+		v14 = verse_from_be32((*bPtr)[13]);
+		v15 = verse_from_be32((*bPtr)[14]);
+		v16 = verse_from_be32((*bPtr)[15]);
+		v25 =
+		    v24 + 0x428a2f98UL + v1 + (v23 XOR v21 & (v22 XOR v23)) +
+		    (verse_rotR32(v21, 25) XOR verse_rotR32(v21, 11)
+		     XOR verse_rotR32(v21, 6));
+		v20 += v25;
+		v24 = v25 + (verse_rotR32(v17, 22) XOR verse_rotR32(v17, 13)
+			     XOR verse_rotR32(v17,
+					      2)) +
+		    (v17 & v18 | v19 & (v18 | v17));
+		v1 +=
+		    v10 +
+		    (verse_rotR32(v2, 18) XOR verse_rotR32(v2, 7) XOR v2 >> 3) +
+		    (verse_rotR32(v15, 19) XOR verse_rotR32(v15, 17) XOR v15 >>
 		     10);
-		t = g + 0x71374491UL + w1 + (f XOR d & (e XOR f)) +
-		    (verse_rotR32(d, 25) XOR verse_rotR32(d, 11) XOR
-		     verse_rotR32(d, 6));
-		c += t;
-		g = t +
-		    (verse_rotR32(h, 22) XOR verse_rotR32(h, 13) XOR
-		     verse_rotR32(h, 2)) + (h & a | b & (a | h));
-		w1 +=
-		    w10 +
-		    (verse_rotR32(w2, 18) XOR verse_rotR32(w2, 7) XOR w2 >> 3) +
-		    (verse_rotR32(w15, 19) XOR verse_rotR32(w15, 17) XOR w15 >>
+		v25 =
+		    v23 + 0x71374491UL + v2 + (v22 XOR v20 & (v21 XOR v22)) +
+		    (verse_rotR32(v20, 25) XOR verse_rotR32(v20, 11)
+		     XOR verse_rotR32(v20, 6));
+		v19 += v25;
+		v23 = v25 + (verse_rotR32(v24, 22) XOR verse_rotR32(v24, 13)
+			     XOR verse_rotR32(v24,
+					      2)) +
+		    (v24 & v17 | v18 & (v17 | v24));
+		v2 +=
+		    v11 +
+		    (verse_rotR32(v3, 18) XOR verse_rotR32(v3, 7) XOR v3 >> 3) +
+		    (verse_rotR32(v16, 19) XOR verse_rotR32(v16, 17) XOR v16 >>
 		     10);
-		t = f + 0xb5c0fbcfUL + w2 + (e XOR c & (d XOR e)) +
-		    (verse_rotR32(c, 25) XOR verse_rotR32(c, 11) XOR
-		     verse_rotR32(c, 6));
-		b += t;
-		f = t +
-		    (verse_rotR32(g, 22) XOR verse_rotR32(g, 13) XOR
-		     verse_rotR32(g, 2)) + (g & h | a & (h | g));
-		w2 +=
-		    w11 +
-		    (verse_rotR32(w3, 18) XOR verse_rotR32(w3, 7) XOR w3 >> 3) +
-		    (verse_rotR32(w0, 19) XOR verse_rotR32(w0, 17) XOR w0 >>
+		v25 =
+		    v22 + 0xb5c0fbcfUL + v3 + (v21 XOR v19 & (v20 XOR v21)) +
+		    (verse_rotR32(v19, 25) XOR verse_rotR32(v19, 11)
+		     XOR verse_rotR32(v19, 6));
+		v18 += v25;
+		v22 = v25 + (verse_rotR32(v23, 22) XOR verse_rotR32(v23, 13)
+			     XOR verse_rotR32(v23,
+					      2)) +
+		    (v23 & v24 | v17 & (v24 | v23));
+		v3 +=
+		    v12 +
+		    (verse_rotR32(v4, 18) XOR verse_rotR32(v4, 7) XOR v4 >> 3) +
+		    (verse_rotR32(v1, 19) XOR verse_rotR32(v1, 17) XOR v1 >>
 		     10);
-		t = e + 0xe9b5dba5UL + w3 + (d XOR b & (c XOR d)) +
-		    (verse_rotR32(b, 25) XOR verse_rotR32(b, 11) XOR
-		     verse_rotR32(b, 6));
-		a += t;
-		e = t +
-		    (verse_rotR32(f, 22) XOR verse_rotR32(f, 13) XOR
-		     verse_rotR32(f, 2)) + (f & g | h & (g | f));
-		w3 +=
-		    w12 +
-		    (verse_rotR32(w4, 18) XOR verse_rotR32(w4, 7) XOR w4 >> 3) +
-		    (verse_rotR32(w1, 19) XOR verse_rotR32(w1, 17) XOR w1 >>
+		v25 =
+		    v21 + 0xe9b5dba5UL + v4 + (v20 XOR v18 & (v19 XOR v20)) +
+		    (verse_rotR32(v18, 25) XOR verse_rotR32(v18, 11)
+		     XOR verse_rotR32(v18, 6));
+		v17 += v25;
+		v21 = v25 + (verse_rotR32(v22, 22) XOR verse_rotR32(v22, 13)
+			     XOR verse_rotR32(v22,
+					      2)) +
+		    (v22 & v23 | v24 & (v23 | v22));
+		v4 +=
+		    v13 +
+		    (verse_rotR32(v5, 18) XOR verse_rotR32(v5, 7) XOR v5 >> 3) +
+		    (verse_rotR32(v2, 19) XOR verse_rotR32(v2, 17) XOR v2 >>
 		     10);
-		t = d + 0x3956c25bUL + w4 + (c XOR a & (b XOR c)) +
-		    (verse_rotR32(a, 25) XOR verse_rotR32(a, 11) XOR
-		     verse_rotR32(a, 6));
-		h += t;
-		d = t +
-		    (verse_rotR32(e, 22) XOR verse_rotR32(e, 13) XOR
-		     verse_rotR32(e, 2)) + (e & f | g & (f | e));
-		w4 +=
-		    w13 +
-		    (verse_rotR32(w5, 18) XOR verse_rotR32(w5, 7) XOR w5 >> 3) +
-		    (verse_rotR32(w2, 19) XOR verse_rotR32(w2, 17) XOR w2 >>
+		v25 =
+		    v20 + 0x3956c25bUL + v5 + (v19 XOR v17 & (v18 XOR v19)) +
+		    (verse_rotR32(v17, 25) XOR verse_rotR32(v17, 11)
+		     XOR verse_rotR32(v17, 6));
+		v24 += v25;
+		v20 = v25 + (verse_rotR32(v21, 22) XOR verse_rotR32(v21, 13)
+			     XOR verse_rotR32(v21,
+					      2)) +
+		    (v21 & v22 | v23 & (v22 | v21));
+		v5 +=
+		    v14 +
+		    (verse_rotR32(v6, 18) XOR verse_rotR32(v6, 7) XOR v6 >> 3) +
+		    (verse_rotR32(v3, 19) XOR verse_rotR32(v3, 17) XOR v3 >>
 		     10);
-		t = c + 0x59f111f1UL + w5 + (b XOR h & (a XOR b)) +
-		    (verse_rotR32(h, 25) XOR verse_rotR32(h, 11) XOR
-		     verse_rotR32(h, 6));
-		g += t;
-		c = t +
-		    (verse_rotR32(d, 22) XOR verse_rotR32(d, 13) XOR
-		     verse_rotR32(d, 2)) + (d & e | f & (e | d));
-		w5 +=
-		    w14 +
-		    (verse_rotR32(w6, 18) XOR verse_rotR32(w6, 7) XOR w6 >> 3) +
-		    (verse_rotR32(w3, 19) XOR verse_rotR32(w3, 17) XOR w3 >>
+		v25 =
+		    v19 + 0x59f111f1UL + v6 + (v18 XOR v24 & (v17 XOR v18)) +
+		    (verse_rotR32(v24, 25) XOR verse_rotR32(v24, 11)
+		     XOR verse_rotR32(v24, 6));
+		v23 += v25;
+		v19 = v25 + (verse_rotR32(v20, 22) XOR verse_rotR32(v20, 13)
+			     XOR verse_rotR32(v20,
+					      2)) +
+		    (v20 & v21 | v22 & (v21 | v20));
+		v6 +=
+		    v15 +
+		    (verse_rotR32(v7, 18) XOR verse_rotR32(v7, 7) XOR v7 >> 3) +
+		    (verse_rotR32(v4, 19) XOR verse_rotR32(v4, 17) XOR v4 >>
 		     10);
-		t = b + 0x923f82a4UL + w6 + (a XOR g & (h XOR a)) +
-		    (verse_rotR32(g, 25) XOR verse_rotR32(g, 11) XOR
-		     verse_rotR32(g, 6));
-		f += t;
-		b = t +
-		    (verse_rotR32(c, 22) XOR verse_rotR32(c, 13) XOR
-		     verse_rotR32(c, 2)) + (c & d | e & (d | c));
-		w6 +=
-		    w15 +
-		    (verse_rotR32(w7, 18) XOR verse_rotR32(w7, 7) XOR w7 >> 3) +
-		    (verse_rotR32(w4, 19) XOR verse_rotR32(w4, 17) XOR w4 >>
+		v25 =
+		    v18 + 0x923f82a4UL + v7 + (v17 XOR v23 & (v24 XOR v17)) +
+		    (verse_rotR32(v23, 25) XOR verse_rotR32(v23, 11)
+		     XOR verse_rotR32(v23, 6));
+		v22 += v25;
+		v18 = v25 + (verse_rotR32(v19, 22) XOR verse_rotR32(v19, 13)
+			     XOR verse_rotR32(v19,
+					      2)) +
+		    (v19 & v20 | v21 & (v20 | v19));
+		v7 +=
+		    v16 +
+		    (verse_rotR32(v8, 18) XOR verse_rotR32(v8, 7) XOR v8 >> 3) +
+		    (verse_rotR32(v5, 19) XOR verse_rotR32(v5, 17) XOR v5 >>
 		     10);
-		t = a + 0xab1c5ed5UL + w7 + (h XOR f & (g XOR h)) +
-		    (verse_rotR32(f, 25) XOR verse_rotR32(f, 11) XOR
-		     verse_rotR32(f, 6));
-		e += t;
-		a = t +
-		    (verse_rotR32(b, 22) XOR verse_rotR32(b, 13) XOR
-		     verse_rotR32(b, 2)) + (b & c | d & (c | b));
-		w7 +=
-		    w0 +
-		    (verse_rotR32(w8, 18) XOR verse_rotR32(w8, 7) XOR w8 >> 3) +
-		    (verse_rotR32(w5, 19) XOR verse_rotR32(w5, 17) XOR w5 >>
+		v25 =
+		    v17 + 0xab1c5ed5UL + v8 + (v24 XOR v22 & (v23 XOR v24)) +
+		    (verse_rotR32(v22, 25) XOR verse_rotR32(v22, 11)
+		     XOR verse_rotR32(v22, 6));
+		v21 += v25;
+		v17 = v25 + (verse_rotR32(v18, 22) XOR verse_rotR32(v18, 13)
+			     XOR verse_rotR32(v18,
+					      2)) +
+		    (v18 & v19 | v20 & (v19 | v18));
+		v8 +=
+		    v1 +
+		    (verse_rotR32(v9, 18) XOR verse_rotR32(v9, 7) XOR v9 >> 3) +
+		    (verse_rotR32(v6, 19) XOR verse_rotR32(v6, 17) XOR v6 >>
 		     10);
-		t = h + 0xd807aa98UL + w8 + (g XOR e & (f XOR g)) +
-		    (verse_rotR32(e, 25) XOR verse_rotR32(e, 11) XOR
-		     verse_rotR32(e, 6));
-		d += t;
-		h = t +
-		    (verse_rotR32(a, 22) XOR verse_rotR32(a, 13) XOR
-		     verse_rotR32(a, 2)) + (a & b | c & (b | a));
-		w8 +=
-		    w1 +
-		    (verse_rotR32(w9, 18) XOR verse_rotR32(w9, 7) XOR w9 >> 3) +
-		    (verse_rotR32(w6, 19) XOR verse_rotR32(w6, 17) XOR w6 >>
-		     10);
-		t = g + 0x12835b01UL + w9 + (f XOR d & (e XOR f)) +
-		    (verse_rotR32(d, 25) XOR verse_rotR32(d, 11) XOR
-		     verse_rotR32(d, 6));
-		c += t;
-		g = t +
-		    (verse_rotR32(h, 22) XOR verse_rotR32(h, 13) XOR
-		     verse_rotR32(h, 2)) + (h & a | b & (a | h));
-		w9 +=
-		    w2 +
-		    (verse_rotR32(w10, 18) XOR verse_rotR32(w10, 7) XOR w10 >>
-		     3) + (verse_rotR32(w7, 19) XOR verse_rotR32(w7,
-								 17) XOR w7 >>
+		v25 =
+		    v24 + 0xd807aa98UL + v9 + (v23 XOR v21 & (v22 XOR v23)) +
+		    (verse_rotR32(v21, 25) XOR verse_rotR32(v21, 11)
+		     XOR verse_rotR32(v21, 6));
+		v20 += v25;
+		v24 = v25 + (verse_rotR32(v17, 22) XOR verse_rotR32(v17, 13)
+			     XOR verse_rotR32(v17,
+					      2)) +
+		    (v17 & v18 | v19 & (v18 | v17));
+		v9 +=
+		    v2 +
+		    (verse_rotR32(v10, 18) XOR verse_rotR32(v10, 7) XOR v10 >>
+		     3) + (verse_rotR32(v7, 19) XOR verse_rotR32(v7,
+								 17) XOR v7 >>
 			   10);
-		t = f + 0x243185beUL + w10 + (e XOR c & (d XOR e)) +
-		    (verse_rotR32(c, 25) XOR verse_rotR32(c, 11) XOR
-		     verse_rotR32(c, 6));
-		b += t;
-		f = t +
-		    (verse_rotR32(g, 22) XOR verse_rotR32(g, 13) XOR
-		     verse_rotR32(g, 2)) + (g & h | a & (h | g));
-		w10 +=
-		    w3 +
-		    (verse_rotR32(w11, 18) XOR verse_rotR32(w11, 7) XOR w11 >>
-		     3) + (verse_rotR32(w8, 19) XOR verse_rotR32(w8,
-								 17) XOR w8 >>
+		v25 =
+		    v23 + 0x12835b01UL + v10 + (v22 XOR v20 & (v21 XOR v22)) +
+		    (verse_rotR32(v20, 25) XOR verse_rotR32(v20, 11)
+		     XOR verse_rotR32(v20, 6));
+		v19 += v25;
+		v23 = v25 + (verse_rotR32(v24, 22) XOR verse_rotR32(v24, 13)
+			     XOR verse_rotR32(v24,
+					      2)) +
+		    (v24 & v17 | v18 & (v17 | v24));
+		v10 +=
+		    v3 +
+		    (verse_rotR32(v11, 18) XOR verse_rotR32(v11, 7) XOR v11 >>
+		     3) + (verse_rotR32(v8, 19) XOR verse_rotR32(v8,
+								 17) XOR v8 >>
 			   10);
-		t = e + 0x550c7dc3UL + w11 + (d XOR b & (c XOR d)) +
-		    (verse_rotR32(b, 25) XOR verse_rotR32(b, 11) XOR
-		     verse_rotR32(b, 6));
-		a += t;
-		e = t +
-		    (verse_rotR32(f, 22) XOR verse_rotR32(f, 13) XOR
-		     verse_rotR32(f, 2)) + (f & g | h & (g | f));
-		w11 +=
-		    w4 +
-		    (verse_rotR32(w12, 18) XOR verse_rotR32(w12, 7) XOR w12 >>
-		     3) + (verse_rotR32(w9, 19) XOR verse_rotR32(w9,
-								 17) XOR w9 >>
+		v25 =
+		    v22 + 0x243185beUL + v11 + (v21 XOR v19 & (v20 XOR v21)) +
+		    (verse_rotR32(v19, 25) XOR verse_rotR32(v19, 11)
+		     XOR verse_rotR32(v19, 6));
+		v18 += v25;
+		v22 = v25 + (verse_rotR32(v23, 22) XOR verse_rotR32(v23, 13)
+			     XOR verse_rotR32(v23,
+					      2)) +
+		    (v23 & v24 | v17 & (v24 | v23));
+		v11 +=
+		    v4 +
+		    (verse_rotR32(v12, 18) XOR verse_rotR32(v12, 7) XOR v12 >>
+		     3) + (verse_rotR32(v9, 19) XOR verse_rotR32(v9,
+								 17) XOR v9 >>
 			   10);
-		t = d + 0x72be5d74UL + w12 + (c XOR a & (b XOR c)) +
-		    (verse_rotR32(a, 25) XOR verse_rotR32(a, 11) XOR
-		     verse_rotR32(a, 6));
-		h += t;
-		d = t +
-		    (verse_rotR32(e, 22) XOR verse_rotR32(e, 13) XOR
-		     verse_rotR32(e, 2)) + (e & f | g & (f | e));
-		w12 +=
-		    w5 +
-		    (verse_rotR32(w13, 18) XOR verse_rotR32(w13, 7) XOR w13 >>
-		     3) + (verse_rotR32(w10, 19) XOR verse_rotR32(w10,
-								  17) XOR w10 >>
+		v25 =
+		    v21 + 0x550c7dc3UL + v12 + (v20 XOR v18 & (v19 XOR v20)) +
+		    (verse_rotR32(v18, 25) XOR verse_rotR32(v18, 11)
+		     XOR verse_rotR32(v18, 6));
+		v17 += v25;
+		v21 = v25 + (verse_rotR32(v22, 22) XOR verse_rotR32(v22, 13)
+			     XOR verse_rotR32(v22,
+					      2)) +
+		    (v22 & v23 | v24 & (v23 | v22));
+		v12 +=
+		    v5 +
+		    (verse_rotR32(v13, 18) XOR verse_rotR32(v13, 7) XOR v13 >>
+		     3) + (verse_rotR32(v10, 19) XOR verse_rotR32(v10,
+								  17) XOR v10 >>
 			   10);
-		t = c + 0x80deb1feUL + w13 + (b XOR h & (a XOR b)) +
-		    (verse_rotR32(h, 25) XOR verse_rotR32(h, 11) XOR
-		     verse_rotR32(h, 6));
-		g += t;
-		c = t +
-		    (verse_rotR32(d, 22) XOR verse_rotR32(d, 13) XOR
-		     verse_rotR32(d, 2)) + (d & e | f & (e | d));
-		w13 +=
-		    w6 +
-		    (verse_rotR32(w14, 18) XOR verse_rotR32(w14, 7) XOR w14 >>
-		     3) + (verse_rotR32(w11, 19) XOR verse_rotR32(w11,
-								  17) XOR w11 >>
+		v25 =
+		    v20 + 0x72be5d74UL + v13 + (v19 XOR v17 & (v18 XOR v19)) +
+		    (verse_rotR32(v17, 25) XOR verse_rotR32(v17, 11)
+		     XOR verse_rotR32(v17, 6));
+		v24 += v25;
+		v20 = v25 + (verse_rotR32(v21, 22) XOR verse_rotR32(v21, 13)
+			     XOR verse_rotR32(v21,
+					      2)) +
+		    (v21 & v22 | v23 & (v22 | v21));
+		v13 +=
+		    v6 +
+		    (verse_rotR32(v14, 18) XOR verse_rotR32(v14, 7) XOR v14 >>
+		     3) + (verse_rotR32(v11, 19) XOR verse_rotR32(v11,
+								  17) XOR v11 >>
 			   10);
-		t = b + 0x9bdc06a7UL + w14 + (a XOR g & (h XOR a)) +
-		    (verse_rotR32(g, 25) XOR verse_rotR32(g, 11) XOR
-		     verse_rotR32(g, 6));
-		f += t;
-		b = t +
-		    (verse_rotR32(c, 22) XOR verse_rotR32(c, 13) XOR
-		     verse_rotR32(c, 2)) + (c & d | e & (d | c));
-		w14 +=
-		    w7 +
-		    (verse_rotR32(w15, 18) XOR verse_rotR32(w15, 7) XOR w15 >>
-		     3) + (verse_rotR32(w12, 19) XOR verse_rotR32(w12,
-								  17) XOR w12 >>
+		v25 =
+		    v19 + 0x80deb1feUL + v14 + (v18 XOR v24 & (v17 XOR v18)) +
+		    (verse_rotR32(v24, 25) XOR verse_rotR32(v24, 11)
+		     XOR verse_rotR32(v24, 6));
+		v23 += v25;
+		v19 = v25 + (verse_rotR32(v20, 22) XOR verse_rotR32(v20, 13)
+			     XOR verse_rotR32(v20,
+					      2)) +
+		    (v20 & v21 | v22 & (v21 | v20));
+		v14 +=
+		    v7 +
+		    (verse_rotR32(v15, 18) XOR verse_rotR32(v15, 7) XOR v15 >>
+		     3) + (verse_rotR32(v12, 19) XOR verse_rotR32(v12,
+								  17) XOR v12 >>
 			   10);
-		t = a + 0xc19bf174UL + w15 + (h XOR f & (g XOR h)) +
-		    (verse_rotR32(f, 25) XOR verse_rotR32(f, 11) XOR
-		     verse_rotR32(f, 6));
-		e += t;
-		a = t +
-		    (verse_rotR32(b, 22) XOR verse_rotR32(b, 13) XOR
-		     verse_rotR32(b, 2)) + (b & c | d & (c | b));
-		w15 +=
-		    w8 +
-		    (verse_rotR32(w0, 18) XOR verse_rotR32(w0, 7) XOR w0 >> 3) +
-		    (verse_rotR32(w13, 19) XOR verse_rotR32(w13, 17) XOR w13 >>
-		     10);
-		t = h + 0xe49b69c1UL + w0 + (g XOR e & (f XOR g)) +
-		    (verse_rotR32(e, 25) XOR verse_rotR32(e, 11) XOR
-		     verse_rotR32(e, 6));
-		d += t;
-		h = t +
-		    (verse_rotR32(a, 22) XOR verse_rotR32(a, 13) XOR
-		     verse_rotR32(a, 2)) + (a & b | c & (b | a));
-		w0 +=
-		    w9 +
-		    (verse_rotR32(w1, 18) XOR verse_rotR32(w1, 7) XOR w1 >> 3) +
-		    (verse_rotR32(w14, 19) XOR verse_rotR32(w14, 17) XOR w14 >>
-		     10);
-		t = g + 0xefbe4786UL + w1 + (f XOR d & (e XOR f)) +
-		    (verse_rotR32(d, 25) XOR verse_rotR32(d, 11) XOR
-		     verse_rotR32(d, 6));
-		c += t;
-		g = t +
-		    (verse_rotR32(h, 22) XOR verse_rotR32(h, 13) XOR
-		     verse_rotR32(h, 2)) + (h & a | b & (a | h));
-		w1 +=
-		    w10 +
-		    (verse_rotR32(w2, 18) XOR verse_rotR32(w2, 7) XOR w2 >> 3) +
-		    (verse_rotR32(w15, 19) XOR verse_rotR32(w15, 17) XOR w15 >>
-		     10);
-		t = f + 0x0fc19dc6UL + w2 + (e XOR c & (d XOR e)) +
-		    (verse_rotR32(c, 25) XOR verse_rotR32(c, 11) XOR
-		     verse_rotR32(c, 6));
-		b += t;
-		f = t +
-		    (verse_rotR32(g, 22) XOR verse_rotR32(g, 13) XOR
-		     verse_rotR32(g, 2)) + (g & h | a & (h | g));
-		w2 +=
-		    w11 +
-		    (verse_rotR32(w3, 18) XOR verse_rotR32(w3, 7) XOR w3 >> 3) +
-		    (verse_rotR32(w0, 19) XOR verse_rotR32(w0, 17) XOR w0 >>
-		     10);
-		t = e + 0x240ca1ccUL + w3 + (d XOR b & (c XOR d)) +
-		    (verse_rotR32(b, 25) XOR verse_rotR32(b, 11) XOR
-		     verse_rotR32(b, 6));
-		a += t;
-		e = t +
-		    (verse_rotR32(f, 22) XOR verse_rotR32(f, 13) XOR
-		     verse_rotR32(f, 2)) + (f & g | h & (g | f));
-		w3 +=
-		    w12 +
-		    (verse_rotR32(w4, 18) XOR verse_rotR32(w4, 7) XOR w4 >> 3) +
-		    (verse_rotR32(w1, 19) XOR verse_rotR32(w1, 17) XOR w1 >>
-		     10);
-		t = d + 0x2de92c6fUL + w4 + (c XOR a & (b XOR c)) +
-		    (verse_rotR32(a, 25) XOR verse_rotR32(a, 11) XOR
-		     verse_rotR32(a, 6));
-		h += t;
-		d = t +
-		    (verse_rotR32(e, 22) XOR verse_rotR32(e, 13) XOR
-		     verse_rotR32(e, 2)) + (e & f | g & (f | e));
-		w4 +=
-		    w13 +
-		    (verse_rotR32(w5, 18) XOR verse_rotR32(w5, 7) XOR w5 >> 3) +
-		    (verse_rotR32(w2, 19) XOR verse_rotR32(w2, 17) XOR w2 >>
-		     10);
-		t = c + 0x4a7484aaUL + w5 + (b XOR h & (a XOR b)) +
-		    (verse_rotR32(h, 25) XOR verse_rotR32(h, 11) XOR
-		     verse_rotR32(h, 6));
-		g += t;
-		c = t +
-		    (verse_rotR32(d, 22) XOR verse_rotR32(d, 13) XOR
-		     verse_rotR32(d, 2)) + (d & e | f & (e | d));
-		w5 +=
-		    w14 +
-		    (verse_rotR32(w6, 18) XOR verse_rotR32(w6, 7) XOR w6 >> 3) +
-		    (verse_rotR32(w3, 19) XOR verse_rotR32(w3, 17) XOR w3 >>
-		     10);
-		t = b + 0x5cb0a9dcUL + w6 + (a XOR g & (h XOR a)) +
-		    (verse_rotR32(g, 25) XOR verse_rotR32(g, 11) XOR
-		     verse_rotR32(g, 6));
-		f += t;
-		b = t +
-		    (verse_rotR32(c, 22) XOR verse_rotR32(c, 13) XOR
-		     verse_rotR32(c, 2)) + (c & d | e & (d | c));
-		w6 +=
-		    w15 +
-		    (verse_rotR32(w7, 18) XOR verse_rotR32(w7, 7) XOR w7 >> 3) +
-		    (verse_rotR32(w4, 19) XOR verse_rotR32(w4, 17) XOR w4 >>
-		     10);
-		t = a + 0x76f988daUL + w7 + (h XOR f & (g XOR h)) +
-		    (verse_rotR32(f, 25) XOR verse_rotR32(f, 11) XOR
-		     verse_rotR32(f, 6));
-		e += t;
-		a = t +
-		    (verse_rotR32(b, 22) XOR verse_rotR32(b, 13) XOR
-		     verse_rotR32(b, 2)) + (b & c | d & (c | b));
-		w7 +=
-		    w0 +
-		    (verse_rotR32(w8, 18) XOR verse_rotR32(w8, 7) XOR w8 >> 3) +
-		    (verse_rotR32(w5, 19) XOR verse_rotR32(w5, 17) XOR w5 >>
-		     10);
-		t = h + 0x983e5152UL + w8 + (g XOR e & (f XOR g)) +
-		    (verse_rotR32(e, 25) XOR verse_rotR32(e, 11) XOR
-		     verse_rotR32(e, 6));
-		d += t;
-		h = t +
-		    (verse_rotR32(a, 22) XOR verse_rotR32(a, 13) XOR
-		     verse_rotR32(a, 2)) + (a & b | c & (b | a));
-		w8 +=
-		    w1 +
-		    (verse_rotR32(w9, 18) XOR verse_rotR32(w9, 7) XOR w9 >> 3) +
-		    (verse_rotR32(w6, 19) XOR verse_rotR32(w6, 17) XOR w6 >>
-		     10);
-		t = g + 0xa831c66dUL + w9 + (f XOR d & (e XOR f)) +
-		    (verse_rotR32(d, 25) XOR verse_rotR32(d, 11) XOR
-		     verse_rotR32(d, 6));
-		c += t;
-		g = t +
-		    (verse_rotR32(h, 22) XOR verse_rotR32(h, 13) XOR
-		     verse_rotR32(h, 2)) + (h & a | b & (a | h));
-		w9 +=
-		    w2 +
-		    (verse_rotR32(w10, 18) XOR verse_rotR32(w10, 7) XOR w10 >>
-		     3) + (verse_rotR32(w7, 19) XOR verse_rotR32(w7,
-								 17) XOR w7 >>
+		v25 =
+		    v18 + 0x9bdc06a7UL + v15 + (v17 XOR v23 & (v24 XOR v17)) +
+		    (verse_rotR32(v23, 25) XOR verse_rotR32(v23, 11)
+		     XOR verse_rotR32(v23, 6));
+		v22 += v25;
+		v18 = v25 + (verse_rotR32(v19, 22) XOR verse_rotR32(v19, 13)
+			     XOR verse_rotR32(v19,
+					      2)) +
+		    (v19 & v20 | v21 & (v20 | v19));
+		v15 +=
+		    v8 +
+		    (verse_rotR32(v16, 18) XOR verse_rotR32(v16, 7) XOR v16 >>
+		     3) + (verse_rotR32(v13, 19) XOR verse_rotR32(v13,
+								  17) XOR v13 >>
 			   10);
-		t = f + 0xb00327c8UL + w10 + (e XOR c & (d XOR e)) +
-		    (verse_rotR32(c, 25) XOR verse_rotR32(c, 11) XOR
-		     verse_rotR32(c, 6));
-		b += t;
-		f = t +
-		    (verse_rotR32(g, 22) XOR verse_rotR32(g, 13) XOR
-		     verse_rotR32(g, 2)) + (g & h | a & (h | g));
-		w10 +=
-		    w3 +
-		    (verse_rotR32(w11, 18) XOR verse_rotR32(w11, 7) XOR w11 >>
-		     3) + (verse_rotR32(w8, 19) XOR verse_rotR32(w8,
-								 17) XOR w8 >>
-			   10);
-		t = e + 0xbf597fc7UL + w11 + (d XOR b & (c XOR d)) +
-		    (verse_rotR32(b, 25) XOR verse_rotR32(b, 11) XOR
-		     verse_rotR32(b, 6));
-		a += t;
-		e = t +
-		    (verse_rotR32(f, 22) XOR verse_rotR32(f, 13) XOR
-		     verse_rotR32(f, 2)) + (f & g | h & (g | f));
-		w11 +=
-		    w4 +
-		    (verse_rotR32(w12, 18) XOR verse_rotR32(w12, 7) XOR w12 >>
-		     3) + (verse_rotR32(w9, 19) XOR verse_rotR32(w9,
-								 17) XOR w9 >>
-			   10);
-		t = d + 0xc6e00bf3UL + w12 + (c XOR a & (b XOR c)) +
-		    (verse_rotR32(a, 25) XOR verse_rotR32(a, 11) XOR
-		     verse_rotR32(a, 6));
-		h += t;
-		d = t +
-		    (verse_rotR32(e, 22) XOR verse_rotR32(e, 13) XOR
-		     verse_rotR32(e, 2)) + (e & f | g & (f | e));
-		w12 +=
-		    w5 +
-		    (verse_rotR32(w13, 18) XOR verse_rotR32(w13, 7) XOR w13 >>
-		     3) + (verse_rotR32(w10, 19) XOR verse_rotR32(w10,
-								  17) XOR w10 >>
-			   10);
-		t = c + 0xd5a79147UL + w13 + (b XOR h & (a XOR b)) +
-		    (verse_rotR32(h, 25) XOR verse_rotR32(h, 11) XOR
-		     verse_rotR32(h, 6));
-		g += t;
-		c = t +
-		    (verse_rotR32(d, 22) XOR verse_rotR32(d, 13) XOR
-		     verse_rotR32(d, 2)) + (d & e | f & (e | d));
-		w13 +=
-		    w6 +
-		    (verse_rotR32(w14, 18) XOR verse_rotR32(w14, 7) XOR w14 >>
-		     3) + (verse_rotR32(w11, 19) XOR verse_rotR32(w11,
-								  17) XOR w11 >>
-			   10);
-		t = b + 0x06ca6351UL + w14 + (a XOR g & (h XOR a)) +
-		    (verse_rotR32(g, 25) XOR verse_rotR32(g, 11) XOR
-		     verse_rotR32(g, 6));
-		f += t;
-		b = t +
-		    (verse_rotR32(c, 22) XOR verse_rotR32(c, 13) XOR
-		     verse_rotR32(c, 2)) + (c & d | e & (d | c));
-		w14 +=
-		    w7 +
-		    (verse_rotR32(w15, 18) XOR verse_rotR32(w15, 7) XOR w15 >>
-		     3) + (verse_rotR32(w12, 19) XOR verse_rotR32(w12,
-								  17) XOR w12 >>
-			   10);
-		t = a + 0x14292967UL + w15 + (h XOR f & (g XOR h)) +
-		    (verse_rotR32(f, 25) XOR verse_rotR32(f, 11) XOR
-		     verse_rotR32(f, 6));
-		e += t;
-		a = t +
-		    (verse_rotR32(b, 22) XOR verse_rotR32(b, 13) XOR
-		     verse_rotR32(b, 2)) + (b & c | d & (c | b));
-		w15 +=
-		    w8 +
-		    (verse_rotR32(w0, 18) XOR verse_rotR32(w0, 7) XOR w0 >> 3) +
-		    (verse_rotR32(w13, 19) XOR verse_rotR32(w13, 17) XOR w13 >>
+		v25 =
+		    v17 + 0xc19bf174UL + v16 + (v24 XOR v22 & (v23 XOR v24)) +
+		    (verse_rotR32(v22, 25) XOR verse_rotR32(v22, 11)
+		     XOR verse_rotR32(v22, 6));
+		v21 += v25;
+		v17 = v25 + (verse_rotR32(v18, 22) XOR verse_rotR32(v18, 13)
+			     XOR verse_rotR32(v18,
+					      2)) +
+		    (v18 & v19 | v20 & (v19 | v18));
+		v16 +=
+		    v9 +
+		    (verse_rotR32(v1, 18) XOR verse_rotR32(v1, 7) XOR v1 >> 3) +
+		    (verse_rotR32(v14, 19) XOR verse_rotR32(v14, 17) XOR v14 >>
 		     10);
-		t = h + 0x27b70a85UL + w0 + (g XOR e & (f XOR g)) +
-		    (verse_rotR32(e, 25) XOR verse_rotR32(e, 11) XOR
-		     verse_rotR32(e, 6));
-		d += t;
-		h = t +
-		    (verse_rotR32(a, 22) XOR verse_rotR32(a, 13) XOR
-		     verse_rotR32(a, 2)) + (a & b | c & (b | a));
-		w0 +=
-		    w9 +
-		    (verse_rotR32(w1, 18) XOR verse_rotR32(w1, 7) XOR w1 >> 3) +
-		    (verse_rotR32(w14, 19) XOR verse_rotR32(w14, 17) XOR w14 >>
+		v25 =
+		    v24 + 0xe49b69c1UL + v1 + (v23 XOR v21 & (v22 XOR v23)) +
+		    (verse_rotR32(v21, 25) XOR verse_rotR32(v21, 11)
+		     XOR verse_rotR32(v21, 6));
+		v20 += v25;
+		v24 = v25 + (verse_rotR32(v17, 22) XOR verse_rotR32(v17, 13)
+			     XOR verse_rotR32(v17,
+					      2)) +
+		    (v17 & v18 | v19 & (v18 | v17));
+		v1 +=
+		    v10 +
+		    (verse_rotR32(v2, 18) XOR verse_rotR32(v2, 7) XOR v2 >> 3) +
+		    (verse_rotR32(v15, 19) XOR verse_rotR32(v15, 17) XOR v15 >>
 		     10);
-		t = g + 0x2e1b2138UL + w1 + (f XOR d & (e XOR f)) +
-		    (verse_rotR32(d, 25) XOR verse_rotR32(d, 11) XOR
-		     verse_rotR32(d, 6));
-		c += t;
-		g = t +
-		    (verse_rotR32(h, 22) XOR verse_rotR32(h, 13) XOR
-		     verse_rotR32(h, 2)) + (h & a | b & (a | h));
-		w1 +=
-		    w10 +
-		    (verse_rotR32(w2, 18) XOR verse_rotR32(w2, 7) XOR w2 >> 3) +
-		    (verse_rotR32(w15, 19) XOR verse_rotR32(w15, 17) XOR w15 >>
+		v25 =
+		    v23 + 0xefbe4786UL + v2 + (v22 XOR v20 & (v21 XOR v22)) +
+		    (verse_rotR32(v20, 25) XOR verse_rotR32(v20, 11)
+		     XOR verse_rotR32(v20, 6));
+		v19 += v25;
+		v23 = v25 + (verse_rotR32(v24, 22) XOR verse_rotR32(v24, 13)
+			     XOR verse_rotR32(v24,
+					      2)) +
+		    (v24 & v17 | v18 & (v17 | v24));
+		v2 +=
+		    v11 +
+		    (verse_rotR32(v3, 18) XOR verse_rotR32(v3, 7) XOR v3 >> 3) +
+		    (verse_rotR32(v16, 19) XOR verse_rotR32(v16, 17) XOR v16 >>
 		     10);
-		t = f + 0x4d2c6dfcUL + w2 + (e XOR c & (d XOR e)) +
-		    (verse_rotR32(c, 25) XOR verse_rotR32(c, 11) XOR
-		     verse_rotR32(c, 6));
-		b += t;
-		f = t +
-		    (verse_rotR32(g, 22) XOR verse_rotR32(g, 13) XOR
-		     verse_rotR32(g, 2)) + (g & h | a & (h | g));
-		w2 +=
-		    w11 +
-		    (verse_rotR32(w3, 18) XOR verse_rotR32(w3, 7) XOR w3 >> 3) +
-		    (verse_rotR32(w0, 19) XOR verse_rotR32(w0, 17) XOR w0 >>
+		v25 =
+		    v22 + 0x0fc19dc6UL + v3 + (v21 XOR v19 & (v20 XOR v21)) +
+		    (verse_rotR32(v19, 25) XOR verse_rotR32(v19, 11)
+		     XOR verse_rotR32(v19, 6));
+		v18 += v25;
+		v22 = v25 + (verse_rotR32(v23, 22) XOR verse_rotR32(v23, 13)
+			     XOR verse_rotR32(v23,
+					      2)) +
+		    (v23 & v24 | v17 & (v24 | v23));
+		v3 +=
+		    v12 +
+		    (verse_rotR32(v4, 18) XOR verse_rotR32(v4, 7) XOR v4 >> 3) +
+		    (verse_rotR32(v1, 19) XOR verse_rotR32(v1, 17) XOR v1 >>
 		     10);
-		t = e + 0x53380d13UL + w3 + (d XOR b & (c XOR d)) +
-		    (verse_rotR32(b, 25) XOR verse_rotR32(b, 11) XOR
-		     verse_rotR32(b, 6));
-		a += t;
-		e = t +
-		    (verse_rotR32(f, 22) XOR verse_rotR32(f, 13) XOR
-		     verse_rotR32(f, 2)) + (f & g | h & (g | f));
-		w3 +=
-		    w12 +
-		    (verse_rotR32(w4, 18) XOR verse_rotR32(w4, 7) XOR w4 >> 3) +
-		    (verse_rotR32(w1, 19) XOR verse_rotR32(w1, 17) XOR w1 >>
+		v25 =
+		    v21 + 0x240ca1ccUL + v4 + (v20 XOR v18 & (v19 XOR v20)) +
+		    (verse_rotR32(v18, 25) XOR verse_rotR32(v18, 11)
+		     XOR verse_rotR32(v18, 6));
+		v17 += v25;
+		v21 = v25 + (verse_rotR32(v22, 22) XOR verse_rotR32(v22, 13)
+			     XOR verse_rotR32(v22,
+					      2)) +
+		    (v22 & v23 | v24 & (v23 | v22));
+		v4 +=
+		    v13 +
+		    (verse_rotR32(v5, 18) XOR verse_rotR32(v5, 7) XOR v5 >> 3) +
+		    (verse_rotR32(v2, 19) XOR verse_rotR32(v2, 17) XOR v2 >>
 		     10);
-		t = d + 0x650a7354UL + w4 + (c XOR a & (b XOR c)) +
-		    (verse_rotR32(a, 25) XOR verse_rotR32(a, 11) XOR
-		     verse_rotR32(a, 6));
-		h += t;
-		d = t +
-		    (verse_rotR32(e, 22) XOR verse_rotR32(e, 13) XOR
-		     verse_rotR32(e, 2)) + (e & f | g & (f | e));
-		w4 +=
-		    w13 +
-		    (verse_rotR32(w5, 18) XOR verse_rotR32(w5, 7) XOR w5 >> 3) +
-		    (verse_rotR32(w2, 19) XOR verse_rotR32(w2, 17) XOR w2 >>
+		v25 =
+		    v20 + 0x2de92c6fUL + v5 + (v19 XOR v17 & (v18 XOR v19)) +
+		    (verse_rotR32(v17, 25) XOR verse_rotR32(v17, 11)
+		     XOR verse_rotR32(v17, 6));
+		v24 += v25;
+		v20 = v25 + (verse_rotR32(v21, 22) XOR verse_rotR32(v21, 13)
+			     XOR verse_rotR32(v21,
+					      2)) +
+		    (v21 & v22 | v23 & (v22 | v21));
+		v5 +=
+		    v14 +
+		    (verse_rotR32(v6, 18) XOR verse_rotR32(v6, 7) XOR v6 >> 3) +
+		    (verse_rotR32(v3, 19) XOR verse_rotR32(v3, 17) XOR v3 >>
 		     10);
-		t = c + 0x766a0abbUL + w5 + (b XOR h & (a XOR b)) +
-		    (verse_rotR32(h, 25) XOR verse_rotR32(h, 11) XOR
-		     verse_rotR32(h, 6));
-		g += t;
-		c = t +
-		    (verse_rotR32(d, 22) XOR verse_rotR32(d, 13) XOR
-		     verse_rotR32(d, 2)) + (d & e | f & (e | d));
-		w5 +=
-		    w14 +
-		    (verse_rotR32(w6, 18) XOR verse_rotR32(w6, 7) XOR w6 >> 3) +
-		    (verse_rotR32(w3, 19) XOR verse_rotR32(w3, 17) XOR w3 >>
+		v25 =
+		    v19 + 0x4a7484aaUL + v6 + (v18 XOR v24 & (v17 XOR v18)) +
+		    (verse_rotR32(v24, 25) XOR verse_rotR32(v24, 11)
+		     XOR verse_rotR32(v24, 6));
+		v23 += v25;
+		v19 = v25 + (verse_rotR32(v20, 22) XOR verse_rotR32(v20, 13)
+			     XOR verse_rotR32(v20,
+					      2)) +
+		    (v20 & v21 | v22 & (v21 | v20));
+		v6 +=
+		    v15 +
+		    (verse_rotR32(v7, 18) XOR verse_rotR32(v7, 7) XOR v7 >> 3) +
+		    (verse_rotR32(v4, 19) XOR verse_rotR32(v4, 17) XOR v4 >>
 		     10);
-		t = b + 0x81c2c92eUL + w6 + (a XOR g & (h XOR a)) +
-		    (verse_rotR32(g, 25) XOR verse_rotR32(g, 11) XOR
-		     verse_rotR32(g, 6));
-		f += t;
-		b = t +
-		    (verse_rotR32(c, 22) XOR verse_rotR32(c, 13) XOR
-		     verse_rotR32(c, 2)) + (c & d | e & (d | c));
-		w6 +=
-		    w15 +
-		    (verse_rotR32(w7, 18) XOR verse_rotR32(w7, 7) XOR w7 >> 3) +
-		    (verse_rotR32(w4, 19) XOR verse_rotR32(w4, 17) XOR w4 >>
+		v25 =
+		    v18 + 0x5cb0a9dcUL + v7 + (v17 XOR v23 & (v24 XOR v17)) +
+		    (verse_rotR32(v23, 25) XOR verse_rotR32(v23, 11)
+		     XOR verse_rotR32(v23, 6));
+		v22 += v25;
+		v18 = v25 + (verse_rotR32(v19, 22) XOR verse_rotR32(v19, 13)
+			     XOR verse_rotR32(v19,
+					      2)) +
+		    (v19 & v20 | v21 & (v20 | v19));
+		v7 +=
+		    v16 +
+		    (verse_rotR32(v8, 18) XOR verse_rotR32(v8, 7) XOR v8 >> 3) +
+		    (verse_rotR32(v5, 19) XOR verse_rotR32(v5, 17) XOR v5 >>
 		     10);
-		t = a + 0x92722c85UL + w7 + (h XOR f & (g XOR h)) +
-		    (verse_rotR32(f, 25) XOR verse_rotR32(f, 11) XOR
-		     verse_rotR32(f, 6));
-		e += t;
-		a = t +
-		    (verse_rotR32(b, 22) XOR verse_rotR32(b, 13) XOR
-		     verse_rotR32(b, 2)) + (b & c | d & (c | b));
-		w7 +=
-		    w0 +
-		    (verse_rotR32(w8, 18) XOR verse_rotR32(w8, 7) XOR w8 >> 3) +
-		    (verse_rotR32(w5, 19) XOR verse_rotR32(w5, 17) XOR w5 >>
+		v25 =
+		    v17 + 0x76f988daUL + v8 + (v24 XOR v22 & (v23 XOR v24)) +
+		    (verse_rotR32(v22, 25) XOR verse_rotR32(v22, 11)
+		     XOR verse_rotR32(v22, 6));
+		v21 += v25;
+		v17 = v25 + (verse_rotR32(v18, 22) XOR verse_rotR32(v18, 13)
+			     XOR verse_rotR32(v18,
+					      2)) +
+		    (v18 & v19 | v20 & (v19 | v18));
+		v8 +=
+		    v1 +
+		    (verse_rotR32(v9, 18) XOR verse_rotR32(v9, 7) XOR v9 >> 3) +
+		    (verse_rotR32(v6, 19) XOR verse_rotR32(v6, 17) XOR v6 >>
 		     10);
-		t = h + 0xa2bfe8a1UL + w8 + (g XOR e & (f XOR g)) +
-		    (verse_rotR32(e, 25) XOR verse_rotR32(e, 11) XOR
-		     verse_rotR32(e, 6));
-		d += t;
-		h = t +
-		    (verse_rotR32(a, 22) XOR verse_rotR32(a, 13) XOR
-		     verse_rotR32(a, 2)) + (a & b | c & (b | a));
-		w8 +=
-		    w1 +
-		    (verse_rotR32(w9, 18) XOR verse_rotR32(w9, 7) XOR w9 >> 3) +
-		    (verse_rotR32(w6, 19) XOR verse_rotR32(w6, 17) XOR w6 >>
-		     10);
-		t = g + 0xa81a664bUL + w9 + (f XOR d & (e XOR f)) +
-		    (verse_rotR32(d, 25) XOR verse_rotR32(d, 11) XOR
-		     verse_rotR32(d, 6));
-		c += t;
-		g = t +
-		    (verse_rotR32(h, 22) XOR verse_rotR32(h, 13) XOR
-		     verse_rotR32(h, 2)) + (h & a | b & (a | h));
-		w9 +=
-		    w2 +
-		    (verse_rotR32(w10, 18) XOR verse_rotR32(w10, 7) XOR w10 >>
-		     3) + (verse_rotR32(w7, 19) XOR verse_rotR32(w7,
-								 17) XOR w7 >>
+		v25 =
+		    v24 + 0x983e5152UL + v9 + (v23 XOR v21 & (v22 XOR v23)) +
+		    (verse_rotR32(v21, 25) XOR verse_rotR32(v21, 11)
+		     XOR verse_rotR32(v21, 6));
+		v20 += v25;
+		v24 = v25 + (verse_rotR32(v17, 22) XOR verse_rotR32(v17, 13)
+			     XOR verse_rotR32(v17,
+					      2)) +
+		    (v17 & v18 | v19 & (v18 | v17));
+		v9 +=
+		    v2 +
+		    (verse_rotR32(v10, 18) XOR verse_rotR32(v10, 7) XOR v10 >>
+		     3) + (verse_rotR32(v7, 19) XOR verse_rotR32(v7,
+								 17) XOR v7 >>
 			   10);
-		t = f + 0xc24b8b70UL + w10 + (e XOR c & (d XOR e)) +
-		    (verse_rotR32(c, 25) XOR verse_rotR32(c, 11) XOR
-		     verse_rotR32(c, 6));
-		b += t;
-		f = t +
-		    (verse_rotR32(g, 22) XOR verse_rotR32(g, 13) XOR
-		     verse_rotR32(g, 2)) + (g & h | a & (h | g));
-		w10 +=
-		    w3 +
-		    (verse_rotR32(w11, 18) XOR verse_rotR32(w11, 7) XOR w11 >>
-		     3) + (verse_rotR32(w8, 19) XOR verse_rotR32(w8,
-								 17) XOR w8 >>
+		v25 =
+		    v23 + 0xa831c66dUL + v10 + (v22 XOR v20 & (v21 XOR v22)) +
+		    (verse_rotR32(v20, 25) XOR verse_rotR32(v20, 11)
+		     XOR verse_rotR32(v20, 6));
+		v19 += v25;
+		v23 = v25 + (verse_rotR32(v24, 22) XOR verse_rotR32(v24, 13)
+			     XOR verse_rotR32(v24,
+					      2)) +
+		    (v24 & v17 | v18 & (v17 | v24));
+		v10 +=
+		    v3 +
+		    (verse_rotR32(v11, 18) XOR verse_rotR32(v11, 7) XOR v11 >>
+		     3) + (verse_rotR32(v8, 19) XOR verse_rotR32(v8,
+								 17) XOR v8 >>
 			   10);
-		t = e + 0xc76c51a3UL + w11 + (d XOR b & (c XOR d)) +
-		    (verse_rotR32(b, 25) XOR verse_rotR32(b, 11) XOR
-		     verse_rotR32(b, 6));
-		a += t;
-		e = t +
-		    (verse_rotR32(f, 22) XOR verse_rotR32(f, 13) XOR
-		     verse_rotR32(f, 2)) + (f & g | h & (g | f));
-		w11 +=
-		    w4 +
-		    (verse_rotR32(w12, 18) XOR verse_rotR32(w12, 7) XOR w12 >>
-		     3) + (verse_rotR32(w9, 19) XOR verse_rotR32(w9,
-								 17) XOR w9 >>
+		v25 =
+		    v22 + 0xb00327c8UL + v11 + (v21 XOR v19 & (v20 XOR v21)) +
+		    (verse_rotR32(v19, 25) XOR verse_rotR32(v19, 11)
+		     XOR verse_rotR32(v19, 6));
+		v18 += v25;
+		v22 = v25 + (verse_rotR32(v23, 22) XOR verse_rotR32(v23, 13)
+			     XOR verse_rotR32(v23,
+					      2)) +
+		    (v23 & v24 | v17 & (v24 | v23));
+		v11 +=
+		    v4 +
+		    (verse_rotR32(v12, 18) XOR verse_rotR32(v12, 7) XOR v12 >>
+		     3) + (verse_rotR32(v9, 19) XOR verse_rotR32(v9,
+								 17) XOR v9 >>
 			   10);
-		t = d + 0xd192e819UL + w12 + (c XOR a & (b XOR c)) +
-		    (verse_rotR32(a, 25) XOR verse_rotR32(a, 11) XOR
-		     verse_rotR32(a, 6));
-		h += t;
-		d = t +
-		    (verse_rotR32(e, 22) XOR verse_rotR32(e, 13) XOR
-		     verse_rotR32(e, 2)) + (e & f | g & (f | e));
-		w12 +=
-		    w5 +
-		    (verse_rotR32(w13, 18) XOR verse_rotR32(w13, 7) XOR w13 >>
-		     3) + (verse_rotR32(w10, 19) XOR verse_rotR32(w10,
-								  17) XOR w10 >>
+		v25 =
+		    v21 + 0xbf597fc7UL + v12 + (v20 XOR v18 & (v19 XOR v20)) +
+		    (verse_rotR32(v18, 25) XOR verse_rotR32(v18, 11)
+		     XOR verse_rotR32(v18, 6));
+		v17 += v25;
+		v21 = v25 + (verse_rotR32(v22, 22) XOR verse_rotR32(v22, 13)
+			     XOR verse_rotR32(v22,
+					      2)) +
+		    (v22 & v23 | v24 & (v23 | v22));
+		v12 +=
+		    v5 +
+		    (verse_rotR32(v13, 18) XOR verse_rotR32(v13, 7) XOR v13 >>
+		     3) + (verse_rotR32(v10, 19) XOR verse_rotR32(v10,
+								  17) XOR v10 >>
 			   10);
-		t = c + 0xd6990624UL + w13 + (b XOR h & (a XOR b)) +
-		    (verse_rotR32(h, 25) XOR verse_rotR32(h, 11) XOR
-		     verse_rotR32(h, 6));
-		g += t;
-		c = t +
-		    (verse_rotR32(d, 22) XOR verse_rotR32(d, 13) XOR
-		     verse_rotR32(d, 2)) + (d & e | f & (e | d));
-		w13 +=
-		    w6 +
-		    (verse_rotR32(w14, 18) XOR verse_rotR32(w14, 7) XOR w14 >>
-		     3) + (verse_rotR32(w11, 19) XOR verse_rotR32(w11,
-								  17) XOR w11 >>
+		v25 =
+		    v20 + 0xc6e00bf3UL + v13 + (v19 XOR v17 & (v18 XOR v19)) +
+		    (verse_rotR32(v17, 25) XOR verse_rotR32(v17, 11)
+		     XOR verse_rotR32(v17, 6));
+		v24 += v25;
+		v20 = v25 + (verse_rotR32(v21, 22) XOR verse_rotR32(v21, 13)
+			     XOR verse_rotR32(v21,
+					      2)) +
+		    (v21 & v22 | v23 & (v22 | v21));
+		v13 +=
+		    v6 +
+		    (verse_rotR32(v14, 18) XOR verse_rotR32(v14, 7) XOR v14 >>
+		     3) + (verse_rotR32(v11, 19) XOR verse_rotR32(v11,
+								  17) XOR v11 >>
 			   10);
-		t = b + 0xf40e3585UL + w14 + (a XOR g & (h XOR a)) +
-		    (verse_rotR32(g, 25) XOR verse_rotR32(g, 11) XOR
-		     verse_rotR32(g, 6));
-		f += t;
-		b = t +
-		    (verse_rotR32(c, 22) XOR verse_rotR32(c, 13) XOR
-		     verse_rotR32(c, 2)) + (c & d | e & (d | c));
-		w14 +=
-		    w7 +
-		    (verse_rotR32(w15, 18) XOR verse_rotR32(w15, 7) XOR w15 >>
-		     3) + (verse_rotR32(w12, 19) XOR verse_rotR32(w12,
-								  17) XOR w12 >>
+		v25 =
+		    v19 + 0xd5a79147UL + v14 + (v18 XOR v24 & (v17 XOR v18)) +
+		    (verse_rotR32(v24, 25) XOR verse_rotR32(v24, 11)
+		     XOR verse_rotR32(v24, 6));
+		v23 += v25;
+		v19 = v25 + (verse_rotR32(v20, 22) XOR verse_rotR32(v20, 13)
+			     XOR verse_rotR32(v20,
+					      2)) +
+		    (v20 & v21 | v22 & (v21 | v20));
+		v14 +=
+		    v7 +
+		    (verse_rotR32(v15, 18) XOR verse_rotR32(v15, 7) XOR v15 >>
+		     3) + (verse_rotR32(v12, 19) XOR verse_rotR32(v12,
+								  17) XOR v12 >>
 			   10);
-		t = a + 0x106aa070UL + w15 + (h XOR f & (g XOR h)) +
-		    (verse_rotR32(f, 25) XOR verse_rotR32(f, 11) XOR
-		     verse_rotR32(f, 6));
-		e += t;
-		a = t +
-		    (verse_rotR32(b, 22) XOR verse_rotR32(b, 13) XOR
-		     verse_rotR32(b, 2)) + (b & c | d & (c | b));
-		w15 +=
-		    w8 +
-		    (verse_rotR32(w0, 18) XOR verse_rotR32(w0, 7) XOR w0 >> 3) +
-		    (verse_rotR32(w13, 19) XOR verse_rotR32(w13, 17) XOR w13 >>
+		v25 =
+		    v18 + 0x06ca6351UL + v15 + (v17 XOR v23 & (v24 XOR v17)) +
+		    (verse_rotR32(v23, 25) XOR verse_rotR32(v23, 11)
+		     XOR verse_rotR32(v23, 6));
+		v22 += v25;
+		v18 = v25 + (verse_rotR32(v19, 22) XOR verse_rotR32(v19, 13)
+			     XOR verse_rotR32(v19,
+					      2)) +
+		    (v19 & v20 | v21 & (v20 | v19));
+		v15 +=
+		    v8 +
+		    (verse_rotR32(v16, 18) XOR verse_rotR32(v16, 7) XOR v16 >>
+		     3) + (verse_rotR32(v13, 19) XOR verse_rotR32(v13,
+								  17) XOR v13 >>
+			   10);
+		v25 =
+		    v17 + 0x14292967UL + v16 + (v24 XOR v22 & (v23 XOR v24)) +
+		    (verse_rotR32(v22, 25) XOR verse_rotR32(v22, 11)
+		     XOR verse_rotR32(v22, 6));
+		v21 += v25;
+		v17 = v25 + (verse_rotR32(v18, 22) XOR verse_rotR32(v18, 13)
+			     XOR verse_rotR32(v18,
+					      2)) +
+		    (v18 & v19 | v20 & (v19 | v18));
+		v16 +=
+		    v9 +
+		    (verse_rotR32(v1, 18) XOR verse_rotR32(v1, 7) XOR v1 >> 3) +
+		    (verse_rotR32(v14, 19) XOR verse_rotR32(v14, 17) XOR v14 >>
 		     10);
-		t = h + 0x19a4c116UL + w0 + (g XOR e & (f XOR g)) +
-		    (verse_rotR32(e, 25) XOR verse_rotR32(e, 11) XOR
-		     verse_rotR32(e, 6));
-		d += t;
-		h = t +
-		    (verse_rotR32(a, 22) XOR verse_rotR32(a, 13) XOR
-		     verse_rotR32(a, 2)) + (a & b | c & (b | a));
-		t = g + 0x1e376c08UL + w1 + (f XOR d & (e XOR f)) +
-		    (verse_rotR32(d, 25) XOR verse_rotR32(d, 11) XOR
-		     verse_rotR32(d, 6));
-		c += t;
-		g = t +
-		    (verse_rotR32(h, 22) XOR verse_rotR32(h, 13) XOR
-		     verse_rotR32(h, 2)) + (h & a | b & (a | h));
-		t = f + 0x2748774cUL + w2 + (e XOR c & (d XOR e)) +
-		    (verse_rotR32(c, 25) XOR verse_rotR32(c, 11) XOR
-		     verse_rotR32(c, 6));
-		b += t;
-		f = t +
-		    (verse_rotR32(g, 22) XOR verse_rotR32(g, 13) XOR
-		     verse_rotR32(g, 2)) + (g & h | a & (h | g));
-		t = e + 0x34b0bcb5UL + w3 + (d XOR b & (c XOR d)) +
-		    (verse_rotR32(b, 25) XOR verse_rotR32(b, 11) XOR
-		     verse_rotR32(b, 6));
-		a += t;
-		e = t +
-		    (verse_rotR32(f, 22) XOR verse_rotR32(f, 13) XOR
-		     verse_rotR32(f, 2)) + (f & g | h & (g | f));
-		t = d + 0x391c0cb3UL + w4 + (c XOR a & (b XOR c)) +
-		    (verse_rotR32(a, 25) XOR verse_rotR32(a, 11) XOR
-		     verse_rotR32(a, 6));
-		h += t;
-		d = t +
-		    (verse_rotR32(e, 22) XOR verse_rotR32(e, 13) XOR
-		     verse_rotR32(e, 2)) + (e & f | g & (f | e));
-		t = c + 0x4ed8aa4aUL + w5 + (b XOR h & (a XOR b)) +
-		    (verse_rotR32(h, 25) XOR verse_rotR32(h, 11) XOR
-		     verse_rotR32(h, 6));
-		g += t;
-		c = t +
-		    (verse_rotR32(d, 22) XOR verse_rotR32(d, 13) XOR
-		     verse_rotR32(d, 2)) + (d & e | f & (e | d));
-		t = b + 0x5b9cca4fUL + w6 + (a XOR g & (h XOR a)) +
-		    (verse_rotR32(g, 25) XOR verse_rotR32(g, 11) XOR
-		     verse_rotR32(g, 6));
-		f += t;
-		b = t +
-		    (verse_rotR32(c, 22) XOR verse_rotR32(c, 13) XOR
-		     verse_rotR32(c, 2)) + (c & d | e & (d | c));
-		t = a + 0x682e6ff3UL + w7 + (h XOR f & (g XOR h)) +
-		    (verse_rotR32(f, 25) XOR verse_rotR32(f, 11) XOR
-		     verse_rotR32(f, 6));
-		e += t;
-		a = t +
-		    (verse_rotR32(b, 22) XOR verse_rotR32(b, 13) XOR
-		     verse_rotR32(b, 2)) + (b & c | d & (c | b));
-		t = h + 0x748f82eeUL + w8 + (g XOR e & (f XOR g)) +
-		    (verse_rotR32(e, 25) XOR verse_rotR32(e, 11) XOR
-		     verse_rotR32(e, 6));
-		d += t;
-		h = t +
-		    (verse_rotR32(a, 22) XOR verse_rotR32(a, 13) XOR
-		     verse_rotR32(a, 2)) + (a & b | c & (b | a));
-		t = g + 0x78a5636fUL + w9 + (f XOR d & (e XOR f)) +
-		    (verse_rotR32(d, 25) XOR verse_rotR32(d, 11) XOR
-		     verse_rotR32(d, 6));
-		c += t;
-		g = t +
-		    (verse_rotR32(h, 22) XOR verse_rotR32(h, 13) XOR
-		     verse_rotR32(h, 2)) + (h & a | b & (a | h));
-		t = f + 0x84c87814UL + w10 + (e XOR c & (d XOR e)) +
-		    (verse_rotR32(c, 25) XOR verse_rotR32(c, 11) XOR
-		     verse_rotR32(c, 6));
-		b += t;
-		f = t +
-		    (verse_rotR32(g, 22) XOR verse_rotR32(g, 13) XOR
-		     verse_rotR32(g, 2)) + (g & h | a & (h | g));
-		t = e + 0x8cc70208UL + w11 + (d XOR b & (c XOR d)) +
-		    (verse_rotR32(b, 25) XOR verse_rotR32(b, 11) XOR
-		     verse_rotR32(b, 6));
-		a += t;
-		e = t +
-		    (verse_rotR32(f, 22) XOR verse_rotR32(f, 13) XOR
-		     verse_rotR32(f, 2)) + (f & g | h & (g | f));
-		t = d + 0x90befffaUL + w12 + (c XOR a & (b XOR c)) +
-		    (verse_rotR32(a, 25) XOR verse_rotR32(a, 11) XOR
-		     verse_rotR32(a, 6));
-		h += t;
-		d = t +
-		    (verse_rotR32(e, 22) XOR verse_rotR32(e, 13) XOR
-		     verse_rotR32(e, 2)) + (e & f | g & (f | e));
-		t = c + 0xa4506cebUL + w13 + (b XOR h & (a XOR b)) +
-		    (verse_rotR32(h, 25) XOR verse_rotR32(h, 11) XOR
-		     verse_rotR32(h, 6));
-		g += t;
-		c = t +
-		    (verse_rotR32(d, 22) XOR verse_rotR32(d, 13) XOR
-		     verse_rotR32(d, 2)) + (d & e | f & (e | d));
-		t = b + 0xbef9a3f7UL + w14 + (a XOR g & (h XOR a)) +
-		    (verse_rotR32(g, 25) XOR verse_rotR32(g, 11) XOR
-		     verse_rotR32(g, 6));
-		f += t;
-		b = t +
-		    (verse_rotR32(c, 22) XOR verse_rotR32(c, 13) XOR
-		     verse_rotR32(c, 2)) + (c & d | e & (d | c));
-		t = a + 0xc67178f2UL + w15 + (h XOR f & (g XOR h)) +
-		    (verse_rotR32(f, 25) XOR verse_rotR32(f, 11) XOR
-		     verse_rotR32(f, 6));
-		e += t;
-		a = t +
-		    (verse_rotR32(b, 22) XOR verse_rotR32(b, 13) XOR
-		     verse_rotR32(b, 2)) + (b & c | d & (c | b));
-		a += hash[0];
-		b += hash[1];
-		c += hash[2];
-		d += hash[3];
-		e += hash[4];
-		f += hash[5];
-		g += hash[6];
-		h += hash[7];
-		hash[0] = a;
-		hash[1] = b;
-		hash[2] = c;
-		hash[3] = d;
-		hash[4] = e;
-		hash[5] = f;
-		hash[6] = g;
-		hash[7] = h;
-		++blockPtr;
-		--nBlocks;
+		v25 =
+		    v24 + 0x27b70a85UL + v1 + (v23 XOR v21 & (v22 XOR v23)) +
+		    (verse_rotR32(v21, 25) XOR verse_rotR32(v21, 11)
+		     XOR verse_rotR32(v21, 6));
+		v20 += v25;
+		v24 = v25 + (verse_rotR32(v17, 22) XOR verse_rotR32(v17, 13)
+			     XOR verse_rotR32(v17,
+					      2)) +
+		    (v17 & v18 | v19 & (v18 | v17));
+		v1 +=
+		    v10 +
+		    (verse_rotR32(v2, 18) XOR verse_rotR32(v2, 7) XOR v2 >> 3) +
+		    (verse_rotR32(v15, 19) XOR verse_rotR32(v15, 17) XOR v15 >>
+		     10);
+		v25 =
+		    v23 + 0x2e1b2138UL + v2 + (v22 XOR v20 & (v21 XOR v22)) +
+		    (verse_rotR32(v20, 25) XOR verse_rotR32(v20, 11)
+		     XOR verse_rotR32(v20, 6));
+		v19 += v25;
+		v23 = v25 + (verse_rotR32(v24, 22) XOR verse_rotR32(v24, 13)
+			     XOR verse_rotR32(v24,
+					      2)) +
+		    (v24 & v17 | v18 & (v17 | v24));
+		v2 +=
+		    v11 +
+		    (verse_rotR32(v3, 18) XOR verse_rotR32(v3, 7) XOR v3 >> 3) +
+		    (verse_rotR32(v16, 19) XOR verse_rotR32(v16, 17) XOR v16 >>
+		     10);
+		v25 =
+		    v22 + 0x4d2c6dfcUL + v3 + (v21 XOR v19 & (v20 XOR v21)) +
+		    (verse_rotR32(v19, 25) XOR verse_rotR32(v19, 11)
+		     XOR verse_rotR32(v19, 6));
+		v18 += v25;
+		v22 = v25 + (verse_rotR32(v23, 22) XOR verse_rotR32(v23, 13)
+			     XOR verse_rotR32(v23,
+					      2)) +
+		    (v23 & v24 | v17 & (v24 | v23));
+		v3 +=
+		    v12 +
+		    (verse_rotR32(v4, 18) XOR verse_rotR32(v4, 7) XOR v4 >> 3) +
+		    (verse_rotR32(v1, 19) XOR verse_rotR32(v1, 17) XOR v1 >>
+		     10);
+		v25 =
+		    v21 + 0x53380d13UL + v4 + (v20 XOR v18 & (v19 XOR v20)) +
+		    (verse_rotR32(v18, 25) XOR verse_rotR32(v18, 11)
+		     XOR verse_rotR32(v18, 6));
+		v17 += v25;
+		v21 = v25 + (verse_rotR32(v22, 22) XOR verse_rotR32(v22, 13)
+			     XOR verse_rotR32(v22,
+					      2)) +
+		    (v22 & v23 | v24 & (v23 | v22));
+		v4 +=
+		    v13 +
+		    (verse_rotR32(v5, 18) XOR verse_rotR32(v5, 7) XOR v5 >> 3) +
+		    (verse_rotR32(v2, 19) XOR verse_rotR32(v2, 17) XOR v2 >>
+		     10);
+		v25 =
+		    v20 + 0x650a7354UL + v5 + (v19 XOR v17 & (v18 XOR v19)) +
+		    (verse_rotR32(v17, 25) XOR verse_rotR32(v17, 11)
+		     XOR verse_rotR32(v17, 6));
+		v24 += v25;
+		v20 = v25 + (verse_rotR32(v21, 22) XOR verse_rotR32(v21, 13)
+			     XOR verse_rotR32(v21,
+					      2)) +
+		    (v21 & v22 | v23 & (v22 | v21));
+		v5 +=
+		    v14 +
+		    (verse_rotR32(v6, 18) XOR verse_rotR32(v6, 7) XOR v6 >> 3) +
+		    (verse_rotR32(v3, 19) XOR verse_rotR32(v3, 17) XOR v3 >>
+		     10);
+		v25 =
+		    v19 + 0x766a0abbUL + v6 + (v18 XOR v24 & (v17 XOR v18)) +
+		    (verse_rotR32(v24, 25) XOR verse_rotR32(v24, 11)
+		     XOR verse_rotR32(v24, 6));
+		v23 += v25;
+		v19 = v25 + (verse_rotR32(v20, 22) XOR verse_rotR32(v20, 13)
+			     XOR verse_rotR32(v20,
+					      2)) +
+		    (v20 & v21 | v22 & (v21 | v20));
+		v6 +=
+		    v15 +
+		    (verse_rotR32(v7, 18) XOR verse_rotR32(v7, 7) XOR v7 >> 3) +
+		    (verse_rotR32(v4, 19) XOR verse_rotR32(v4, 17) XOR v4 >>
+		     10);
+		v25 =
+		    v18 + 0x81c2c92eUL + v7 + (v17 XOR v23 & (v24 XOR v17)) +
+		    (verse_rotR32(v23, 25) XOR verse_rotR32(v23, 11)
+		     XOR verse_rotR32(v23, 6));
+		v22 += v25;
+		v18 = v25 + (verse_rotR32(v19, 22) XOR verse_rotR32(v19, 13)
+			     XOR verse_rotR32(v19,
+					      2)) +
+		    (v19 & v20 | v21 & (v20 | v19));
+		v7 +=
+		    v16 +
+		    (verse_rotR32(v8, 18) XOR verse_rotR32(v8, 7) XOR v8 >> 3) +
+		    (verse_rotR32(v5, 19) XOR verse_rotR32(v5, 17) XOR v5 >>
+		     10);
+		v25 =
+		    v17 + 0x92722c85UL + v8 + (v24 XOR v22 & (v23 XOR v24)) +
+		    (verse_rotR32(v22, 25) XOR verse_rotR32(v22, 11)
+		     XOR verse_rotR32(v22, 6));
+		v21 += v25;
+		v17 = v25 + (verse_rotR32(v18, 22) XOR verse_rotR32(v18, 13)
+			     XOR verse_rotR32(v18,
+					      2)) +
+		    (v18 & v19 | v20 & (v19 | v18));
+		v8 +=
+		    v1 +
+		    (verse_rotR32(v9, 18) XOR verse_rotR32(v9, 7) XOR v9 >> 3) +
+		    (verse_rotR32(v6, 19) XOR verse_rotR32(v6, 17) XOR v6 >>
+		     10);
+		v25 =
+		    v24 + 0xa2bfe8a1UL + v9 + (v23 XOR v21 & (v22 XOR v23)) +
+		    (verse_rotR32(v21, 25) XOR verse_rotR32(v21, 11)
+		     XOR verse_rotR32(v21, 6));
+		v20 += v25;
+		v24 = v25 + (verse_rotR32(v17, 22) XOR verse_rotR32(v17, 13)
+			     XOR verse_rotR32(v17,
+					      2)) +
+		    (v17 & v18 | v19 & (v18 | v17));
+		v9 +=
+		    v2 +
+		    (verse_rotR32(v10, 18) XOR verse_rotR32(v10, 7) XOR v10 >>
+		     3) + (verse_rotR32(v7, 19) XOR verse_rotR32(v7,
+								 17) XOR v7 >>
+			   10);
+		v25 =
+		    v23 + 0xa81a664bUL + v10 + (v22 XOR v20 & (v21 XOR v22)) +
+		    (verse_rotR32(v20, 25) XOR verse_rotR32(v20, 11)
+		     XOR verse_rotR32(v20, 6));
+		v19 += v25;
+		v23 = v25 + (verse_rotR32(v24, 22) XOR verse_rotR32(v24, 13)
+			     XOR verse_rotR32(v24,
+					      2)) +
+		    (v24 & v17 | v18 & (v17 | v24));
+		v10 +=
+		    v3 +
+		    (verse_rotR32(v11, 18) XOR verse_rotR32(v11, 7) XOR v11 >>
+		     3) + (verse_rotR32(v8, 19) XOR verse_rotR32(v8,
+								 17) XOR v8 >>
+			   10);
+		v25 =
+		    v22 + 0xc24b8b70UL + v11 + (v21 XOR v19 & (v20 XOR v21)) +
+		    (verse_rotR32(v19, 25) XOR verse_rotR32(v19, 11)
+		     XOR verse_rotR32(v19, 6));
+		v18 += v25;
+		v22 = v25 + (verse_rotR32(v23, 22) XOR verse_rotR32(v23, 13)
+			     XOR verse_rotR32(v23,
+					      2)) +
+		    (v23 & v24 | v17 & (v24 | v23));
+		v11 +=
+		    v4 +
+		    (verse_rotR32(v12, 18) XOR verse_rotR32(v12, 7) XOR v12 >>
+		     3) + (verse_rotR32(v9, 19) XOR verse_rotR32(v9,
+								 17) XOR v9 >>
+			   10);
+		v25 =
+		    v21 + 0xc76c51a3UL + v12 + (v20 XOR v18 & (v19 XOR v20)) +
+		    (verse_rotR32(v18, 25) XOR verse_rotR32(v18, 11)
+		     XOR verse_rotR32(v18, 6));
+		v17 += v25;
+		v21 = v25 + (verse_rotR32(v22, 22) XOR verse_rotR32(v22, 13)
+			     XOR verse_rotR32(v22,
+					      2)) +
+		    (v22 & v23 | v24 & (v23 | v22));
+		v12 +=
+		    v5 +
+		    (verse_rotR32(v13, 18) XOR verse_rotR32(v13, 7) XOR v13 >>
+		     3) + (verse_rotR32(v10, 19) XOR verse_rotR32(v10,
+								  17) XOR v10 >>
+			   10);
+		v25 =
+		    v20 + 0xd192e819UL + v13 + (v19 XOR v17 & (v18 XOR v19)) +
+		    (verse_rotR32(v17, 25) XOR verse_rotR32(v17, 11)
+		     XOR verse_rotR32(v17, 6));
+		v24 += v25;
+		v20 = v25 + (verse_rotR32(v21, 22) XOR verse_rotR32(v21, 13)
+			     XOR verse_rotR32(v21,
+					      2)) +
+		    (v21 & v22 | v23 & (v22 | v21));
+		v13 +=
+		    v6 +
+		    (verse_rotR32(v14, 18) XOR verse_rotR32(v14, 7) XOR v14 >>
+		     3) + (verse_rotR32(v11, 19) XOR verse_rotR32(v11,
+								  17) XOR v11 >>
+			   10);
+		v25 =
+		    v19 + 0xd6990624UL + v14 + (v18 XOR v24 & (v17 XOR v18)) +
+		    (verse_rotR32(v24, 25) XOR verse_rotR32(v24, 11)
+		     XOR verse_rotR32(v24, 6));
+		v23 += v25;
+		v19 = v25 + (verse_rotR32(v20, 22) XOR verse_rotR32(v20, 13)
+			     XOR verse_rotR32(v20,
+					      2)) +
+		    (v20 & v21 | v22 & (v21 | v20));
+		v14 +=
+		    v7 +
+		    (verse_rotR32(v15, 18) XOR verse_rotR32(v15, 7) XOR v15 >>
+		     3) + (verse_rotR32(v12, 19) XOR verse_rotR32(v12,
+								  17) XOR v12 >>
+			   10);
+		v25 =
+		    v18 + 0xf40e3585UL + v15 + (v17 XOR v23 & (v24 XOR v17)) +
+		    (verse_rotR32(v23, 25) XOR verse_rotR32(v23, 11)
+		     XOR verse_rotR32(v23, 6));
+		v22 += v25;
+		v18 = v25 + (verse_rotR32(v19, 22) XOR verse_rotR32(v19, 13)
+			     XOR verse_rotR32(v19,
+					      2)) +
+		    (v19 & v20 | v21 & (v20 | v19));
+		v15 +=
+		    v8 +
+		    (verse_rotR32(v16, 18) XOR verse_rotR32(v16, 7) XOR v16 >>
+		     3) + (verse_rotR32(v13, 19) XOR verse_rotR32(v13,
+								  17) XOR v13 >>
+			   10);
+		v25 =
+		    v17 + 0x106aa070UL + v16 + (v24 XOR v22 & (v23 XOR v24)) +
+		    (verse_rotR32(v22, 25) XOR verse_rotR32(v22, 11)
+		     XOR verse_rotR32(v22, 6));
+		v21 += v25;
+		v17 = v25 + (verse_rotR32(v18, 22) XOR verse_rotR32(v18, 13)
+			     XOR verse_rotR32(v18,
+					      2)) +
+		    (v18 & v19 | v20 & (v19 | v18));
+		v16 +=
+		    v9 +
+		    (verse_rotR32(v1, 18) XOR verse_rotR32(v1, 7) XOR v1 >> 3) +
+		    (verse_rotR32(v14, 19) XOR verse_rotR32(v14, 17) XOR v14 >>
+		     10);
+		v25 =
+		    v24 + 0x19a4c116UL + v1 + (v23 XOR v21 & (v22 XOR v23)) +
+		    (verse_rotR32(v21, 25) XOR verse_rotR32(v21, 11)
+		     XOR verse_rotR32(v21, 6));
+		v20 += v25;
+		v24 = v25 + (verse_rotR32(v17, 22) XOR verse_rotR32(v17, 13)
+			     XOR verse_rotR32(v17,
+					      2)) +
+		    (v17 & v18 | v19 & (v18 | v17));
+		v25 =
+		    v23 + 0x1e376c08UL + v2 + (v22 XOR v20 & (v21 XOR v22)) +
+		    (verse_rotR32(v20, 25) XOR verse_rotR32(v20, 11)
+		     XOR verse_rotR32(v20, 6));
+		v19 += v25;
+		v23 = v25 + (verse_rotR32(v24, 22) XOR verse_rotR32(v24, 13)
+			     XOR verse_rotR32(v24,
+					      2)) +
+		    (v24 & v17 | v18 & (v17 | v24));
+		v25 =
+		    v22 + 0x2748774cUL + v3 + (v21 XOR v19 & (v20 XOR v21)) +
+		    (verse_rotR32(v19, 25) XOR verse_rotR32(v19, 11)
+		     XOR verse_rotR32(v19, 6));
+		v18 += v25;
+		v22 = v25 + (verse_rotR32(v23, 22) XOR verse_rotR32(v23, 13)
+			     XOR verse_rotR32(v23,
+					      2)) +
+		    (v23 & v24 | v17 & (v24 | v23));
+		v25 =
+		    v21 + 0x34b0bcb5UL + v4 + (v20 XOR v18 & (v19 XOR v20)) +
+		    (verse_rotR32(v18, 25) XOR verse_rotR32(v18, 11)
+		     XOR verse_rotR32(v18, 6));
+		v17 += v25;
+		v21 = v25 + (verse_rotR32(v22, 22) XOR verse_rotR32(v22, 13)
+			     XOR verse_rotR32(v22,
+					      2)) +
+		    (v22 & v23 | v24 & (v23 | v22));
+		v25 =
+		    v20 + 0x391c0cb3UL + v5 + (v19 XOR v17 & (v18 XOR v19)) +
+		    (verse_rotR32(v17, 25) XOR verse_rotR32(v17, 11)
+		     XOR verse_rotR32(v17, 6));
+		v24 += v25;
+		v20 = v25 + (verse_rotR32(v21, 22) XOR verse_rotR32(v21, 13)
+			     XOR verse_rotR32(v21,
+					      2)) +
+		    (v21 & v22 | v23 & (v22 | v21));
+		v25 =
+		    v19 + 0x4ed8aa4aUL + v6 + (v18 XOR v24 & (v17 XOR v18)) +
+		    (verse_rotR32(v24, 25) XOR verse_rotR32(v24, 11)
+		     XOR verse_rotR32(v24, 6));
+		v23 += v25;
+		v19 = v25 + (verse_rotR32(v20, 22) XOR verse_rotR32(v20, 13)
+			     XOR verse_rotR32(v20,
+					      2)) +
+		    (v20 & v21 | v22 & (v21 | v20));
+		v25 =
+		    v18 + 0x5b9cca4fUL + v7 + (v17 XOR v23 & (v24 XOR v17)) +
+		    (verse_rotR32(v23, 25) XOR verse_rotR32(v23, 11)
+		     XOR verse_rotR32(v23, 6));
+		v22 += v25;
+		v18 = v25 + (verse_rotR32(v19, 22) XOR verse_rotR32(v19, 13)
+			     XOR verse_rotR32(v19,
+					      2)) +
+		    (v19 & v20 | v21 & (v20 | v19));
+		v25 =
+		    v17 + 0x682e6ff3UL + v8 + (v24 XOR v22 & (v23 XOR v24)) +
+		    (verse_rotR32(v22, 25) XOR verse_rotR32(v22, 11)
+		     XOR verse_rotR32(v22, 6));
+		v21 += v25;
+		v17 = v25 + (verse_rotR32(v18, 22) XOR verse_rotR32(v18, 13)
+			     XOR verse_rotR32(v18,
+					      2)) +
+		    (v18 & v19 | v20 & (v19 | v18));
+		v25 =
+		    v24 + 0x748f82eeUL + v9 + (v23 XOR v21 & (v22 XOR v23)) +
+		    (verse_rotR32(v21, 25) XOR verse_rotR32(v21, 11)
+		     XOR verse_rotR32(v21, 6));
+		v20 += v25;
+		v24 = v25 + (verse_rotR32(v17, 22) XOR verse_rotR32(v17, 13)
+			     XOR verse_rotR32(v17,
+					      2)) +
+		    (v17 & v18 | v19 & (v18 | v17));
+		v25 =
+		    v23 + 0x78a5636fUL + v10 + (v22 XOR v20 & (v21 XOR v22)) +
+		    (verse_rotR32(v20, 25) XOR verse_rotR32(v20, 11)
+		     XOR verse_rotR32(v20, 6));
+		v19 += v25;
+		v23 = v25 + (verse_rotR32(v24, 22) XOR verse_rotR32(v24, 13)
+			     XOR verse_rotR32(v24,
+					      2)) +
+		    (v24 & v17 | v18 & (v17 | v24));
+		v25 =
+		    v22 + 0x84c87814UL + v11 + (v21 XOR v19 & (v20 XOR v21)) +
+		    (verse_rotR32(v19, 25) XOR verse_rotR32(v19, 11)
+		     XOR verse_rotR32(v19, 6));
+		v18 += v25;
+		v22 = v25 + (verse_rotR32(v23, 22) XOR verse_rotR32(v23, 13)
+			     XOR verse_rotR32(v23,
+					      2)) +
+		    (v23 & v24 | v17 & (v24 | v23));
+		v25 =
+		    v21 + 0x8cc70208UL + v12 + (v20 XOR v18 & (v19 XOR v20)) +
+		    (verse_rotR32(v18, 25) XOR verse_rotR32(v18, 11)
+		     XOR verse_rotR32(v18, 6));
+		v17 += v25;
+		v21 = v25 + (verse_rotR32(v22, 22) XOR verse_rotR32(v22, 13)
+			     XOR verse_rotR32(v22,
+					      2)) +
+		    (v22 & v23 | v24 & (v23 | v22));
+		v25 =
+		    v20 + 0x90befffaUL + v13 + (v19 XOR v17 & (v18 XOR v19)) +
+		    (verse_rotR32(v17, 25) XOR verse_rotR32(v17, 11)
+		     XOR verse_rotR32(v17, 6));
+		v24 += v25;
+		v20 = v25 + (verse_rotR32(v21, 22) XOR verse_rotR32(v21, 13)
+			     XOR verse_rotR32(v21,
+					      2)) +
+		    (v21 & v22 | v23 & (v22 | v21));
+		v25 =
+		    v19 + 0xa4506cebUL + v14 + (v18 XOR v24 & (v17 XOR v18)) +
+		    (verse_rotR32(v24, 25) XOR verse_rotR32(v24, 11)
+		     XOR verse_rotR32(v24, 6));
+		v23 += v25;
+		v19 = v25 + (verse_rotR32(v20, 22) XOR verse_rotR32(v20, 13)
+			     XOR verse_rotR32(v20,
+					      2)) +
+		    (v20 & v21 | v22 & (v21 | v20));
+		v25 =
+		    v18 + 0xbef9a3f7UL + v15 + (v17 XOR v23 & (v24 XOR v17)) +
+		    (verse_rotR32(v23, 25) XOR verse_rotR32(v23, 11)
+		     XOR verse_rotR32(v23, 6));
+		v22 += v25;
+		v18 = v25 + (verse_rotR32(v19, 22) XOR verse_rotR32(v19, 13)
+			     XOR verse_rotR32(v19,
+					      2)) +
+		    (v19 & v20 | v21 & (v20 | v19));
+		v25 =
+		    v17 + 0xc67178f2UL + v16 + (v24 XOR v22 & (v23 XOR v24)) +
+		    (verse_rotR32(v22, 25) XOR verse_rotR32(v22, 11)
+		     XOR verse_rotR32(v22, 6));
+		v21 += v25;
+		v17 = v25 + (verse_rotR32(v18, 22) XOR verse_rotR32(v18, 13)
+			     XOR verse_rotR32(v18,
+					      2)) +
+		    (v18 & v19 | v20 & (v19 | v18));
+		v17 += v0[0];
+		v18 += v0[1];
+		v19 += v0[2];
+		v20 += v0[3];
+		v21 += v0[4];
+		v22 += v0[5];
+		v23 += v0[6];
+		v24 += v0[7];
+		v0[0] = v17;
+		v0[1] = v18;
+		v0[2] = v19;
+		v0[3] = v20;
+		v0[4] = v21;
+		v0[5] = v22;
+		v0[6] = v23;
+		v0[7] = v24;
+		++bPtr;
+		--cTr;
 	};
 }
