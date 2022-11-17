@@ -1,4 +1,4 @@
-PRIMS= sha256 sha512 chacha20 poly1305 blake2b blake2s
+PRIMS= sha256 sha512 chacha20 poly1305 blake2b blake2s curve25519
 IMPLS=$(addsuffix /c/portable.c, ${PRIMS})
 OBJS= $(addsuffix .o, $(basename ${IMPLS}))
 
